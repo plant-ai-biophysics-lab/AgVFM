@@ -4,7 +4,16 @@ Vision-language and detection utilities for agronomic VFM (e.g. flower/bud detec
 
 ## Install
 
-From the repo root:
+Requires **Python ≥ 3.9**. Using a conda environment is recommended:
+
+```bash
+conda create -n agvfm python=3.14
+conda activate agvfm
+cd /path/to/AgVFM
+pip install -e .
+```
+
+From the repo root without conda:
 
 ```bash
 pip install -e .
