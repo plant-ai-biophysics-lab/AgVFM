@@ -14,6 +14,7 @@ import argparse
 import json
 import logging
 import os
+import random
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -30,6 +31,7 @@ from agvfm.config.experiments import (
     ABSORBER_CONFIGS,
     COMBINATION_CONFIGS,
     MULTICLASS_CONFIGS,
+    _EMOJI_LABELS,
 )
 from agvfm.data.labels import get_image_paths
 from agvfm.experiments import Evaluator
@@ -154,6 +156,7 @@ def run_combinations(
     evaluator: Evaluator,
     results_file: Path,
     resume: bool = True,
+    no_emoji: bool = False,
 ):
     """Run combination tests."""
     print(f"\n{'='*80}")
@@ -161,15 +164,25 @@ def run_combinations(
     print(f"{'='*80}")
     
     results = load_results(results_file) if resume else {"results": {}}
-    
-    total_configs = len(COMBINATION_CONFIGS)
-    completed = len([k for k in results.get("results", {}) if k.startswith("C")])
+
+    # Build the active config list — optionally strip emoji variants
+    _emoji_suffixes = tuple(f"_{lbl}" for lbl in _EMOJI_LABELS.values())
+    active_configs = [
+        c for c in COMBINATION_CONFIGS
+        if not (no_emoji and c.name.endswith(_emoji_suffixes))
+    ]
+    if no_emoji:
+        n_skipped = len(COMBINATION_CONFIGS) - len(active_configs)
+        print(f"⚙️  --no-emoji: {n_skipped} emoji variants excluded from this run.")
+
+    total_configs = len(active_configs)
+    completed = len([k for k in results.get("results", {}) if k.startswith("comb_")])
     
     print(f"\nTotal configs: {total_configs}")
     print(f"Already completed: {completed}")
     print(f"Remaining: {total_configs - completed}\n")
     
-    for idx, config in enumerate(COMBINATION_CONFIGS, 1):
+    for idx, config in enumerate(active_configs, 1):
         config_key = config.name
         
         # Skip if already completed
@@ -235,7 +248,7 @@ def run_absorbers(
     results = load_results(results_file) if resume else {"results": {}}
     
     total_configs = len(ABSORBER_CONFIGS)
-    completed = len([k for k in results.get("results", {}) if k.startswith("H")])
+    completed = len([k for k in results.get("results", {}) if k.startswith("abs_")])
     
     print(f"\nTotal configs: {total_configs}")
     print(f"Already completed: {completed}")
@@ -329,17 +342,57 @@ def main():
         action="store_true",
         help="Only run combination tests (skip absorbers and multi-class)",
     )
+    parser.add_argument(
+        "--image-dir",
+        type=str,
+        default=None,
+        help="Directory containing test images (overrides --data-root auto-detection)",
+    )
+    parser.add_argument(
+        "--labels-dir",
+        type=str,
+        default=None,
+        help="Directory containing test labels (overrides --data-root auto-detection)",
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=str,
+        default=None,
+        help="Directory to save results (default: experiments/results/phase2_combinations)",
+    )
+    parser.add_argument(
+        "--sample-size",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Randomly sample N images from the test set (reproducible; seed=42). "
+             "Default: use all images.",
+    )
+    parser.add_argument(
+        "--no-emoji",
+        action="store_true",
+        help="Skip all emoji-suffixed combination variants (e.g. comb_clr_spp_cherry_blossom). "
+             "All non-emoji combinations are still tested.",
+    )
     
     args = parser.parse_args()
     
-    # Get data paths
-    if args.data_root:
-        os.environ["DATA_ROOT"] = args.data_root
-    
-    data_paths = get_data_paths()
+    # Get data paths: explicit dirs > data-root env > auto-detection
+    if args.image_dir and args.labels_dir:
+        data_paths = {
+            "images_dir": Path(args.image_dir),
+            "labels_dir": Path(args.labels_dir),
+        }
+    else:
+        if args.data_root:
+            os.environ["DATA_ROOT"] = args.data_root
+        data_paths = get_data_paths()
     
     # Set up results directory
-    results_dir = project_root / "experiments" / "results" / "phase2_combinations"
+    if args.results_dir:
+        results_dir = Path(args.results_dir)
+    else:
+        results_dir = project_root / "experiments" / "results" / "phase2_combinations"
     results_dir.mkdir(parents=True, exist_ok=True)
     
     # Set up logging
@@ -363,6 +416,19 @@ def main():
         # Get test set size
         test_images = get_image_paths(data_paths["images_dir"])
         test_set_size = len(test_images)
+
+        # Optional random sub-sample (applied once per model loop, same seed → same subset)
+        if args.sample_size is not None:
+            if args.sample_size >= test_set_size:
+                print(f"⚠️  --sample-size {args.sample_size} ≥ dataset size {test_set_size}; "
+                      f"using all images.")
+                image_paths = test_images
+            else:
+                rng = random.Random(42)
+                image_paths = rng.sample(test_images, args.sample_size)
+                print(f"🎲 Sampled {len(image_paths)} images (seed=42) from dataset")
+        else:
+            image_paths = test_images
         
         logger = logging.getLogger(__name__)
         log_experiment_start(
@@ -370,6 +436,8 @@ def main():
             config={
                 "model": model_name,
                 "test_set_size": test_set_size,
+                "n_images_used": len(image_paths),
+                "sample_size": args.sample_size,
                 "full_test_set": args.full_test_set,
             },
         )
@@ -390,6 +458,7 @@ def main():
             images_dir=data_paths["images_dir"],
             labels_dir=data_paths["labels_dir"],
             conf_threshold=0.1,
+            image_paths=image_paths,
             batch_size=batch_size,
         )
         
@@ -400,6 +469,7 @@ def main():
             evaluator=evaluator,
             results_file=combinations_file,
             resume=not args.no_resume,
+            no_emoji=args.no_emoji,
         )
         
         # Run absorber tests (YOLO World only)

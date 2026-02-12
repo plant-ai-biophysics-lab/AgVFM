@@ -6,7 +6,7 @@ from typing import Dict, List, Tuple
 import numpy as np
 
 from agvfm.data import get_image_paths, load_ground_truth
-from agvfm.evaluation import compute_counting_metrics, compute_map_coco, compute_metrics_at_iou
+from agvfm.evaluation import compute_counting_metrics, compute_f1_max, compute_map_coco, compute_metrics_at_iou
 from agvfm.models.base import BaseModel
 
 
@@ -52,6 +52,7 @@ class Evaluator:
         absorber_classes: List[str] = None,
         target_indices: List[int] = None,
         iou_thresholds: List[float] = None,
+        map_coco_style: bool = False,
     ) -> Dict:
         """
         Evaluate a single prompt configuration.
@@ -60,13 +61,17 @@ class Evaluator:
             prompt: Text prompt for detection
             absorber_classes: Optional list of classes for absorber architecture
             target_indices: Optional indices of target classes to keep
-            iou_thresholds: List of IoU thresholds for evaluation (default: [0.3, 0.5])
+            iou_thresholds: List of IoU thresholds for evaluation (default: [0.5])
+            map_coco_style: If True, also compute mAP@0.5:0.95 and include
+                            it as ``map_coco`` in the returned dict.
+                            Disabled by default because it requires 10× the
+                            matching work and is slow over large datasets.
 
         Returns:
             Dictionary with comprehensive evaluation results
         """
         if iou_thresholds is None:
-            iou_thresholds = [0.3, 0.5]
+            iou_thresholds = [0.5]
 
         # Collect predictions and ground truth
         list_pred_xyxy = []
@@ -141,16 +146,34 @@ class Evaluator:
                 list_pred_xyxy.append(pred_boxes)
                 list_pred_conf.append(pred_confs)
 
-        # Compute metrics at each IoU threshold
+        # Compute metrics at each IoU threshold.
+        # All scalar metrics (F1, precision, recall, TP/FP/FN) are reported at
+        # the F1-maximising confidence threshold (threshold-free).
+        # map uses 101-point interpolated AP from the full sorted P-R curve.
         metrics_by_iou = {}
         for iou_thresh in iou_thresholds:
-            metrics = compute_metrics_at_iou(
+            m_fixed = compute_metrics_at_iou(
                 list_gt_xyxy, list_pred_xyxy, list_pred_conf, iou_threshold=iou_thresh
             )
-            metrics_by_iou[f"iou_{iou_thresh}"] = metrics
+            m_fmax = compute_f1_max(
+                list_gt_xyxy, list_pred_xyxy, list_pred_conf, iou_threshold=iou_thresh
+            )
+            metrics_by_iou[f"iou_{iou_thresh}"] = {
+                "precision":    m_fmax["precision"],
+                "recall":       m_fmax["recall"],
+                "map":          m_fixed["map"],     # 101-pt AP from full curve
+                "f1":           m_fmax["f1_max"],
+                "total_tp":     m_fmax["total_tp"],
+                "total_fp":     m_fmax["total_fp"],
+                "total_fn":     m_fmax["total_fn"],
+                "n_images":     m_fixed["n_images"],
+                "n_gt_total":   m_fixed["n_gt_total"],
+                "n_pred_total": m_fixed["n_pred_total"],
+                "best_conf":    m_fmax["best_conf"],
+            }
 
-        # Compute mAP@0.5:0.95 (COCO-style)
-        map_coco = compute_map_coco(list_gt_xyxy, list_pred_xyxy, list_pred_conf)
+        # Optionally compute mAP@0.5:0.95 (COCO-style) — expensive, off by default
+        map_coco = compute_map_coco(list_gt_xyxy, list_pred_xyxy, list_pred_conf) if map_coco_style else None
 
         # Compute counting metrics
         counting_metrics = compute_counting_metrics(list_gt_xyxy, list_pred_xyxy)
@@ -159,7 +182,7 @@ class Evaluator:
         total_predictions = sum(len(boxes) for boxes in list_pred_xyxy)
         total_ground_truth = sum(len(boxes) for boxes in list_gt_xyxy)
 
-        return {
+        result = {
             "prompt": prompt,
             "model": self.model.model_name,
             "absorber_classes": absorber_classes,
@@ -169,9 +192,11 @@ class Evaluator:
             "total_predictions": total_predictions,
             "total_ground_truth": total_ground_truth,
             "metrics_by_iou": metrics_by_iou,
-            "map_coco": map_coco,
             "counting": counting_metrics,
         }
+        if map_coco is not None:
+            result["map_coco"] = map_coco
+        return result
 
     def evaluate_confidence_sweep(
         self,

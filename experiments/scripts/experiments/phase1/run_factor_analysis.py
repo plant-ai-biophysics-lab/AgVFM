@@ -13,6 +13,7 @@ Usage:
 import argparse
 import json
 import os
+import random
 import sys
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -148,6 +149,7 @@ def run_model_factor_analysis(
     iou_thresholds: List[float] = None,
     resume: bool = True,
     image_paths: List[Path] = None,
+    no_emoji: bool = False,
 ) -> Dict:
     """
     Run factor analysis for a single model.
@@ -189,7 +191,12 @@ def run_model_factor_analysis(
     
     # Generate all combinations
     combinations = generate_factor_combinations()
-    
+
+    # Optionally strip emoji-axis variants before reporting totals
+    if no_emoji:
+        combinations = [c for c in combinations if not c.get("emoji", "")]
+        print("⚙️  --no-emoji: emoji-axis variants excluded from this run.")
+
     print("=" * 80)
     print(f"Phase 1: Factor Analysis - {model.model_name}")
     print("=" * 80)
@@ -337,7 +344,33 @@ def main():
         action="store_true",
         help="Use full test set (158 images) instead of holdout test set (138 images)",
     )
-    
+    parser.add_argument(
+        "--image-dir",
+        type=str,
+        default=None,
+        help="Directory containing test images (overrides auto-detection)",
+    )
+    parser.add_argument(
+        "--labels-dir",
+        type=str,
+        default=None,
+        help="Directory containing test labels (overrides auto-detection)",
+    )
+    parser.add_argument(
+        "--sample-size",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Randomly sample N images from the test set (reproducible; seed=42). "
+             "Default: use all images.",
+    )
+    parser.add_argument(
+        "--no-emoji",
+        action="store_true",
+        help="Skip all emoji-axis variants (combinations where the 'emoji' factor "
+             "is set to a non-baseline value). All other factor axes are still tested.",
+    )
+
     args = parser.parse_args()
     
     # Immediate output to verify script is running
@@ -355,6 +388,10 @@ def main():
         images_dir = data_root / "test" / "images"
         labels_dir = data_root / "test" / "labels"
         dev_manifest = data_root / "dev" / "manifest.txt"
+    elif args.image_dir and args.labels_dir:
+        images_dir = Path(args.image_dir)
+        labels_dir = Path(args.labels_dir)
+        dev_manifest = None  # Can't use holdout test set if custom paths are provided
     else:
         paths = get_data_paths()
         images_dir = paths["images_dir"]
@@ -368,12 +405,22 @@ def main():
         sys.exit(1)
     
     # Get test set (full or holdout)
-    if args.full_test_set:
+    if args.full_test_set or dev_manifest is None:
         image_paths = get_full_test_paths(images_dir)
         print(f"📊 Using FULL test set: {len(image_paths)} images (includes dev images)")
     else:
         image_paths = get_holdout_test_paths(images_dir, dev_manifest)
         print(f"📊 Using holdout test set: {len(image_paths)} images (excluded dev images)")
+
+    # Optional random sub-sample
+    if args.sample_size is not None:
+        if args.sample_size >= len(image_paths):
+            print(f"⚠️  --sample-size {args.sample_size} ≥ dataset size {len(image_paths)}; "
+                  f"using all images.")
+        else:
+            rng = random.Random(42)
+            image_paths = rng.sample(image_paths, args.sample_size)
+            print(f"🎲 Sampled {len(image_paths)} images (seed=42) from dataset")
     
     # Results directory
     if args.results_dir:
@@ -430,6 +477,7 @@ def main():
             results_dir=results_dir,
             resume=not args.no_resume,
             image_paths=image_paths,
+            no_emoji=args.no_emoji,
         )
         print()
     
@@ -444,6 +492,7 @@ def main():
             results_dir=results_dir,
             resume=not args.no_resume,
             image_paths=image_paths,
+            no_emoji=args.no_emoji,
         )
         print()
     

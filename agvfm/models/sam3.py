@@ -125,7 +125,12 @@ class SAM3Model(BaseModel):
         **kwargs,
     ) -> List[Tuple[np.ndarray, np.ndarray]]:
         """
-        Run inference on multiple images in a true batch.
+        Run inference on multiple images.
+
+        SAM3's processor resizes images to varying internal grid dimensions, making
+        true batching across different-sized images impossible (positional embedding
+        reshape fails). We therefore process each image individually and aggregate
+        the results, preserving the expected batch interface.
 
         Args:
             image_paths: List of image paths
@@ -136,42 +141,10 @@ class SAM3Model(BaseModel):
         Returns:
             List of (boxes, confidences) tuples
         """
-        # Load all images
-        images = [Image.open(img_path).convert("RGB") for img_path in image_paths]
-        
-        # Prepare inputs for batch processing
-        inputs = self.processor(images=images, text=prompt, return_tensors="pt").to(self.device)
-        
-        # Run inference on batch
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-        
-        # Post-process results
-        results_list = self.processor.post_process_instance_segmentation(
-            outputs,
-            threshold=conf_threshold,
-            mask_threshold=0.5,
-            target_sizes=inputs.get("original_sizes").tolist(),
-        )
-        
-        # Extract results for each image
         batch_results = []
-        for result_dict in results_list:
-            if result_dict is None or len(result_dict) == 0:
-                batch_results.append((np.zeros((0, 4), dtype=np.float64), np.zeros(0, dtype=np.float64)))
-                continue
-                
-            boxes = result_dict["boxes"].cpu().numpy()  # (N, 4) in xyxy format
-            scores = result_dict["scores"].cpu().numpy()  # (N,)
-            
-            # Filter by confidence
-            if len(boxes) > 0:
-                keep = scores >= conf_threshold
-                boxes = boxes[keep]
-                scores = scores[keep]
-            
-            batch_results.append((boxes.astype(np.float64), scores.astype(np.float64)))
-        
+        for img_path in image_paths:
+            boxes, scores = self.predict(img_path, prompt, conf_threshold=conf_threshold, **kwargs)
+            batch_results.append((boxes, scores))
         return batch_results
 
     @property

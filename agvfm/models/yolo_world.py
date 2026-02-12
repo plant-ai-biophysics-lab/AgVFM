@@ -135,26 +135,33 @@ class YOLOWorldModel(BaseModel):
         Returns:
             Tuple of (boxes, confidences) for target classes only
         """
-        # Reinitialize model when changing classes to avoid device errors
-        # Calling set_classes repeatedly on the same model instance causes device mismatches
-        if self._class_names != class_names:
-            self.model = YOLOWorld(str(self.weights_path))
-            self.set_classes(class_names)
+        # CRITICAL: Always append "" background class to match predict() calibration.
+        # predict() uses [prompt, ""] — without the background class the CLIP
+        # softmax is computed over a different set and confidence scores shift,
+        # causing a systematic discrepancy vs Phase 1/2 single-prompt results.
+        # target_indices must therefore always refer to indices within class_names
+        # (before appending ""), and the background slot (index len(class_names))
+        # is filtered out below.
+        n_target = len(class_names)
+        classes_with_bg = list(class_names) + [""]
 
-        # Run inference
-        # Use imgsz=1280 and iou=0.3 to match previous experiments
-        # Previous code used: imgsz=1280, conf=0.1, iou=0.3 (for NMS)
+        # Reinitialize model when changing classes to avoid device errors
+        if self._class_names != classes_with_bg:
+            self.model = YOLOWorld(str(self.weights_path))
+            self.set_classes(classes_with_bg)
+
+        # Run inference — same settings as predict() for consistency
         import torch
         predict_kwargs = {
             "imgsz": 1280,
             "conf": conf_threshold,
-            "iou": 0.3,  # NMS IoU - previous code used 0.3
+            "iou": 0.3,  # NMS IoU
             "verbose": False,
         }
         if torch.cuda.is_available():
             predict_kwargs["device"] = "cuda"
-        predict_kwargs.update(kwargs)  # User kwargs override defaults
-        
+        predict_kwargs.update(kwargs)
+
         results = self.model.predict(str(image_path), **predict_kwargs)
 
         r = results[0]
@@ -165,12 +172,15 @@ class YOLOWorldModel(BaseModel):
         confidences = r.boxes.conf.cpu().numpy()
         classes = r.boxes.cls.cpu().numpy().astype(int)
 
-        # Filter to target classes if specified
+        # Filter to target classes only, excluding the background slot.
+        # Default: keep all non-background detections (indices 0 .. n_target-1).
         if target_indices is not None:
             target_set = set(target_indices)
-            mask = np.array([c in target_set for c in classes])
-            boxes = boxes[mask]
-            confidences = confidences[mask]
+        else:
+            target_set = set(range(n_target))
+        mask = np.array([c in target_set for c in classes])
+        boxes = boxes[mask]
+        confidences = confidences[mask]
 
         return boxes, confidences
 

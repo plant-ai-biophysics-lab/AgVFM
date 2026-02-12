@@ -110,13 +110,110 @@ FACTOR_AXES = [
         ],
         baseline="a",
     ),
+    FactorAxis(
+        name="emoji",
+        values=[
+            "",         # baseline (none)
+            "🌸",      # cherry blossom
+            "🌺",      # hibiscus
+            "🌻",      # sunflower
+            "🌼",      # blossom
+            "💐",      # bouquet
+            "🌷",      # tulip
+        ],
+        baseline="",
+    ),
 ]
 
+POD_FACTOR_AXES = [
+FactorAxis(
+name="taxonomy",
+values=[
+"cowpea pod",             # species_common (best)
+"bean pod",               # genus_bean
+"pea pod",                # genus_pea
+"legume pod",             # family_common
+"black-eyed pea pod",     # alt_common
+"pod",                    # baseline (generic)
+"vigna unguiculata pod",  # scientific (expected to fail)
+"crop fruit",             # generic_crop (expected to fail)
+],
+baseline="pod",
+),
+FactorAxis(
+name="color",
+values=[
+"green",   # best
+"light green",
+"pale green",
+"",        # baseline (none)
+"purple",  # worst (specific varieties only)
+],
+baseline="",
+),
+FactorAxis(
+name="size",
+values=[
+"",        # baseline (none - best)
+"long",
+"short",
+"slender", # worst
+],
+baseline="",
+),
+FactorAxis(
+name="phenology",
+values=[
+"immature",      # best
+"young",
+"",              # baseline (none)
+"developing",
+"mature",
+"dried pod",     # worst (expected to fail)
+],
+baseline="",
+),
+FactorAxis(
+name="negation",
+values=[
+"not a leaf, not a stem, not a flower", # best (leaf+stem+flower)
+"not a leaf, not a stem",               # leaf+stem
+"not a leaf",                           # leaf_only
+"not a flower",                         # flower_only
+"not a stem",                           # stem_only
+"",                                     # baseline (none)
+],
+baseline="",
+),
+FactorAxis(
+name="anatomy",
+values=[
+"with visible seeds",     # best (visible_seeds)
+"with bumpy surface",     # bumpy_surface
+"with a pointed tip",     # pointed_tip
+"",                       # baseline (none)
+"pericarp",               # worst (expected to fail)
+],
+baseline="",
+),
+FactorAxis(
+name="grammar",
+values=[
+"a single",      # best (single)
+"a",             # baseline (article)
+"",              # bare_noun (no article)
+"a photo of a",  # photo_of
+"one",           # one
+"close-up of a", # closeup_of (worst)
+],
+baseline="a",
+),
+]
 
 # Baseline configurations
 BASELINE_CONFIGS = [
     PromptConfig(
-        name="C3",
+        name="comb_species",
         prompt="a cowpea flower",
         description="Species name only - baseline comparison",
     ),
@@ -124,128 +221,170 @@ BASELINE_CONFIGS = [
 
 
 # Combination test configs (Phase 2: Systematic combinations)
-COMBINATION_CONFIGS = [
+# Base list — do not import directly; use COMBINATION_CONFIGS which includes emoji variants.
+# Naming convention: comb_{components}[_size][_neg_{targets}]
+#   Components: clr=color, spp=species/taxonomy, anat=anatomy, gram=grammar
+#   Modifiers:  tiny=size:tiny, neg_{x}=text negation excluding x
+_BASE_COMBINATION_CONFIGS = [
     # Baseline
     PromptConfig(
-        name="C3",
+        name="comb_species",
         prompt="a cowpea flower",
         description="Species baseline - taxonomy only",
     ),
     # Two-component combinations
     PromptConfig(
-        name="C_color_taxonomy",
+        name="comb_clr_spp",
         prompt="a yellow cowpea flower",
         description="Color + Taxonomy",
     ),
     PromptConfig(
-        name="C_color_anatomy",
+        name="comb_clr_anat",
         prompt="a yellow flower with open petals",
         description="Color + Anatomy",
     ),
     PromptConfig(
-        name="C_color_grammar",
+        name="comb_clr_gram",
         prompt="a single yellow flower",
         description="Color + Grammar",
     ),
     PromptConfig(
-        name="C_taxonomy_anatomy",
+        name="comb_spp_anat",
         prompt="a cowpea flower with open petals",
         description="Taxonomy + Anatomy",
     ),
     PromptConfig(
-        name="C_taxonomy_grammar",
+        name="comb_spp_gram",
         prompt="a single cowpea flower",
         description="Taxonomy + Grammar",
     ),
     PromptConfig(
-        name="C_anatomy_grammar",
+        name="comb_anat_gram",
         prompt="a single flower with open petals",
         description="Anatomy + Grammar",
     ),
     # Three-component combinations
     PromptConfig(
-        name="C_color_taxonomy_anatomy",
+        name="comb_clr_spp_anat",
         prompt="a yellow cowpea flower with open petals",
         description="Color + Taxonomy + Anatomy",
     ),
     PromptConfig(
-        name="C_color_taxonomy_grammar",
+        name="comb_clr_spp_gram",
         prompt="a single yellow cowpea flower",
         description="Color + Taxonomy + Grammar",
     ),
     PromptConfig(
-        name="C_color_anatomy_grammar",
+        name="comb_clr_anat_gram",
         prompt="a single yellow flower with open petals",
         description="Color + Anatomy + Grammar",
     ),
     PromptConfig(
-        name="C_taxonomy_anatomy_grammar",
+        name="comb_spp_anat_gram",
         prompt="a single cowpea flower with open petals",
         description="Taxonomy + Anatomy + Grammar",
     ),
     # Four-component combination
     PromptConfig(
-        name="C2",
+        name="comb_clr_spp_anat_gram",
         prompt="a single yellow cowpea flower with open petals",
         description="Four components - best without negation",
     ),
     # Kitchen sink (with text negation)
     PromptConfig(
-        name="C1",
+        name="comb_full_neg",
         prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
-        description="Kitchen sink - all components with text negation",
+        description="Kitchen sink - all components with full text negation",
     ),
     # Strategic experiments: Size component integration
     PromptConfig(
-        name="C2_tiny",
+        name="comb_clr_spp_anat_gram_tiny",
         prompt="a single tiny yellow cowpea flower with open petals",
-        description="C2 + size component (tiny)",
+        description="Four components + size:tiny",
     ),
     PromptConfig(
-        name="C1_tiny",
+        name="comb_full_neg_tiny",
         prompt="a single tiny yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
-        description="C1 + size component (tiny)",
+        description="Full negation + size:tiny",
     ),
     PromptConfig(
-        name="C_color_taxonomy_grammar_tiny",
+        name="comb_clr_spp_gram_tiny",
         prompt="a single tiny yellow cowpea flower",
-        description="C_color_taxonomy_grammar + size component (tiny)",
+        description="Color + Taxonomy + Grammar + size:tiny",
     ),
     # Strategic experiments: Partial negation variants
     PromptConfig(
-        name="C2_not_bud",
+        name="comb_clr_spp_anat_gram_neg_bud",
         prompt="a single yellow cowpea flower with open petals, not a bud",
-        description="C2 + single negation clause (not a bud)",
+        description="Four components + negation: bud",
     ),
     PromptConfig(
-        name="C2_not_calyx",
+        name="comb_clr_spp_anat_gram_neg_calyx",
         prompt="a single yellow cowpea flower with open petals, not the green calyx",
-        description="C2 + single negation clause (not the green calyx)",
+        description="Four components + negation: calyx",
     ),
     PromptConfig(
-        name="C2_not_leaf",
+        name="comb_clr_spp_anat_gram_neg_leaf",
         prompt="a single yellow cowpea flower with open petals, not a leaf",
-        description="C2 + single negation clause (not a leaf)",
+        description="Four components + negation: leaf",
     ),
     PromptConfig(
-        name="C2_not_bud_calyx",
+        name="comb_clr_spp_anat_gram_neg_bud_calyx",
         prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx",
-        description="C2 + two negation clauses (not a bud, not the green calyx)",
+        description="Four components + negation: bud + calyx",
     ),
     # Strategic experiments: SAM3 size variants (negation-free optimization)
-    # Note: C2_tiny is tested for both models (YOLO World and SAM3)
+    # Note: comb_clr_spp_anat_gram_tiny is tested for both models (YOLO World and SAM3)
     PromptConfig(
-        name="C_color_taxonomy_anatomy_tiny",
+        name="comb_clr_spp_anat_tiny",
         prompt="a tiny yellow cowpea flower with open petals",
-        description="C_color_taxonomy_anatomy + tiny (SAM3 optimization)",
+        description="Color + Taxonomy + Anatomy + size:tiny (SAM3 optimization)",
     ),
 ]
 
+# Emoji variants for non-baseline emoji values (from FACTOR_AXES)
+_EMOJI_AXIS = next(ax for ax in FACTOR_AXES if ax.name == "emoji")
+_EMOJI_LABELS = {
+    "🌸": "cherry_blossom",
+    "🌺": "hibiscus",
+    "🌻": "sunflower",
+    "🌼": "blossom",
+    "💐": "bouquet",
+    "🌷": "tulip",
+}
+
+
+def generate_combination_configs() -> List["PromptConfig"]:
+    """
+    Return the full set of combination configs: base configs + emoji variants.
+
+    For every base config in ``_BASE_COMBINATION_CONFIGS`` we generate one
+    additional ``PromptConfig`` per non-baseline emoji value, appending the
+    emoji character to the prompt and tagging the name with the emoji label.
+    """
+    configs = list(_BASE_COMBINATION_CONFIGS)
+    non_baseline_emojis = [v for v in _EMOJI_AXIS.values if v != _EMOJI_AXIS.baseline]
+    for base in _BASE_COMBINATION_CONFIGS:
+        for emoji in non_baseline_emojis:
+            label = _EMOJI_LABELS.get(emoji, emoji)
+            configs.append(
+                PromptConfig(
+                    name=f"{base.name}_{label}",
+                    prompt=f"{base.prompt} {emoji}",
+                    description=f"{base.description} + {label} emoji",
+                )
+            )
+    return configs
+
+
+COMBINATION_CONFIGS = generate_combination_configs()
+
 
 # Absorber configurations (Phase 2: Absorber architecture tests)
+# Naming convention: abs_{absorber_targets}[_{base_prompt_variant}]
 ABSORBER_CONFIGS = [
     PromptConfig(
-        name="H3b",
+        name="abs_bud_calyx",
         prompt="a single yellow cowpea flower with open petals",
         description="Bud + calyx absorbers",
         absorber_classes=[
@@ -256,7 +395,7 @@ ABSORBER_CONFIGS = [
         target_indices=[0],
     ),
     PromptConfig(
-        name="H2a",
+        name="abs_leaf_stem",
         prompt="a single yellow cowpea flower with open petals",
         description="Leaf + stem absorbers",
         absorber_classes=[
@@ -267,7 +406,7 @@ ABSORBER_CONFIGS = [
         target_indices=[0],
     ),
     PromptConfig(
-        name="H3c",
+        name="abs_bud_calyx_leaf",
         prompt="a single yellow cowpea flower with open petals",
         description="Bud + calyx + leaf absorbers",
         absorber_classes=[
@@ -279,7 +418,7 @@ ABSORBER_CONFIGS = [
         target_indices=[0],
     ),
     PromptConfig(
-        name="H5",
+        name="abs_all",
         prompt="a single yellow cowpea flower with open petals",
         description="All absorbers (bud, calyx, leaf, stem, soil)",
         absorber_classes=[
@@ -294,9 +433,9 @@ ABSORBER_CONFIGS = [
     ),
     # Strategic experiments: Absorber optimization with simpler base prompts
     PromptConfig(
-        name="H3b_simple",
+        name="abs_bud_calyx_simple",
         prompt="a yellow cowpea flower",
-        description="H3b absorbers with simpler base (no grammar, no anatomy)",
+        description="Bud + calyx absorbers with simpler base (no grammar, no anatomy)",
         absorber_classes=[
             "a yellow cowpea flower",
             "a cowpea flower bud",
@@ -305,9 +444,9 @@ ABSORBER_CONFIGS = [
         target_indices=[0],
     ),
     PromptConfig(
-        name="H3b_no_anatomy",
+        name="abs_bud_calyx_no_anat",
         prompt="a single yellow cowpea flower",
-        description="H3b absorbers without anatomy component",
+        description="Bud + calyx absorbers without anatomy component",
         absorber_classes=[
             "a single yellow cowpea flower",
             "a cowpea flower bud",
@@ -316,9 +455,9 @@ ABSORBER_CONFIGS = [
         target_indices=[0],
     ),
     PromptConfig(
-        name="H3b_no_grammar",
+        name="abs_bud_calyx_no_gram",
         prompt="a yellow cowpea flower with open petals",
-        description="H3b absorbers without grammar component",
+        description="Bud + calyx absorbers without grammar component",
         absorber_classes=[
             "a yellow cowpea flower with open petals",
             "a cowpea flower bud",
@@ -375,35 +514,35 @@ MULTICLASS_CONFIGS = [
 PHASE3_CONFIGS = [
     # YOLO World top 3
     PromptConfig(
-        name="C2_not_bud_calyx",
+        name="comb_clr_spp_anat_gram_neg_bud_calyx",
         prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx",
         description="YOLO World #1: Partial negation (bud+calyx) - mAP@0.5: 0.4123",
     ),
     PromptConfig(
-        name="C1",
+        name="comb_full_neg",
         prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
         description="YOLO World #2: Full negation - mAP@0.5: 0.3830",
     ),
     PromptConfig(
-        name="C2_not_calyx",
+        name="comb_clr_spp_anat_gram_neg_calyx",
         prompt="a single yellow cowpea flower with open petals, not the green calyx",
-        description="YOLO World #3: Single negation (calyx) - mAP@0.5: 0.3807",
+        description="YOLO World #3: Negation: calyx - mAP@0.5: 0.3807",
     ),
     # SAM3 top 3
     PromptConfig(
-        name="C2_not_bud",
+        name="comb_clr_spp_anat_gram_neg_bud",
         prompt="a single yellow cowpea flower with open petals, not a bud",
-        description="SAM3 #1: Single negation (bud) - mAP@0.5: 0.5407",
+        description="SAM3 #1: Negation: bud - mAP@0.5: 0.5407",
     ),
     PromptConfig(
-        name="C_color_taxonomy_anatomy_tiny",
+        name="comb_clr_spp_anat_tiny",
         prompt="a tiny yellow cowpea flower with open petals",
-        description="SAM3 #2: Size variant - mAP@0.5: 0.5364",
+        description="SAM3 #2: Color + Taxonomy + Anatomy + size:tiny - mAP@0.5: 0.5364",
     ),
     PromptConfig(
-        name="C2",
+        name="comb_clr_spp_anat_gram",
         prompt="a single yellow cowpea flower with open petals",
-        description="SAM3 #3: Four-component baseline - mAP@0.5: 0.4925",
+        description="SAM3 #3: Four components - mAP@0.5: 0.4925",
     ),
 ]
 
@@ -435,6 +574,7 @@ def build_prompt_from_components(components: Dict[str, str]) -> str:
     anatomy = components.get("anatomy", "")
     phenology = components.get("phenology", "")
     negation = components.get("negation", "")
+    emoji = components.get("emoji", "")
     
     # Special case: corolla replaces "flower"
     if anatomy == "corolla":
@@ -461,7 +601,10 @@ def build_prompt_from_components(components: Dict[str, str]) -> str:
             parts.append(anatomy)
         if negation:
             parts.append(negation)
-        return " ".join(parts).strip()
+        bud_result = " ".join(parts).strip()
+        if emoji:
+            bud_result = f"{bud_result} {emoji}"
+        return bud_result
     elif phenology == "closed bud":
         # "a closed cowpea bud" (replaces "flower" with "bud")
         parts = []
@@ -479,7 +622,10 @@ def build_prompt_from_components(components: Dict[str, str]) -> str:
             parts.append(anatomy)
         if negation:
             parts.append(negation)
-        return " ".join(parts).strip()
+        closed_bud_result = " ".join(parts).strip()
+        if emoji:
+            closed_bud_result = f"{closed_bud_result} {emoji}"
+        return closed_bud_result
     
     # Standard construction
     parts = []
@@ -534,6 +680,10 @@ def build_prompt_from_components(components: Dict[str, str]) -> str:
     
     # Fix "a open" -> "an open"
     result = result.replace("a open", "an open")
+    
+    # Append emoji (typically trails text in CLIP training captions)
+    if emoji:
+        result = f"{result} {emoji}"
     
     return result
 

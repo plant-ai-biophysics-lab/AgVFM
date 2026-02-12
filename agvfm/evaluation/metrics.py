@@ -90,33 +90,54 @@ def match_predictions_to_gt(
 def ap_from_pr_curve(
     recalls: np.ndarray,
     precisions: np.ndarray,
-    num_recall_points: int = 11,
 ) -> float:
     """
-    Compute 11-point interpolated AP from precision-recall curve.
+    Compute true AP (area under the precision-recall curve) using 101-point
+    interpolation (recall thresholds 0.00, 0.01, ..., 1.00).
+
+    This matches the per-IoU AP used inside the COCO evaluation protocol and
+    avoids the 1/11 ≈ 0.0909 floor that the legacy 11-point formula produces
+    for any prompt with at least one confident true positive.
 
     Args:
-        recalls: Array of recall values
-        precisions: Array of precision values
-        num_recall_points: Number of recall points for interpolation (default 11)
+        recalls:    Array of recall values along the sorted-confidence curve.
+        precisions: Array of precision values (same length as recalls).
 
     Returns:
-        Average precision value
+        AP value in [0, 1].
     """
     if len(recalls) == 0 or len(precisions) == 0:
         return 0.0
 
-    recall_points = np.linspace(0, 1, num_recall_points)
+    recall_points = np.linspace(0, 1, 101)
     ap = 0.0
     for r in recall_points:
         mask = recalls >= r
-        if not np.any(mask):
-            p = 0.0
-        else:
-            p = np.max(precisions[mask])
-        ap += p
+        ap += float(np.max(precisions[mask])) if np.any(mask) else 0.0
 
-    return ap / num_recall_points
+    return ap / 101
+
+
+def ap_from_pr_curve_11pt(
+    recalls: np.ndarray,
+    precisions: np.ndarray,
+) -> float:
+    """
+    Legacy 11-point interpolated AP (Pascal VOC style).
+
+    Kept for backwards compatibility / comparison.  Has a hard floor of
+    1/11 ≈ 0.0909 for any prompt with ≥ 1 true positive, which makes
+    ranking in low-recall regimes unreliable.  Prefer ap_from_pr_curve().
+    """
+    if len(recalls) == 0 or len(precisions) == 0:
+        return 0.0
+
+    ap = 0.0
+    for r in np.linspace(0, 1, 11):
+        mask = recalls >= r
+        ap += float(np.max(precisions[mask])) if np.any(mask) else 0.0
+
+    return ap / 11
 
 
 def compute_metrics_at_iou(
@@ -170,7 +191,7 @@ def compute_metrics_at_iou(
     precision = total_tp / (total_tp + total_fp) if (total_tp + total_fp) > 0 else 0.0
     recall = total_tp / (total_tp + total_fn) if (total_tp + total_fn) > 0 else 0.0
 
-    # mAP@iou: sort all preds by conf, build P-R curve, then 11-point AP
+    # mAP@iou: sort all preds by conf, build P-R curve, then 101-point AP
     if len(all_confs) > 0 and n_gt_total > 0:
         order = np.argsort(-all_confs)
         tp_cum = np.cumsum(all_tp[order])
@@ -198,13 +219,131 @@ def compute_metrics_at_iou(
     }
 
 
+def compute_f1_max(
+    list_gt_xyxy: List[np.ndarray],
+    list_pred_xyxy: List[np.ndarray],
+    list_pred_conf: List[np.ndarray],
+    iou_threshold: float = 0.5,
+) -> dict:
+    """
+    Compute F1-max and the associated precision/recall by sweeping confidence
+    thresholds over the full sorted prediction list.
+
+    Unlike ``compute_metrics_at_iou``, which reads precision and recall at a
+    single fixed confidence cut-off, this function builds the complete sorted
+    TP/FP curve across all images (same as the mAP curve) and returns the
+    operating point where F1 is maximised.  The result is therefore
+    **threshold-independent**: no specific confidence value needs to be chosen.
+
+    The mAP (101-point interpolated AP) is computed from the same curve at no
+    extra cost, so callers can use this as a single entry-point for both
+    threshold-free metrics.
+
+    Args:
+        list_gt_xyxy:   Per-image GT boxes, each array of shape (N_i, 4) xyxy.
+        list_pred_xyxy: Per-image pred boxes, each array of shape (M_i, 4) xyxy.
+        list_pred_conf: Per-image pred confidences, each array of shape (M_i,).
+        iou_threshold:  IoU threshold for TP matching (default 0.5).
+
+    Returns:
+        Dictionary with keys:
+          - ``f1_max``      : maximum F1 across the threshold sweep.
+          - ``precision``   : precision at the F1-max operating point.
+          - ``recall``      : recall at the F1-max operating point.
+          - ``map``         : 101-point interpolated AP (same IoU threshold).
+          - ``best_conf``   : confidence score at the F1-max operating point
+                              (useful for diagnostics / threshold selection).
+          - ``n_images``    : number of images evaluated.
+          - ``n_gt_total``  : total ground-truth boxes.
+          - ``n_pred_total``: total predictions retained (all confidences).
+    """
+    all_confs: List[float] = []
+    all_tp: List[int] = []
+    n_gt_total = 0
+
+    for gt_xyxy, pred_xyxy, pred_conf in zip(list_gt_xyxy, list_pred_xyxy, list_pred_conf):
+        gt_xyxy = np.asarray(gt_xyxy).reshape(-1, 4)
+        pred_xyxy = np.asarray(pred_xyxy).reshape(-1, 4)
+        pred_conf = np.asarray(pred_conf).ravel()
+        n_gt_total += len(gt_xyxy)
+
+        if len(pred_xyxy) == 0:
+            continue
+
+        tp_mask, _ = match_predictions_to_gt(
+            pred_xyxy, pred_conf, gt_xyxy, iou_threshold=iou_threshold
+        )
+        for c, tp in zip(pred_conf, tp_mask):
+            all_confs.append(float(c))
+            all_tp.append(1 if tp else 0)
+
+    n_pred_total = len(all_confs)
+
+    if n_pred_total == 0 or n_gt_total == 0:
+        return {
+            "f1_max": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "map": 0.0,
+            "best_conf": 0.0,
+            "total_tp": 0,
+            "total_fp": n_pred_total,
+            "total_fn": n_gt_total,
+            "n_images": len(list_gt_xyxy),
+            "n_gt_total": n_gt_total,
+            "n_pred_total": n_pred_total,
+        }
+
+    all_confs_arr = np.array(all_confs)
+    all_tp_arr = np.array(all_tp, dtype=np.int32)
+
+    # Sort by confidence descending — shared for both F1-max and mAP
+    order = np.argsort(-all_confs_arr)
+    sorted_confs = all_confs_arr[order]
+    tp_cum = np.cumsum(all_tp_arr[order])
+    fp_cum = np.cumsum(1 - all_tp_arr[order])
+
+    precisions_curve = tp_cum / (tp_cum + fp_cum + 1e-16)
+    recalls_curve = tp_cum / n_gt_total
+    f1_curve = (2 * precisions_curve * recalls_curve
+                / (precisions_curve + recalls_curve + 1e-16))
+
+    best_idx = int(np.argmax(f1_curve))
+    f1_max = float(f1_curve[best_idx])
+    prec_at_best = float(precisions_curve[best_idx])
+    rec_at_best = float(recalls_curve[best_idx])
+    best_conf = float(sorted_confs[best_idx])
+
+    # TP/FP/FN counts at the F1-max operating point (predictions with conf >= best_conf)
+    tp_at_best = int(tp_cum[best_idx])
+    fp_at_best = int(fp_cum[best_idx])
+    fn_at_best = n_gt_total - tp_at_best
+
+    map_val = ap_from_pr_curve(recalls_curve, precisions_curve)
+
+    return {
+        "f1_max": f1_max,
+        "precision": prec_at_best,
+        "recall": rec_at_best,
+        "map": map_val,
+        "best_conf": best_conf,
+        "total_tp": tp_at_best,
+        "total_fp": fp_at_best,
+        "total_fn": fn_at_best,
+        "n_images": len(list_gt_xyxy),
+        "n_gt_total": n_gt_total,
+        "n_pred_total": n_pred_total,
+    }
+
+
 def compute_map_coco(
     list_gt_xyxy: List[np.ndarray],
     list_pred_xyxy: List[np.ndarray],
     list_pred_conf: List[np.ndarray],
 ) -> float:
     """
-    Compute mAP@0.5:0.95 (COCO-style) by averaging mAP at IoU thresholds 0.5, 0.55, ..., 0.95.
+    Compute mAP@0.5:0.95 (COCO-style) by averaging the 101-point AP at IoU
+    thresholds 0.50, 0.55, …, 0.95.
 
     Args:
         list_gt_xyxy: Per-image GT boxes, each array of shape (N_i, 4) in xyxy format
