@@ -13,6 +13,12 @@ from vlme.data.labels import parse_yolo_label
 from vlme.data.sampling import get_image_paths, sample_image_paths
 from vlme.evaluation.metrics import compute_metrics_at_iou
 from vlme.models.yolo_world import load_yolo_world
+try:
+    from vlme.models.huggingface import GroundingDinoWrapper, OwlV2Wrapper
+except ImportError:
+    GroundingDinoWrapper = None
+    OwlV2Wrapper = None
+
 from vlme.run import OPEN_SET_CLASS_NAMES
 from vlme.viz.boxes import DEFAULT_PREDICT_KWARGS, plot_gt_vs_predictions
 from vlme.viz.eval_plots import plot_eval_summary
@@ -72,6 +78,7 @@ def run_evaluation(
     class_names: Optional[List[str]] = None,
     yolo_classes: Optional[List[str]] = None,
     weights_path: Union[str, Path] = "model_weights/yolov8x-worldv2.pt",
+    model_type: str = "yolo",
     predict_kwargs: Optional[dict] = None,
     iou_threshold: float = 0.5,
     plot_summary: bool = True,
@@ -89,7 +96,8 @@ def run_evaluation(
         random_seed: Seed for sampling when num_images is not None.
         class_names: Names for GT class IDs (default ["flower"]).
         yolo_classes: Text prompts for YOLO World (default OPEN_SET_CLASS_NAMES).
-        weights_path: Path to YOLO World .pt weights.
+        weights_path: Path to YOLO World .pt weights or HF model ID.
+        model_type: "yolo", "grounding_dino", or "owlv2".
         predict_kwargs: Optional dict for model.predict() (merged over defaults).
         iou_threshold: IoU threshold for mAP/P/R (default 0.5).
         plot_summary: If True, show metrics summary figure.
@@ -127,7 +135,24 @@ def run_evaluation(
             "n_gt_total": 0,
         }
 
-    model = load_yolo_world(weights_path, classes=yolo_classes)
+    if model_type == "yolo":
+        model = load_yolo_world(weights_path, classes=yolo_classes)
+    elif model_type == "grounding_dino":
+        if GroundingDinoWrapper is None:
+            raise ImportError("Please install transformers and torch to use GroundingDinoWrapper.")
+        # weights_path e.g. "IDEA-Research/grounding-dino-base"
+        model = GroundingDinoWrapper(str(weights_path))
+        # Ensure we pass classes to predict for HF models
+        predict_kwargs["classes"] = yolo_classes
+    elif model_type == "owlv2":
+        if OwlV2Wrapper is None:
+            raise ImportError("Please install transformers and torch to use OwlV2Wrapper.")
+        # weights_path e.g. "google/owlv2-base-patch16-ensemble"
+        model = OwlV2Wrapper(str(weights_path))
+        predict_kwargs["classes"] = yolo_classes
+    else:
+        raise ValueError(f"Unknown model_type: {model_type}")
+
     list_gt_xyxy, list_pred_xyxy, list_pred_conf = _collect_gt_and_pred(
         image_paths, labels_dir, model, yolo_classes, predict_kwargs
     )

@@ -13,6 +13,8 @@ dependencies = [
     "matplotlib",
     "Pillow",
     "ultralytics",
+    "transformers",
+    "torch",
 ]
 
 [project.optional-dependencies]

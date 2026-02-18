@@ -48,3 +48,6 @@ notebooks/model_weights/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# farm scripts
+scripts/
