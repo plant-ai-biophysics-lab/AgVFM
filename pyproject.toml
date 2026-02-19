@@ -3,25 +3,56 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vlme"
+name = "agvfm"
 version = "0.1.0"
-description = "VLM-Experiments: vision-language and detection utilities (YOLO World, GT vs predictions)."
+description = "Agricultural Vision Foundation Models - Zero-shot detection evaluation framework"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "AgVFM Team"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
 dependencies = [
-    "numpy",
-    "matplotlib",
-    "Pillow",
-    "ultralytics",
-    "transformers",
-    "torch",
+    "numpy>=1.21.0",
+    "pillow>=8.0.0",
+    "scipy>=1.7.0",
+    "ultralytics>=8.0.0",
+    "torch>=1.9.0",
+    "transformers>=4.44.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.11.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "ruff>=0.1.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/agvfm"
+Repository = "https://github.com/yourusername/agvfm"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["vlme*"]
+include = ["agvfm*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"

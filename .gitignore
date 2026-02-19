@@ -21,33 +21,41 @@ wheels/
 *.egg
 
 # Virtual environments
-.venv/
 venv/
 env/
 ENV/
+.venv
 
-# Data and model weights (large; add locally or via DVC)
-_data/
-model_weights/
-*.pt
-notebooks/model_weights/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# IDE and OS
-.DS_Store
-.idea/
+# IDE
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
 
-# Optional
-*.log
-.pytest_cache/
-.coverage
-htmlcov/
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
 
-# farm scripts
-scripts/
+# Data
+_data/
+*.pt
+*.pth
+*.ckpt
+model_weights/
+
+# Results
+notebooks/results/
+*.json
+*.csv
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.out
+
+# Data
+_data/
