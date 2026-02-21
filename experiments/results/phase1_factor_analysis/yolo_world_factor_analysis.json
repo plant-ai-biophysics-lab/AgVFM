@@ -1,0 +1,1915 @@
+{
+  "experiment_type": "factor_analysis",
+  "model": "YOLO World",
+  "n_combinations": 34,
+  "iou_thresholds": [
+    0.3,
+    0.5
+  ],
+  "results": {
+    "baseline": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 246,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4146341463414634,
+          "recall": 0.1027190332326284,
+          "map": 0.12900792153904186,
+          "f1": 0.16464891041162227,
+          "total_tp": 102,
+          "total_fp": 144,
+          "total_fn": 891,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 246
+        },
+        "iou_0.5": {
+          "precision": 0.2967479674796748,
+          "recall": 0.07351460221550855,
+          "map": 0.09090909090909091,
+          "f1": 0.11783696529459241,
+          "total_tp": 73,
+          "total_fp": 173,
+          "total_fn": 920,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 246
+        }
+      },
+      "map_coco": 0.06481404958677686,
+      "counting": {
+        "r2": 0.2921351177993617,
+        "rmse": 6.864419361064486,
+        "mae": 4.841772151898734,
+        "mape": 74.79467744684963,
+        "slope": 0.15773165973900194,
+        "intercept": 0.5656484929061462,
+        "bias": -4.727848101265823,
+        "n_images": 158
+      }
+    },
+    "taxonomy:cowpea flower_grammar:a": {
+      "components": {
+        "taxonomy": "cowpea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 810,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.454320987654321,
+          "recall": 0.37059415911379656,
+          "map": 0.2334637598844977,
+          "f1": 0.4082085413200222,
+          "total_tp": 368,
+          "total_fp": 442,
+          "total_fn": 625,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 810
+        },
+        "iou_0.5": {
+          "precision": 0.337037037037037,
+          "recall": 0.27492447129909364,
+          "map": 0.15878740824392998,
+          "f1": 0.302828618968386,
+          "total_tp": 273,
+          "total_fp": 537,
+          "total_fn": 720,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 810
+        }
+      },
+      "map_coco": 0.08600608211579389,
+      "counting": {
+        "r2": 0.6060991529068175,
+        "rmse": 3.7492615306639325,
+        "mae": 2.6772151898734178,
+        "mape": 56.308594882721195,
+        "slope": 0.5785203802808655,
+        "intercept": 1.4906915340575986,
+        "bias": -1.1582278481012658,
+        "n_images": 158
+      }
+    },
+    "taxonomy:bean flower_grammar:a": {
+      "components": {
+        "taxonomy": "bean flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a bean flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 479,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4906054279749478,
+          "recall": 0.2366565961732125,
+          "map": 0.18834395440891608,
+          "f1": 0.31929347826086957,
+          "total_tp": 235,
+          "total_fp": 244,
+          "total_fn": 758,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 479
+        },
+        "iou_0.5": {
+          "precision": 0.40083507306889354,
+          "recall": 0.1933534743202417,
+          "map": 0.13325031133250312,
+          "f1": 0.2608695652173913,
+          "total_tp": 192,
+          "total_fp": 287,
+          "total_fn": 801,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 479
+        }
+      },
+      "map_coco": 0.07538375989471799,
+      "counting": {
+        "r2": 0.490312492173061,
+        "rmse": 5.361607542802623,
+        "mae": 3.721518987341772,
+        "mape": 61.06032420681697,
+        "slope": 0.32641936210710537,
+        "intercept": 0.9801618571369901,
+        "bias": -3.2531645569620253,
+        "n_images": 158
+      }
+    },
+    "taxonomy:pea flower_grammar:a": {
+      "components": {
+        "taxonomy": "pea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a pea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 527,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4060721062618596,
+          "recall": 0.21550855991943604,
+          "map": 0.16751608898348028,
+          "f1": 0.28157894736842104,
+          "total_tp": 214,
+          "total_fp": 313,
+          "total_fn": 779,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 527
+        },
+        "iou_0.5": {
+          "precision": 0.286527514231499,
+          "recall": 0.15206445115810674,
+          "map": 0.11829134720700986,
+          "f1": 0.19868421052631577,
+          "total_tp": 151,
+          "total_fp": 376,
+          "total_fn": 842,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 527
+        }
+      },
+      "map_coco": 0.07330389962712355,
+      "counting": {
+        "r2": 0.45626705255433425,
+        "rmse": 5.237402003554381,
+        "mae": 3.5949367088607596,
+        "mape": 63.91758656011235,
+        "slope": 0.3239271456154043,
+        "intercept": 1.2996224329360984,
+        "bias": -2.949367088607595,
+        "n_images": 158
+      }
+    },
+    "taxonomy:legume flower_grammar:a": {
+      "components": {
+        "taxonomy": "legume flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a legume flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 296,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.36824324324324326,
+          "recall": 0.10976837865055387,
+          "map": 0.12636012636012636,
+          "f1": 0.1691233514352211,
+          "total_tp": 109,
+          "total_fp": 187,
+          "total_fn": 884,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 296
+        },
+        "iou_0.5": {
+          "precision": 0.2668918918918919,
+          "recall": 0.07955689828801611,
+          "map": 0.09090909090909091,
+          "f1": 0.12257564003103182,
+          "total_tp": 79,
+          "total_fp": 217,
+          "total_fn": 914,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 296
+        }
+      },
+      "map_coco": 0.054008264462809916,
+      "counting": {
+        "r2": 0.2631153366358217,
+        "rmse": 6.679365542522202,
+        "mae": 4.651898734177215,
+        "mape": 70.08250563338596,
+        "slope": 0.1545373402995889,
+        "intercept": 0.9021798802690394,
+        "bias": -4.4113924050632916,
+        "n_images": 158
+      }
+    },
+    "taxonomy:black-eyed pea flower_grammar:a": {
+      "components": {
+        "taxonomy": "black-eyed pea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a black-eyed pea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 314,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.42038216560509556,
+          "recall": 0.13293051359516617,
+          "map": 0.1302717900656045,
+          "f1": 0.2019892884468248,
+          "total_tp": 132,
+          "total_fp": 182,
+          "total_fn": 861,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 314
+        },
+        "iou_0.5": {
+          "precision": 0.2929936305732484,
+          "recall": 0.09264853977844914,
+          "map": 0.09090909090909091,
+          "f1": 0.14078041315990816,
+          "total_tp": 92,
+          "total_fp": 222,
+          "total_fn": 901,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 314
+        }
+      },
+      "map_coco": 0.06772727272727273,
+      "counting": {
+        "r2": 0.19745268085507872,
+        "rmse": 6.705844796174435,
+        "mae": 4.550632911392405,
+        "mape": 68.06972206574329,
+        "slope": 0.13307340585907393,
+        "intercept": 1.1510006834299973,
+        "bias": -4.2974683544303796,
+        "n_images": 158
+      }
+    },
+    "taxonomy:vigna unguiculata flower_grammar:a": {
+      "components": {
+        "taxonomy": "vigna unguiculata flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a vigna unguiculata flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 138,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.10869565217391304,
+          "recall": 0.015105740181268883,
+          "map": 0.06818181818181818,
+          "f1": 0.026525198938992044,
+          "total_tp": 15,
+          "total_fp": 123,
+          "total_fn": 978,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 138
+        },
+        "iou_0.5": {
+          "precision": 0.07246376811594203,
+          "recall": 0.010070493454179255,
+          "map": 0.06818181818181818,
+          "f1": 0.01768346595932803,
+          "total_tp": 10,
+          "total_fp": 128,
+          "total_fn": 983,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 138
+        }
+      },
+      "map_coco": 0.05075757575757576,
+      "counting": {
+        "r2": 0.10507224761382448,
+        "rmse": 7.665886953563177,
+        "mae": 5.487341772151899,
+        "mape": 82.61942568999409,
+        "slope": 0.057766640400049286,
+        "intercept": 0.5103653549541206,
+        "bias": -5.4113924050632916,
+        "n_images": 158
+      }
+    },
+    "taxonomy:crop flower_grammar:a": {
+      "components": {
+        "taxonomy": "crop flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a crop flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 65,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.24615384615384617,
+          "recall": 0.016112789526686808,
+          "map": 0.03636363636363637,
+          "f1": 0.030245746691871453,
+          "total_tp": 16,
+          "total_fp": 49,
+          "total_fn": 977,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 65
+        },
+        "iou_0.5": {
+          "precision": 0.13846153846153847,
+          "recall": 0.00906344410876133,
+          "map": 0.03636363636363637,
+          "f1": 0.017013232514177697,
+          "total_tp": 9,
+          "total_fp": 56,
+          "total_fn": 984,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 65
+        }
+      },
+      "map_coco": 0.025505050505050503,
+      "counting": {
+        "r2": 0.10539646898936594,
+        "rmse": 8.032371215386659,
+        "mae": 5.886075949367089,
+        "mape": 91.34921178650475,
+        "slope": 0.0417937983396012,
+        "intercept": 0.14872631803022796,
+        "bias": -5.8734177215189876,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:yellow_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "yellow",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a yellow flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 223,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.49327354260089684,
+          "recall": 0.1107754279959718,
+          "map": 0.1,
+          "f1": 0.18092105263157893,
+          "total_tp": 110,
+          "total_fp": 113,
+          "total_fn": 883,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 223
+        },
+        "iou_0.5": {
+          "precision": 0.32286995515695066,
+          "recall": 0.07250755287009064,
+          "map": 0.045454545454545456,
+          "f1": 0.11842105263157895,
+          "total_tp": 72,
+          "total_fp": 151,
+          "total_fn": 921,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 223
+        }
+      },
+      "map_coco": 0.028613053613053614,
+      "counting": {
+        "r2": 0.4162217983102509,
+        "rmse": 6.898908370812063,
+        "mae": 4.924050632911392,
+        "mape": 76.38482769849205,
+        "slope": 0.16039691224086616,
+        "intercept": 0.4033282667393665,
+        "bias": -4.8734177215189876,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:white_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "white",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a white flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 216,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4444444444444444,
+          "recall": 0.09667673716012085,
+          "map": 0.09090909090909091,
+          "f1": 0.15880893300248142,
+          "total_tp": 96,
+          "total_fp": 120,
+          "total_fn": 897,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 216
+        },
+        "iou_0.5": {
+          "precision": 0.30092592592592593,
+          "recall": 0.06545820745216516,
+          "map": 0.09090909090909091,
+          "f1": 0.10752688172043011,
+          "total_tp": 65,
+          "total_fp": 151,
+          "total_fn": 928,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 216
+        }
+      },
+      "map_coco": 0.0739141414141414,
+      "counting": {
+        "r2": 0.2763523005687046,
+        "rmse": 7.019412503816411,
+        "mae": 5.018987341772152,
+        "mape": 78.46441317034913,
+        "slope": 0.15193806555699527,
+        "intercept": 0.4121867145690108,
+        "bias": -4.917721518987341,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:cream_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "cream",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a cream flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 142,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.36619718309859156,
+          "recall": 0.05236656596173213,
+          "map": 0.09090909090909091,
+          "f1": 0.09162995594713658,
+          "total_tp": 52,
+          "total_fp": 90,
+          "total_fn": 941,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 142
+        },
+        "iou_0.5": {
+          "precision": 0.2605633802816901,
+          "recall": 0.03726082578046324,
+          "map": 0.09090909090909091,
+          "f1": 0.06519823788546254,
+          "total_tp": 37,
+          "total_fp": 105,
+          "total_fn": 956,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 142
+        }
+      },
+      "map_coco": 0.05757575757575757,
+      "counting": {
+        "r2": 0.18976866364534545,
+        "rmse": 7.521698569278658,
+        "mae": 5.436708860759493,
+        "mape": 84.67471346006867,
+        "slope": 0.09589680580504692,
+        "intercept": 0.29604096098473676,
+        "bias": -5.386075949367089,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:purple_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "purple",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a purple flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 25,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.24,
+          "recall": 0.006042296072507553,
+          "map": 0.0303030303030303,
+          "f1": 0.011787819253438114,
+          "total_tp": 6,
+          "total_fp": 19,
+          "total_fn": 987,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 25
+        },
+        "iou_0.5": {
+          "precision": 0.24,
+          "recall": 0.006042296072507553,
+          "map": 0.0303030303030303,
+          "f1": 0.011787819253438114,
+          "total_tp": 6,
+          "total_fp": 19,
+          "total_fn": 987,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 25
+        }
+      },
+      "map_coco": 0.017401285583103762,
+      "counting": {
+        "r2": 0.10523645335447873,
+        "rmse": 8.263079390436609,
+        "mae": 6.139240506329114,
+        "mape": 97.36931491272003,
+        "slope": 0.02534915305719774,
+        "intercept": -0.0010867657328946234,
+        "bias": -6.1265822784810124,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:large_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "large",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a large flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 46,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.21739130434782608,
+          "recall": 0.010070493454179255,
+          "map": 0.0303030303030303,
+          "f1": 0.0192492781520693,
+          "total_tp": 10,
+          "total_fp": 36,
+          "total_fn": 983,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 46
+        },
+        "iou_0.5": {
+          "precision": 0.17391304347826086,
+          "recall": 0.008056394763343404,
+          "map": 0.0303030303030303,
+          "f1": 0.015399422521655437,
+          "total_tp": 8,
+          "total_fp": 38,
+          "total_fn": 985,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 46
+        }
+      },
+      "map_coco": 0.02424242424242424,
+      "counting": {
+        "r2": 0.13105131878592782,
+        "rmse": 8.111953985838086,
+        "mae": 6.006329113924051,
+        "mape": 94.76586558668993,
+        "slope": 0.042661468117181474,
+        "intercept": 0.02302001366859996,
+        "bias": -5.993670886075949,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:small_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "small",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a small flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 312,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4326923076923077,
+          "recall": 0.13595166163141995,
+          "map": 0.13062665489849956,
+          "f1": 0.20689655172413796,
+          "total_tp": 135,
+          "total_fp": 177,
+          "total_fn": 858,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 312
+        },
+        "iou_0.5": {
+          "precision": 0.2948717948717949,
+          "recall": 0.09264853977844914,
+          "map": 0.09090909090909091,
+          "f1": 0.14099616858237546,
+          "total_tp": 92,
+          "total_fp": 220,
+          "total_fn": 901,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 312
+        }
+      },
+      "map_coco": 0.05664947797300738,
+      "counting": {
+        "r2": 0.3164959337247522,
+        "rmse": 6.470478236389868,
+        "mae": 4.563291139240507,
+        "mape": 73.37464526967163,
+        "slope": 0.20359989592942102,
+        "intercept": 0.6950968565954745,
+        "bias": -4.310126582278481,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:tiny_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "tiny",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a tiny flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 384,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4036458333333333,
+          "recall": 0.15609264853977844,
+          "map": 0.13111191597247374,
+          "f1": 0.22512708787218594,
+          "total_tp": 155,
+          "total_fp": 229,
+          "total_fn": 838,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 384
+        },
+        "iou_0.5": {
+          "precision": 0.2864583333333333,
+          "recall": 0.1107754279959718,
+          "map": 0.1178646934460888,
+          "f1": 0.15976761074800291,
+          "total_tp": 110,
+          "total_fp": 274,
+          "total_fn": 883,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 384
+        }
+      },
+      "map_coco": 0.06093602946191094,
+      "counting": {
+        "r2": 0.27094722838713364,
+        "rmse": 6.221135880654724,
+        "mae": 4.3354430379746836,
+        "mape": 69.67489022107264,
+        "slope": 0.21392479282361138,
+        "intercept": 1.0859030425705944,
+        "bias": -3.8544303797468356,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "bud",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower bud",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 431,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.46635730858468677,
+          "recall": 0.20241691842900303,
+          "map": 0.1788583509513742,
+          "f1": 0.28230337078651685,
+          "total_tp": 201,
+          "total_fp": 230,
+          "total_fn": 792,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 431
+        },
+        "iou_0.5": {
+          "precision": 0.37122969837587005,
+          "recall": 0.16112789526686808,
+          "map": 0.1279857397504456,
+          "f1": 0.2247191011235955,
+          "total_tp": 160,
+          "total_fp": 271,
+          "total_fn": 833,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 431
+        }
+      },
+      "map_coco": 0.07098366880067314,
+      "counting": {
+        "r2": 0.40022681383241016,
+        "rmse": 5.752269777656183,
+        "mae": 4.025316455696203,
+        "mape": 64.70147490797699,
+        "slope": 0.28131298230675655,
+        "intercept": 0.9598494213252577,
+        "bias": -3.5569620253164556,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:open_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "open",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "an open flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 149,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4161073825503356,
+          "recall": 0.06243705941591138,
+          "map": 0.09090909090909091,
+          "f1": 0.1085814360770578,
+          "total_tp": 62,
+          "total_fp": 87,
+          "total_fn": 931,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 149
+        },
+        "iou_0.5": {
+          "precision": 0.2953020134228188,
+          "recall": 0.044310171198388724,
+          "map": 0.09090909090909091,
+          "f1": 0.07705779334500877,
+          "total_tp": 44,
+          "total_fp": 105,
+          "total_fn": 949,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 149
+        }
+      },
+      "map_coco": 0.06363636363636363,
+      "counting": {
+        "r2": 0.28466289719197246,
+        "rmse": 7.406804945026626,
+        "mae": 5.3924050632911396,
+        "mape": 85.33368086584011,
+        "slope": 0.11360000796712573,
+        "intercept": 0.2290834942319251,
+        "bias": -5.341772151898734,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:closed bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "closed bud",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a closed bud",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 76,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.34210526315789475,
+          "recall": 0.026183282980866064,
+          "map": 0.09090909090909091,
+          "f1": 0.04864359214218896,
+          "total_tp": 26,
+          "total_fp": 50,
+          "total_fn": 967,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 76
+        },
+        "iou_0.5": {
+          "precision": 0.2894736842105263,
+          "recall": 0.022155085599194362,
+          "map": 0.09090909090909091,
+          "f1": 0.0411599625818522,
+          "total_tp": 22,
+          "total_fp": 54,
+          "total_fn": 971,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 76
+        }
+      },
+      "map_coco": 0.06363636363636363,
+      "counting": {
+        "r2": 0.05881116797352036,
+        "rmse": 8.021726825679293,
+        "mae": 5.80379746835443,
+        "mape": 87.7451044300219,
+        "slope": 0.03252330073036132,
+        "intercept": 0.2766098884477925,
+        "bias": -5.80379746835443,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:blooming_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "blooming",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a blooming flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 86,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23255813953488372,
+          "recall": 0.02014098690835851,
+          "map": 0.09090909090909091,
+          "f1": 0.03707136237256719,
+          "total_tp": 20,
+          "total_fp": 66,
+          "total_fn": 973,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 86
+        },
+        "iou_0.5": {
+          "precision": 0.19767441860465115,
+          "recall": 0.017119838872104734,
+          "map": 0.09090909090909091,
+          "f1": 0.03151065801668211,
+          "total_tp": 17,
+          "total_fp": 69,
+          "total_fn": 976,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 86
+        }
+      },
+      "map_coco": 0.06666666666666667,
+      "counting": {
+        "r2": 0.04267767545045869,
+        "rmse": 7.992480643419979,
+        "mae": 5.753164556962025,
+        "mape": 84.97477193922552,
+        "slope": 0.029996228063951105,
+        "intercept": 0.35578319957276305,
+        "bias": -5.7405063291139244,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:in bloom_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "in bloom",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower in bloom",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 74,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.21621621621621623,
+          "recall": 0.016112789526686808,
+          "map": 0.09090909090909091,
+          "f1": 0.029990627928772256,
+          "total_tp": 16,
+          "total_fp": 58,
+          "total_fn": 977,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 74
+        },
+        "iou_0.5": {
+          "precision": 0.13513513513513514,
+          "recall": 0.010070493454179255,
+          "map": 0.09090909090909091,
+          "f1": 0.01874414245548266,
+          "total_tp": 10,
+          "total_fp": 64,
+          "total_fn": 983,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 74
+        }
+      },
+      "map_coco": 0.05541125541125541,
+      "counting": {
+        "r2": 0.07147240879084282,
+        "rmse": 8.021726825679293,
+        "mae": 5.829113924050633,
+        "mape": 88.05923626605352,
+        "slope": 0.03381546892136323,
+        "intercept": 0.25583062886763486,
+        "bias": -5.8164556962025316,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud, not the green calyx, not a leaf_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud, not the green calyx, not a leaf",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud, not the green calyx, not a leaf",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 688,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23982558139534885,
+          "recall": 0.1661631419939577,
+          "map": 0.0587660371124938,
+          "f1": 0.19631171921475313,
+          "total_tp": 165,
+          "total_fp": 523,
+          "total_fn": 828,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 688
+        },
+        "iou_0.5": {
+          "precision": 0.15261627906976744,
+          "recall": 0.10574018126888217,
+          "map": 0.042042934303935825,
+          "f1": 0.12492563950029743,
+          "total_tp": 105,
+          "total_fp": 583,
+          "total_fn": 888,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 688
+        }
+      },
+      "map_coco": 0.020443609669709824,
+      "counting": {
+        "r2": 0.2614251918396485,
+        "rmse": 5.259710729880999,
+        "mae": 3.4367088607594938,
+        "mape": 67.4401266933333,
+        "slope": 0.22403806294278242,
+        "intercept": 2.9463936930241585,
+        "bias": -1.9303797468354431,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud, not the green calyx_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud, not the green calyx",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud, not the green calyx",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 643,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2846034214618974,
+          "recall": 0.18429003021148035,
+          "map": 0.12337662337662338,
+          "f1": 0.2237163814180929,
+          "total_tp": 183,
+          "total_fp": 460,
+          "total_fn": 810,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 643
+        },
+        "iou_0.5": {
+          "precision": 0.18195956454121306,
+          "recall": 0.11782477341389729,
+          "map": 0.10840480274442538,
+          "f1": 0.1430317848410758,
+          "total_tp": 117,
+          "total_fp": 526,
+          "total_fn": 876,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 643
+        }
+      },
+      "map_coco": 0.06684672052405252,
+      "counting": {
+        "r2": 0.30163248470434334,
+        "rmse": 5.250678075559819,
+        "mae": 3.5063291139240507,
+        "mape": 63.77696683166316,
+        "slope": 0.2594058765020833,
+        "intercept": 2.4393035736293123,
+        "bias": -2.2151898734177213,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a leaf_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a leaf",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a leaf",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 441,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.17913832199546487,
+          "recall": 0.07955689828801611,
+          "map": 0.01893939393939394,
+          "f1": 0.11018131101813111,
+          "total_tp": 79,
+          "total_fp": 362,
+          "total_fn": 914,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 441
+        },
+        "iou_0.5": {
+          "precision": 0.10657596371882086,
+          "recall": 0.0473313192346425,
+          "map": 0.018181818181818184,
+          "f1": 0.06555090655509066,
+          "total_tp": 47,
+          "total_fp": 394,
+          "total_fn": 946,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 441
+        }
+      },
+      "map_coco": 0.010953927025355598,
+      "counting": {
+        "r2": 0.15595203074295322,
+        "rmse": 6.298482839220043,
+        "mae": 4.177215189873418,
+        "mape": 67.49287167792211,
+        "slope": 0.11750140980778061,
+        "intercept": 2.0526651902586956,
+        "bias": -3.4936708860759493,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 463,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.265658747300216,
+          "recall": 0.12386706948640483,
+          "map": 0.12091503267973856,
+          "f1": 0.168956043956044,
+          "total_tp": 123,
+          "total_fp": 340,
+          "total_fn": 870,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 463
+        },
+        "iou_0.5": {
+          "precision": 0.16630669546436286,
+          "recall": 0.07754279959718026,
+          "map": 0.09090909090909091,
+          "f1": 0.10576923076923075,
+          "total_tp": 77,
+          "total_fp": 386,
+          "total_fn": 916,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 463
+        }
+      },
+      "map_coco": 0.05305785123966942,
+      "counting": {
+        "r2": 0.26856970899895033,
+        "rmse": 5.947023508243005,
+        "mae": 4.025316455696203,
+        "mape": 66.50954316285122,
+        "slope": 0.19907481753414955,
+        "intercept": 1.6792323176493007,
+        "bias": -3.3544303797468356,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not the green calyx_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not the green calyx",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not the green calyx",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 344,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.21220930232558138,
+          "recall": 0.07351460221550855,
+          "map": 0.04132231404958678,
+          "f1": 0.10919970082273747,
+          "total_tp": 73,
+          "total_fp": 271,
+          "total_fn": 920,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 344
+        },
+        "iou_0.5": {
+          "precision": 0.12790697674418605,
+          "recall": 0.044310171198388724,
+          "map": 0.03636363636363637,
+          "f1": 0.06581899775617053,
+          "total_tp": 44,
+          "total_fp": 300,
+          "total_fn": 949,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 344
+        }
+      },
+      "map_coco": 0.02777777777777778,
+      "counting": {
+        "r2": 0.22262661713374365,
+        "rmse": 6.5752701248838346,
+        "mae": 4.436708860759493,
+        "mape": 64.67759710672135,
+        "slope": 0.12608225310313323,
+        "intercept": 1.3848121687885362,
+        "bias": -4.1075949367088604,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with open petals_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with open petals",
+        "grammar": "a"
+      },
+      "prompt": "a flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 81,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4444444444444444,
+          "recall": 0.03625377643504532,
+          "map": 0.09090909090909091,
+          "f1": 0.0670391061452514,
+          "total_tp": 36,
+          "total_fp": 45,
+          "total_fn": 957,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 81
+        },
+        "iou_0.5": {
+          "precision": 0.32098765432098764,
+          "recall": 0.026183282980866064,
+          "map": 0.09090909090909091,
+          "f1": 0.048417132216014895,
+          "total_tp": 26,
+          "total_fp": 55,
+          "total_fn": 967,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 81
+        }
+      },
+      "map_coco": 0.05568181818181818,
+      "counting": {
+        "r2": 0.17450782978134968,
+        "rmse": 7.8756153064821675,
+        "mae": 5.784810126582278,
+        "mape": 91.20551047152544,
+        "slope": 0.06666367899454867,
+        "intercept": 0.09368966302793141,
+        "bias": -5.772151898734177,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with visible petals_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with visible petals",
+        "grammar": "a"
+      },
+      "prompt": "a flower with visible petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 160,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.40625,
+          "recall": 0.06545820745216516,
+          "map": 0.09090909090909091,
+          "f1": 0.11274934952298353,
+          "total_tp": 65,
+          "total_fp": 95,
+          "total_fn": 928,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 160
+        },
+        "iou_0.5": {
+          "precision": 0.28125,
+          "recall": 0.045317220543806644,
+          "map": 0.09090909090909091,
+          "f1": 0.07805724197745012,
+          "total_tp": 45,
+          "total_fp": 115,
+          "total_fn": 948,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 160
+        }
+      },
+      "map_coco": 0.05404133500907694,
+      "counting": {
+        "r2": 0.21931257886526367,
+        "rmse": 7.411503204265343,
+        "mae": 5.3354430379746836,
+        "mape": 83.38868506049194,
+        "slope": 0.10216593779915617,
+        "intercept": 0.3705647073761895,
+        "bias": -5.272151898734177,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with petals and stamens_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with petals and stamens",
+        "grammar": "a"
+      },
+      "prompt": "a flower with petals and stamens",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 193,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.44559585492227977,
+          "recall": 0.0866062437059416,
+          "map": 0.09090909090909091,
+          "f1": 0.14502529510961215,
+          "total_tp": 86,
+          "total_fp": 107,
+          "total_fn": 907,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 193
+        },
+        "iou_0.5": {
+          "precision": 0.3005181347150259,
+          "recall": 0.05840886203423968,
+          "map": 0.09090909090909091,
+          "f1": 0.09780775716694773,
+          "total_tp": 58,
+          "total_fp": 135,
+          "total_fn": 935,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 193
+        }
+      },
+      "map_coco": 0.051493506493506494,
+      "counting": {
+        "r2": 0.19959993743086626,
+        "rmse": 7.251363904881113,
+        "mae": 5.177215189873418,
+        "mape": 80.13394246152043,
+        "slope": 0.11369212785742827,
+        "intercept": 0.5069855508707198,
+        "bias": -5.063291139240507,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:corolla_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "corolla",
+        "grammar": "a"
+      },
+      "prompt": "a corolla",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 0,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        },
+        "iou_0.5": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        }
+      },
+      "map_coco": 0.0,
+      "counting": {
+        "r2": NaN,
+        "rmse": 8.46623973141993,
+        "mae": 6.284810126582278,
+        "mape": 99.99996907532089,
+        "slope": 0.0,
+        "intercept": 0.0,
+        "bias": -6.284810126582278,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:a single": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a single"
+      },
+      "prompt": "a single flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 117,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.3504273504273504,
+          "recall": 0.041289023162134945,
+          "map": 0.09090909090909091,
+          "f1": 0.07387387387387387,
+          "total_tp": 41,
+          "total_fp": 76,
+          "total_fn": 952,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 117
+        },
+        "iou_0.5": {
+          "precision": 0.21367521367521367,
+          "recall": 0.025176233635448138,
+          "map": 0.09090909090909091,
+          "f1": 0.04504504504504504,
+          "total_tp": 25,
+          "total_fp": 92,
+          "total_fn": 968,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 117
+        }
+      },
+      "map_coco": 0.05984848484848485,
+      "counting": {
+        "r2": 0.2266633190030793,
+        "rmse": 7.6398356400903635,
+        "mae": 5.594936708860759,
+        "mape": 88.62306251902864,
+        "slope": 0.08765954480325557,
+        "intercept": 0.18958273424283045,
+        "bias": -5.544303797468355,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": ""
+      },
+      "prompt": "flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 279,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.44802867383512546,
+          "recall": 0.12588116817724068,
+          "map": 0.10280015343306483,
+          "f1": 0.19654088050314464,
+          "total_tp": 125,
+          "total_fp": 154,
+          "total_fn": 868,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 279
+        },
+        "iou_0.5": {
+          "precision": 0.3010752688172043,
+          "recall": 0.08459214501510574,
+          "map": 0.0606060606060606,
+          "f1": 0.1320754716981132,
+          "total_tp": 84,
+          "total_fp": 195,
+          "total_fn": 909,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 279
+        }
+      },
+      "map_coco": 0.04848484848484848,
+      "counting": {
+        "r2": 0.3053221806107906,
+        "rmse": 6.674151915971673,
+        "mae": 4.69620253164557,
+        "mape": 73.24685224516041,
+        "slope": 0.17574856747346257,
+        "intercept": 0.6612764082205802,
+        "bias": -4.518987341772152,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:a photo of a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a photo of a"
+      },
+      "prompt": "a photo of a flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 123,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.10569105691056911,
+          "recall": 0.013091641490433032,
+          "map": 0.022727272727272728,
+          "f1": 0.023297491039426525,
+          "total_tp": 13,
+          "total_fp": 110,
+          "total_fn": 980,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 123
+        },
+        "iou_0.5": {
+          "precision": 0.07317073170731707,
+          "recall": 0.00906344410876133,
+          "map": 0.022727272727272728,
+          "f1": 0.01612903225806452,
+          "total_tp": 9,
+          "total_fp": 114,
+          "total_fn": 984,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 123
+        }
+      },
+      "map_coco": 0.015449134199134198,
+      "counting": {
+        "r2": 0.046061410919842186,
+        "rmse": 7.816729867584322,
+        "mae": 5.582278481012659,
+        "mape": 82.84664697052474,
+        "slope": 0.03500431345162024,
+        "intercept": 0.5584855490034247,
+        "bias": -5.506329113924051,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:one": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "one"
+      },
+      "prompt": "one flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 123,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2845528455284553,
+          "recall": 0.035246727089627394,
+          "map": 0.0606060606060606,
+          "f1": 0.06272401433691757,
+          "total_tp": 35,
+          "total_fp": 88,
+          "total_fn": 958,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 123
+        },
+        "iou_0.5": {
+          "precision": 0.17073170731707318,
+          "recall": 0.021148036253776436,
+          "map": 0.0606060606060606,
+          "f1": 0.03763440860215054,
+          "total_tp": 21,
+          "total_fp": 102,
+          "total_fn": 972,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 123
+        }
+      },
+      "map_coco": 0.040151515151515146,
+      "counting": {
+        "r2": 0.2045947131751849,
+        "rmse": 7.623248917005984,
+        "mae": 5.556962025316456,
+        "mape": 86.25732928323423,
+        "slope": 0.08633998961783942,
+        "intercept": 0.2358505715790219,
+        "bias": -5.506329113924051,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:close-up of a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "close-up of a"
+      },
+      "prompt": "close-up of a flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 200,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.215,
+          "recall": 0.0433031218529708,
+          "map": 0.045454545454545456,
+          "f1": 0.07208717518860018,
+          "total_tp": 43,
+          "total_fp": 157,
+          "total_fn": 950,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 200
+        },
+        "iou_0.5": {
+          "precision": 0.14,
+          "recall": 0.028197381671701913,
+          "map": 0.045454545454545456,
+          "f1": 0.04694048616932104,
+          "total_tp": 28,
+          "total_fp": 172,
+          "total_fn": 965,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 200
+        }
+      },
+      "map_coco": 0.032467532467532464,
+      "counting": {
+        "r2": 0.14383594216703924,
+        "rmse": 7.310907405282028,
+        "mae": 5.158227848101266,
+        "mape": 77.14582168308397,
+        "slope": 0.08753381360162628,
+        "intercept": 0.7156893866682603,
+        "bias": -5.018987341772152,
+        "n_images": 158
+      }
+    }
+  }
+}

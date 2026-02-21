@@ -1,0 +1,496 @@
+================================================================================
+Phase 1: Factor Analysis Experiments
+================================================================================
+Model: yolo_world
+Device: cuda
+Full test set: True
+
+📊 Using FULL test set: 158 images (includes dev images)
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO - Logging to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/logs/phase1_factor_analysis_20260218_161042.log
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO - Starting experiment: Phase 1: Factor Analysis
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO - Configuration:
+2026-02-18 16:10:42,423 - agvfm.utils.logging - INFO -   model: yolo_world
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   device: cuda
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   resume: False
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   test_set: full
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   images_dir: /data2/jmearles/AgVFM/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/images
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   labels_dir: /data2/jmearles/AgVFM/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/labels
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   n_images: 158
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO -   results_dir: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis
+2026-02-18 16:10:42,424 - agvfm.utils.logging - INFO - ======================================================================
+================================================================================
+Phase 1: Factor Analysis Experiments
+================================================================================
+Dataset:
+  Images: /data2/jmearles/AgVFM/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/images
+  Labels: /data2/jmearles/AgVFM/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/labels
+Results: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis
+
+Loading YOLO World model...
+Loaded 158 images from /data2/jmearles/AgVFM/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/images
+================================================================================
+Phase 1: Factor Analysis - YOLO World
+================================================================================
+Total combinations: 34
+IoU thresholds: [0.3, 0.5]
+Images: 158
+Results will be saved to: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+
+[1/34] baseline
+  Prompt: a flower
+2026-02-18 16:10:42,761 - __main__ - INFO - [1/34] Starting: baseline - 'a flower'
+
+Evaluating prompt: a flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1178
+2026-02-18 16:11:08,533 - __main__ - INFO - [1/34] Completed: baseline - mAP@0.5: 0.0909, F1: 0.1178
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:11:08,534 - __main__ - INFO -   Saved progress: 1/34 configurations complete
+
+[2/34] taxonomy:cowpea flower_grammar:a
+  Prompt: a cowpea flower
+2026-02-18 16:11:08,534 - __main__ - INFO - [2/34] Starting: taxonomy:cowpea flower_grammar:a - 'a cowpea flower'
+
+Evaluating prompt: a cowpea flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1588, F1: 0.3028
+2026-02-18 16:11:33,128 - __main__ - INFO - [2/34] Completed: taxonomy:cowpea flower_grammar:a - mAP@0.5: 0.1588, F1: 0.3028
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:11:33,161 - __main__ - INFO -   Saved progress: 2/34 configurations complete
+
+[3/34] taxonomy:bean flower_grammar:a
+  Prompt: a bean flower
+2026-02-18 16:11:33,161 - __main__ - INFO - [3/34] Starting: taxonomy:bean flower_grammar:a - 'a bean flower'
+
+Evaluating prompt: a bean flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1333, F1: 0.2609
+2026-02-18 16:11:56,978 - __main__ - INFO - [3/34] Completed: taxonomy:bean flower_grammar:a - mAP@0.5: 0.1333, F1: 0.2609
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:11:57,021 - __main__ - INFO -   Saved progress: 3/34 configurations complete
+
+[4/34] taxonomy:pea flower_grammar:a
+  Prompt: a pea flower
+2026-02-18 16:11:57,021 - __main__ - INFO - [4/34] Starting: taxonomy:pea flower_grammar:a - 'a pea flower'
+
+Evaluating prompt: a pea flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1183, F1: 0.1987
+2026-02-18 16:12:20,921 - __main__ - INFO - [4/34] Completed: taxonomy:pea flower_grammar:a - mAP@0.5: 0.1183, F1: 0.1987
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:12:20,957 - __main__ - INFO -   Saved progress: 4/34 configurations complete
+
+[5/34] taxonomy:legume flower_grammar:a
+  Prompt: a legume flower
+2026-02-18 16:12:20,957 - __main__ - INFO - [5/34] Starting: taxonomy:legume flower_grammar:a - 'a legume flower'
+
+Evaluating prompt: a legume flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1226
+2026-02-18 16:12:44,614 - __main__ - INFO - [5/34] Completed: taxonomy:legume flower_grammar:a - mAP@0.5: 0.0909, F1: 0.1226
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:12:44,665 - __main__ - INFO -   Saved progress: 5/34 configurations complete
+
+[6/34] taxonomy:black-eyed pea flower_grammar:a
+  Prompt: a black-eyed pea flower
+2026-02-18 16:12:44,665 - __main__ - INFO - [6/34] Starting: taxonomy:black-eyed pea flower_grammar:a - 'a black-eyed pea flower'
+
+Evaluating prompt: a black-eyed pea flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1408
+2026-02-18 16:13:08,280 - __main__ - INFO - [6/34] Completed: taxonomy:black-eyed pea flower_grammar:a - mAP@0.5: 0.0909, F1: 0.1408
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:13:08,311 - __main__ - INFO -   Saved progress: 6/34 configurations complete
+
+[7/34] taxonomy:vigna unguiculata flower_grammar:a
+  Prompt: a vigna unguiculata flower
+2026-02-18 16:13:08,311 - __main__ - INFO - [7/34] Starting: taxonomy:vigna unguiculata flower_grammar:a - 'a vigna unguiculata flower'
+
+Evaluating prompt: a vigna unguiculata flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0682, F1: 0.0177
+2026-02-18 16:13:32,037 - __main__ - INFO - [7/34] Completed: taxonomy:vigna unguiculata flower_grammar:a - mAP@0.5: 0.0682, F1: 0.0177
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:13:32,094 - __main__ - INFO -   Saved progress: 7/34 configurations complete
+
+[8/34] taxonomy:crop flower_grammar:a
+  Prompt: a crop flower
+2026-02-18 16:13:32,094 - __main__ - INFO - [8/34] Starting: taxonomy:crop flower_grammar:a - 'a crop flower'
+
+Evaluating prompt: a crop flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0364, F1: 0.0170
+2026-02-18 16:13:55,489 - __main__ - INFO - [8/34] Completed: taxonomy:crop flower_grammar:a - mAP@0.5: 0.0364, F1: 0.0170
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:13:55,540 - __main__ - INFO -   Saved progress: 8/34 configurations complete
+
+[9/34] taxonomy:flower_color:yellow_grammar:a
+  Prompt: a yellow flower
+2026-02-18 16:13:55,540 - __main__ - INFO - [9/34] Starting: taxonomy:flower_color:yellow_grammar:a - 'a yellow flower'
+
+Evaluating prompt: a yellow flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0455, F1: 0.1184
+2026-02-18 16:14:19,043 - __main__ - INFO - [9/34] Completed: taxonomy:flower_color:yellow_grammar:a - mAP@0.5: 0.0455, F1: 0.1184
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:14:19,092 - __main__ - INFO -   Saved progress: 9/34 configurations complete
+
+[10/34] taxonomy:flower_color:white_grammar:a
+  Prompt: a white flower
+2026-02-18 16:14:19,092 - __main__ - INFO - [10/34] Starting: taxonomy:flower_color:white_grammar:a - 'a white flower'
+
+Evaluating prompt: a white flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1075
+2026-02-18 16:14:42,767 - __main__ - INFO - [10/34] Completed: taxonomy:flower_color:white_grammar:a - mAP@0.5: 0.0909, F1: 0.1075
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:14:42,810 - __main__ - INFO -   Saved progress: 10/34 configurations complete
+
+[11/34] taxonomy:flower_color:cream_grammar:a
+  Prompt: a cream flower
+2026-02-18 16:14:42,811 - __main__ - INFO - [11/34] Starting: taxonomy:flower_color:cream_grammar:a - 'a cream flower'
+
+Evaluating prompt: a cream flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0652
+2026-02-18 16:15:06,265 - __main__ - INFO - [11/34] Completed: taxonomy:flower_color:cream_grammar:a - mAP@0.5: 0.0909, F1: 0.0652
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:15:06,312 - __main__ - INFO -   Saved progress: 11/34 configurations complete
+
+[12/34] taxonomy:flower_color:purple_grammar:a
+  Prompt: a purple flower
+2026-02-18 16:15:06,312 - __main__ - INFO - [12/34] Starting: taxonomy:flower_color:purple_grammar:a - 'a purple flower'
+
+Evaluating prompt: a purple flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0303, F1: 0.0118
+2026-02-18 16:15:29,721 - __main__ - INFO - [12/34] Completed: taxonomy:flower_color:purple_grammar:a - mAP@0.5: 0.0303, F1: 0.0118
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:15:29,756 - __main__ - INFO -   Saved progress: 12/34 configurations complete
+
+[13/34] taxonomy:flower_size:large_grammar:a
+  Prompt: a large flower
+2026-02-18 16:15:29,756 - __main__ - INFO - [13/34] Starting: taxonomy:flower_size:large_grammar:a - 'a large flower'
+
+Evaluating prompt: a large flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0303, F1: 0.0154
+2026-02-18 16:15:53,093 - __main__ - INFO - [13/34] Completed: taxonomy:flower_size:large_grammar:a - mAP@0.5: 0.0303, F1: 0.0154
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:15:53,141 - __main__ - INFO -   Saved progress: 13/34 configurations complete
+
+[14/34] taxonomy:flower_size:small_grammar:a
+  Prompt: a small flower
+2026-02-18 16:15:53,142 - __main__ - INFO - [14/34] Starting: taxonomy:flower_size:small_grammar:a - 'a small flower'
+
+Evaluating prompt: a small flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1410
+2026-02-18 16:16:16,617 - __main__ - INFO - [14/34] Completed: taxonomy:flower_size:small_grammar:a - mAP@0.5: 0.0909, F1: 0.1410
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:16:16,652 - __main__ - INFO -   Saved progress: 14/34 configurations complete
+
+[15/34] taxonomy:flower_size:tiny_grammar:a
+  Prompt: a tiny flower
+2026-02-18 16:16:16,652 - __main__ - INFO - [15/34] Starting: taxonomy:flower_size:tiny_grammar:a - 'a tiny flower'
+
+Evaluating prompt: a tiny flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1179, F1: 0.1598
+2026-02-18 16:16:40,256 - __main__ - INFO - [15/34] Completed: taxonomy:flower_size:tiny_grammar:a - mAP@0.5: 0.1179, F1: 0.1598
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:16:40,312 - __main__ - INFO -   Saved progress: 15/34 configurations complete
+
+[16/34] taxonomy:flower_phenology:bud_grammar:a
+  Prompt: a flower bud
+2026-02-18 16:16:40,312 - __main__ - INFO - [16/34] Starting: taxonomy:flower_phenology:bud_grammar:a - 'a flower bud'
+
+Evaluating prompt: a flower bud
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1280, F1: 0.2247
+2026-02-18 16:17:03,818 - __main__ - INFO - [16/34] Completed: taxonomy:flower_phenology:bud_grammar:a - mAP@0.5: 0.1280, F1: 0.2247
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:17:03,864 - __main__ - INFO -   Saved progress: 16/34 configurations complete
+
+[17/34] taxonomy:flower_phenology:open_grammar:a
+  Prompt: an open flower
+2026-02-18 16:17:03,864 - __main__ - INFO - [17/34] Starting: taxonomy:flower_phenology:open_grammar:a - 'an open flower'
+
+Evaluating prompt: an open flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0771
+2026-02-18 16:17:27,687 - __main__ - INFO - [17/34] Completed: taxonomy:flower_phenology:open_grammar:a - mAP@0.5: 0.0909, F1: 0.0771
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:17:27,741 - __main__ - INFO -   Saved progress: 17/34 configurations complete
+
+[18/34] taxonomy:flower_phenology:closed bud_grammar:a
+  Prompt: a closed bud
+2026-02-18 16:17:27,741 - __main__ - INFO - [18/34] Starting: taxonomy:flower_phenology:closed bud_grammar:a - 'a closed bud'
+
+Evaluating prompt: a closed bud
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0412
+2026-02-18 16:17:51,385 - __main__ - INFO - [18/34] Completed: taxonomy:flower_phenology:closed bud_grammar:a - mAP@0.5: 0.0909, F1: 0.0412
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:17:51,418 - __main__ - INFO -   Saved progress: 18/34 configurations complete
+
+[19/34] taxonomy:flower_phenology:blooming_grammar:a
+  Prompt: a blooming flower
+2026-02-18 16:17:51,418 - __main__ - INFO - [19/34] Starting: taxonomy:flower_phenology:blooming_grammar:a - 'a blooming flower'
+
+Evaluating prompt: a blooming flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0315
+2026-02-18 16:18:15,153 - __main__ - INFO - [19/34] Completed: taxonomy:flower_phenology:blooming_grammar:a - mAP@0.5: 0.0909, F1: 0.0315
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:18:15,203 - __main__ - INFO -   Saved progress: 19/34 configurations complete
+
+[20/34] taxonomy:flower_phenology:in bloom_grammar:a
+  Prompt: a flower in bloom
+2026-02-18 16:18:15,204 - __main__ - INFO - [20/34] Starting: taxonomy:flower_phenology:in bloom_grammar:a - 'a flower in bloom'
+
+Evaluating prompt: a flower in bloom
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0187
+2026-02-18 16:18:38,823 - __main__ - INFO - [20/34] Completed: taxonomy:flower_phenology:in bloom_grammar:a - mAP@0.5: 0.0909, F1: 0.0187
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:18:38,872 - __main__ - INFO -   Saved progress: 20/34 configurations complete
+
+[21/34] taxonomy:flower_negation:not a bud, not the green calyx, not a leaf_grammar:a
+  Prompt: a flower not a bud, not the green calyx, not a leaf
+2026-02-18 16:18:38,872 - __main__ - INFO - [21/34] Starting: taxonomy:flower_negation:not a bud, not the green calyx, not a leaf_grammar:a - 'a flower not a bud, not the green calyx, not a leaf'
+
+Evaluating prompt: a flower not a bud, not the green calyx, not a leaf
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0420, F1: 0.1249
+2026-02-18 16:19:02,576 - __main__ - INFO - [21/34] Completed: taxonomy:flower_negation:not a bud, not the green calyx, not a leaf_grammar:a - mAP@0.5: 0.0420, F1: 0.1249
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:19:02,624 - __main__ - INFO -   Saved progress: 21/34 configurations complete
+
+[22/34] taxonomy:flower_negation:not a bud, not the green calyx_grammar:a
+  Prompt: a flower not a bud, not the green calyx
+2026-02-18 16:19:02,624 - __main__ - INFO - [22/34] Starting: taxonomy:flower_negation:not a bud, not the green calyx_grammar:a - 'a flower not a bud, not the green calyx'
+
+Evaluating prompt: a flower not a bud, not the green calyx
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.1084, F1: 0.1430
+2026-02-18 16:19:26,377 - __main__ - INFO - [22/34] Completed: taxonomy:flower_negation:not a bud, not the green calyx_grammar:a - mAP@0.5: 0.1084, F1: 0.1430
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:19:26,409 - __main__ - INFO -   Saved progress: 22/34 configurations complete
+
+[23/34] taxonomy:flower_negation:not a leaf_grammar:a
+  Prompt: a flower not a leaf
+2026-02-18 16:19:26,409 - __main__ - INFO - [23/34] Starting: taxonomy:flower_negation:not a leaf_grammar:a - 'a flower not a leaf'
+
+Evaluating prompt: a flower not a leaf
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0182, F1: 0.0656
+2026-02-18 16:19:50,169 - __main__ - INFO - [23/34] Completed: taxonomy:flower_negation:not a leaf_grammar:a - mAP@0.5: 0.0182, F1: 0.0656
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:19:50,220 - __main__ - INFO -   Saved progress: 23/34 configurations complete
+
+[24/34] taxonomy:flower_negation:not a bud_grammar:a
+  Prompt: a flower not a bud
+2026-02-18 16:19:50,220 - __main__ - INFO - [24/34] Starting: taxonomy:flower_negation:not a bud_grammar:a - 'a flower not a bud'
+
+Evaluating prompt: a flower not a bud
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.1058
+2026-02-18 16:20:13,958 - __main__ - INFO - [24/34] Completed: taxonomy:flower_negation:not a bud_grammar:a - mAP@0.5: 0.0909, F1: 0.1058
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:20:14,005 - __main__ - INFO -   Saved progress: 24/34 configurations complete
+
+[25/34] taxonomy:flower_negation:not the green calyx_grammar:a
+  Prompt: a flower not the green calyx
+2026-02-18 16:20:14,005 - __main__ - INFO - [25/34] Starting: taxonomy:flower_negation:not the green calyx_grammar:a - 'a flower not the green calyx'
+
+Evaluating prompt: a flower not the green calyx
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0364, F1: 0.0658
+2026-02-18 16:20:37,750 - __main__ - INFO - [25/34] Completed: taxonomy:flower_negation:not the green calyx_grammar:a - mAP@0.5: 0.0364, F1: 0.0658
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:20:37,790 - __main__ - INFO -   Saved progress: 25/34 configurations complete
+
+[26/34] taxonomy:flower_anatomy:with open petals_grammar:a
+  Prompt: a flower with open petals
+2026-02-18 16:20:37,790 - __main__ - INFO - [26/34] Starting: taxonomy:flower_anatomy:with open petals_grammar:a - 'a flower with open petals'
+
+Evaluating prompt: a flower with open petals
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0484
+2026-02-18 16:21:01,541 - __main__ - INFO - [26/34] Completed: taxonomy:flower_anatomy:with open petals_grammar:a - mAP@0.5: 0.0909, F1: 0.0484
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:21:01,575 - __main__ - INFO -   Saved progress: 26/34 configurations complete
+
+[27/34] taxonomy:flower_anatomy:with visible petals_grammar:a
+  Prompt: a flower with visible petals
+2026-02-18 16:21:01,576 - __main__ - INFO - [27/34] Starting: taxonomy:flower_anatomy:with visible petals_grammar:a - 'a flower with visible petals'
+
+Evaluating prompt: a flower with visible petals
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0781
+2026-02-18 16:21:25,226 - __main__ - INFO - [27/34] Completed: taxonomy:flower_anatomy:with visible petals_grammar:a - mAP@0.5: 0.0909, F1: 0.0781
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:21:25,261 - __main__ - INFO -   Saved progress: 27/34 configurations complete
+
+[28/34] taxonomy:flower_anatomy:with petals and stamens_grammar:a
+  Prompt: a flower with petals and stamens
+2026-02-18 16:21:25,261 - __main__ - INFO - [28/34] Starting: taxonomy:flower_anatomy:with petals and stamens_grammar:a - 'a flower with petals and stamens'
+
+Evaluating prompt: a flower with petals and stamens
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0978
+2026-02-18 16:21:48,899 - __main__ - INFO - [28/34] Completed: taxonomy:flower_anatomy:with petals and stamens_grammar:a - mAP@0.5: 0.0909, F1: 0.0978
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:21:48,946 - __main__ - INFO -   Saved progress: 28/34 configurations complete
+
+[29/34] taxonomy:flower_anatomy:corolla_grammar:a
+  Prompt: a corolla
+2026-02-18 16:21:48,946 - __main__ - INFO - [29/34] Starting: taxonomy:flower_anatomy:corolla_grammar:a - 'a corolla'
+
+Evaluating prompt: a corolla
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0000, F1: 0.0000
+2026-02-18 16:22:13,182 - __main__ - INFO - [29/34] Completed: taxonomy:flower_anatomy:corolla_grammar:a - mAP@0.5: 0.0000, F1: 0.0000
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:22:13,231 - __main__ - INFO -   Saved progress: 29/34 configurations complete
+
+[30/34] taxonomy:flower_grammar:a single
+  Prompt: a single flower
+2026-02-18 16:22:13,232 - __main__ - INFO - [30/34] Starting: taxonomy:flower_grammar:a single - 'a single flower'
+
+Evaluating prompt: a single flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0909, F1: 0.0450
+2026-02-18 16:22:37,098 - __main__ - INFO - [30/34] Completed: taxonomy:flower_grammar:a single - mAP@0.5: 0.0909, F1: 0.0450
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:22:37,150 - __main__ - INFO -   Saved progress: 30/34 configurations complete
+
+[31/34] taxonomy:flower
+  Prompt: flower
+2026-02-18 16:22:37,150 - __main__ - INFO - [31/34] Starting: taxonomy:flower - 'flower'
+
+Evaluating prompt: flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0606, F1: 0.1321
+2026-02-18 16:23:01,226 - __main__ - INFO - [31/34] Completed: taxonomy:flower - mAP@0.5: 0.0606, F1: 0.1321
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:23:01,285 - __main__ - INFO -   Saved progress: 31/34 configurations complete
+
+[32/34] taxonomy:flower_grammar:a photo of a
+  Prompt: a photo of a flower
+2026-02-18 16:23:01,286 - __main__ - INFO - [32/34] Starting: taxonomy:flower_grammar:a photo of a - 'a photo of a flower'
+
+Evaluating prompt: a photo of a flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0227, F1: 0.0161
+2026-02-18 16:23:25,283 - __main__ - INFO - [32/34] Completed: taxonomy:flower_grammar:a photo of a - mAP@0.5: 0.0227, F1: 0.0161
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:23:25,337 - __main__ - INFO -   Saved progress: 32/34 configurations complete
+
+[33/34] taxonomy:flower_grammar:one
+  Prompt: one flower
+2026-02-18 16:23:25,338 - __main__ - INFO - [33/34] Starting: taxonomy:flower_grammar:one - 'one flower'
+
+Evaluating prompt: one flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0606, F1: 0.0376
+2026-02-18 16:23:49,346 - __main__ - INFO - [33/34] Completed: taxonomy:flower_grammar:one - mAP@0.5: 0.0606, F1: 0.0376
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:23:49,381 - __main__ - INFO -   Saved progress: 33/34 configurations complete
+
+[34/34] taxonomy:flower_grammar:close-up of a
+  Prompt: close-up of a flower
+2026-02-18 16:23:49,381 - __main__ - INFO - [34/34] Starting: taxonomy:flower_grammar:close-up of a - 'close-up of a flower'
+
+Evaluating prompt: close-up of a flower
+  Using batch size: 15
+  Processing batch 10 (150/158)...
+  Processing batch 11 (158/158)...
+  ✓ mAP@0.5: 0.0455, F1: 0.0469
+2026-02-18 16:24:13,605 - __main__ - INFO - [34/34] Completed: taxonomy:flower_grammar:close-up of a - mAP@0.5: 0.0455, F1: 0.0469
+  💾 Saved to /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+2026-02-18 16:24:13,658 - __main__ - INFO -   Saved progress: 34/34 configurations complete
+
+================================================================================
+✅ Factor analysis complete for YOLO World
+   Results saved to: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/yolo_world_factor_analysis.json
+================================================================================
+
+2026-02-18 16:24:13,664 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-18 16:24:13,664 - agvfm.utils.logging - INFO - Experiment complete: Phase 1: Factor Analysis
+2026-02-18 16:24:13,664 - agvfm.utils.logging - INFO - Results saved to: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis
+2026-02-18 16:24:13,664 - agvfm.utils.logging - INFO - ======================================================================
+================================================================================
+✅ All experiments complete!
+📊 Results: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis
+📝 Logs: /data2/jmearles/AgVFM2/notebooks/notebooks/results/phase1_factor_analysis/logs/phase1_factor_analysis_20260218_161042.log
+================================================================================

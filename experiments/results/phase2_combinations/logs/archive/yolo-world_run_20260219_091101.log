@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 389, in <module>
+    main()
+    ~~~~^^
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 325, in main
+    logger = setup_logging(
+        log_dir=logs_dir,
+        prefix=f"{model_prefix}_run",
+        level="INFO",
+    )
+TypeError: setup_logging() got an unexpected keyword argument 'prefix'

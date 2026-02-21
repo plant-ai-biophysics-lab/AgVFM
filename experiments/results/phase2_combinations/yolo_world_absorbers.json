@@ -1,0 +1,393 @@
+{
+  "results": {
+    "H3b": {
+      "prompt": "a single yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a single yellow cowpea flower with open petals",
+        "a cowpea flower bud",
+        "a green calyx"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 217,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5898617511520737,
+          "recall": 0.12890231621349446,
+          "map": 0.14527181361352215,
+          "f1": 0.2115702479338843,
+          "total_tp": 128,
+          "total_fp": 89,
+          "total_fn": 865,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 217
+        },
+        "iou_0.5": {
+          "precision": 0.48847926267281105,
+          "recall": 0.1067472306143001,
+          "map": 0.13591359135913592,
+          "f1": 0.17520661157024792,
+          "total_tp": 106,
+          "total_fp": 111,
+          "total_fn": 887,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 217
+        }
+      },
+      "map_coco": 0.060502781047335495,
+      "counting": {
+        "r2": 0.14744973783895157,
+        "rmse": 7.211102550927978,
+        "mae": 4.949367088607595,
+        "mape": 75.00065062059682,
+        "slope": 0.10231656626843476,
+        "intercept": 0.7303775297180018,
+        "bias": -4.9113924050632916,
+        "n_images": 158
+      },
+      "config_name": "H3b",
+      "description": "Bud + calyx absorbers"
+    },
+    "H2a": {
+      "prompt": "a single yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a single yellow cowpea flower with open petals",
+        "a leaf",
+        "a stem"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 175,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5885714285714285,
+          "recall": 0.10372608257804633,
+          "map": 0.1449197860962567,
+          "f1": 0.1763698630136986,
+          "total_tp": 103,
+          "total_fp": 72,
+          "total_fn": 890,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 175
+        },
+        "iou_0.5": {
+          "precision": 0.48,
+          "recall": 0.08459214501510574,
+          "map": 0.09090909090909091,
+          "f1": 0.14383561643835618,
+          "total_tp": 84,
+          "total_fp": 91,
+          "total_fn": 909,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 175
+        }
+      },
+      "map_coco": 0.05348484848484849,
+      "counting": {
+        "r2": 0.11600230593031216,
+        "rmse": 7.475699027473423,
+        "mae": 5.2025316455696204,
+        "mape": 77.06139968696957,
+        "slope": 0.06808531297732724,
+        "intercept": 0.6796916722374307,
+        "bias": -5.177215189873418,
+        "n_images": 158
+      },
+      "config_name": "H2a",
+      "description": "Leaf + stem absorbers"
+    },
+    "H3c": {
+      "prompt": "a single yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a single yellow cowpea flower with open petals",
+        "a cowpea flower bud",
+        "a green calyx",
+        "a leaf"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 137,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.6788321167883211,
+          "recall": 0.09365558912386707,
+          "map": 0.09090909090909091,
+          "f1": 0.16460176991150444,
+          "total_tp": 93,
+          "total_fp": 44,
+          "total_fn": 900,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 137
+        },
+        "iou_0.5": {
+          "precision": 0.5401459854014599,
+          "recall": 0.07452165156092648,
+          "map": 0.09090909090909091,
+          "f1": 0.13097345132743363,
+          "total_tp": 74,
+          "total_fp": 63,
+          "total_fn": 919,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 137
+        }
+      },
+      "map_coco": 0.05254329004329006,
+      "counting": {
+        "r2": 0.10880685491616643,
+        "rmse": 7.660518540137963,
+        "mae": 5.417721518987341,
+        "mape": 82.88651934760229,
+        "slope": 0.06175642754085954,
+        "intercept": 0.47896118640459795,
+        "bias": -5.417721518987341,
+        "n_images": 158
+      },
+      "config_name": "H3c",
+      "description": "Bud + calyx + leaf absorbers"
+    },
+    "H5": {
+      "prompt": "a single yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a single yellow cowpea flower with open petals",
+        "a cowpea flower bud",
+        "a green calyx",
+        "a leaf",
+        "a stem",
+        "soil"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 114,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.7192982456140351,
+          "recall": 0.08257804632426989,
+          "map": 0.09090909090909091,
+          "f1": 0.14814814814814814,
+          "total_tp": 82,
+          "total_fp": 32,
+          "total_fn": 911,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 114
+        },
+        "iou_0.5": {
+          "precision": 0.5789473684210527,
+          "recall": 0.06646525679758308,
+          "map": 0.09090909090909091,
+          "f1": 0.11924119241192413,
+          "total_tp": 66,
+          "total_fp": 48,
+          "total_fn": 927,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 114
+        }
+      },
+      "map_coco": 0.06685314685314685,
+      "counting": {
+        "r2": 0.08989778226218804,
+        "rmse": 7.797678979565293,
+        "mae": 5.563291139240507,
+        "mape": 86.13171118797744,
+        "slope": 0.050063425789336695,
+        "intercept": 0.40687986196954845,
+        "bias": -5.563291139240507,
+        "n_images": 158
+      },
+      "config_name": "H5",
+      "description": "All absorbers (bud, calyx, leaf, stem, soil)"
+    },
+    "H3b_simple": {
+      "prompt": "a yellow cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a yellow cowpea flower",
+        "a cowpea flower bud",
+        "a green calyx"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 28,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.6428571428571429,
+          "recall": 0.01812688821752266,
+          "map": 0.09090909090909091,
+          "f1": 0.03525954946131245,
+          "total_tp": 18,
+          "total_fp": 10,
+          "total_fn": 975,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 28
+        },
+        "iou_0.5": {
+          "precision": 0.5357142857142857,
+          "recall": 0.015105740181268883,
+          "map": 0.09090909090909091,
+          "f1": 0.029382957884427033,
+          "total_tp": 15,
+          "total_fp": 13,
+          "total_fn": 978,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 28
+        }
+      },
+      "map_coco": 0.0590909090909091,
+      "counting": {
+        "r2": 0.005706454830554899,
+        "rmse": 8.324510096962486,
+        "mae": 6.1075949367088604,
+        "mape": 95.48483255901131,
+        "slope": 0.005708943471998663,
+        "intercept": 0.14133556412851472,
+        "bias": -6.1075949367088604,
+        "n_images": 158
+      },
+      "config_name": "H3b_simple",
+      "description": "H3b absorbers with simpler base (no grammar, no anatomy)"
+    },
+    "H3b_no_anatomy": {
+      "prompt": "a single yellow cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a single yellow cowpea flower",
+        "a cowpea flower bud",
+        "a green calyx"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 44,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5681818181818182,
+          "recall": 0.025176233635448138,
+          "map": 0.09090909090909091,
+          "f1": 0.048216007714561235,
+          "total_tp": 25,
+          "total_fp": 19,
+          "total_fn": 968,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 44
+        },
+        "iou_0.5": {
+          "precision": 0.45454545454545453,
+          "recall": 0.02014098690835851,
+          "map": 0.09090909090909091,
+          "f1": 0.03857280617164899,
+          "total_tp": 20,
+          "total_fp": 24,
+          "total_fn": 973,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 44
+        }
+      },
+      "map_coco": 0.05487012987012987,
+      "counting": {
+        "r2": 0.03918651086540767,
+        "rmse": 8.205817633726372,
+        "mae": 6.006329113924051,
+        "mape": 93.6759668525075,
+        "slope": 0.018777519261148685,
+        "intercept": 0.1604678694536668,
+        "bias": -6.006329113924051,
+        "n_images": 158
+      },
+      "config_name": "H3b_no_anatomy",
+      "description": "H3b absorbers without anatomy component"
+    },
+    "H3b_no_grammar": {
+      "prompt": "a yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": [
+        "a yellow cowpea flower with open petals",
+        "a cowpea flower bud",
+        "a green calyx"
+      ],
+      "target_indices": [
+        0
+      ],
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 184,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5978260869565217,
+          "recall": 0.1107754279959718,
+          "map": 0.14565544952285284,
+          "f1": 0.18691588785046728,
+          "total_tp": 110,
+          "total_fp": 74,
+          "total_fn": 883,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 184
+        },
+        "iou_0.5": {
+          "precision": 0.4891304347826087,
+          "recall": 0.09063444108761329,
+          "map": 0.09090909090909091,
+          "f1": 0.15293118096856415,
+          "total_tp": 90,
+          "total_fp": 94,
+          "total_fn": 903,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 184
+        }
+      },
+      "map_coco": 0.05681096681096681,
+      "counting": {
+        "r2": 0.11376981065730761,
+        "rmse": 7.425153964222227,
+        "mae": 5.132911392405063,
+        "mape": 77.41398785699637,
+        "slope": 0.07623543354234588,
+        "intercept": 0.6854317372939908,
+        "bias": -5.120253164556962,
+        "n_images": 158
+      },
+      "config_name": "H3b_no_grammar",
+      "description": "H3b absorbers without grammar component"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+2026-02-19 09:15:40,089 - agvfm.utils.logging - INFO - Logging to /data2/jmearles/AgVFM2/experiments/results/phase2_combinations/logs/yolo-world_run_20260219_091540.log
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO - Starting experiment: Phase 2: yolo_world
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO - Configuration:
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO -   model: yolo_world
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO -   test_set_size: 158
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO -   full_test_set: True
+2026-02-19 09:15:40,093 - agvfm.utils.logging - INFO - ======================================================================
+Loaded 158 images from /data2/jmearles/AgVFM2/_data/T4_REAL_FLOWER_SOBJ.v18-train_2023_test_location_genotype/test/images
+
+================================================================================
+Running Combination Tests: yolo_world
+================================================================================
+Traceback (most recent call last):
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 418, in <module>
+    main()
+    ~~~~^^
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 388, in main
+    run_combinations(
+    ~~~~~~~~~~~~~~~~^
+        model_name=model_name,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        resume=not args.no_resume,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 153, in run_combinations
+    results = load_results(results_file) if resume else {"results": {}}
+              ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 109, in load_results
+    return json.load(f)
+           ~~~~~~~~~^^^
+  File "/data/apps/conda/jmearles/envs/agvfm/lib/python3.14/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/data/apps/conda/jmearles/envs/agvfm/lib/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/apps/conda/jmearles/envs/agvfm/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/apps/conda/jmearles/envs/agvfm/lib/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 20 column 23 (char 551)

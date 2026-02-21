@@ -1,0 +1,1033 @@
+{
+  "results": {
+    "C3": {
+      "prompt": "a cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 810,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.454320987654321,
+          "recall": 0.37059415911379656,
+          "map": 0.2334637598844977,
+          "f1": 0.4082085413200222,
+          "total_tp": 368,
+          "total_fp": 442,
+          "total_fn": 625,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 810
+        },
+        "iou_0.5": {
+          "precision": 0.337037037037037,
+          "recall": 0.27492447129909364,
+          "map": 0.15878740824392998,
+          "f1": 0.302828618968386,
+          "total_tp": 273,
+          "total_fp": 537,
+          "total_fn": 720,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 810
+        }
+      },
+      "map_coco": 0.08600608211579389,
+      "counting": {
+        "r2": 0.6060991529068175,
+        "rmse": 3.7492615306639325,
+        "mae": 2.6772151898734178,
+        "mape": 56.308594882721195,
+        "slope": 0.5785203802808655,
+        "intercept": 1.4906915340575986,
+        "bias": -1.1582278481012658,
+        "n_images": 158
+      },
+      "config_name": "C3",
+      "description": "Species baseline - taxonomy only"
+    },
+    "C_color_taxonomy": {
+      "prompt": "a yellow cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1301,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4734819369715603,
+          "recall": 0.6203423967774421,
+          "map": 0.4161266719013879,
+          "f1": 0.5370531822144725,
+          "total_tp": 616,
+          "total_fp": 685,
+          "total_fn": 377,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1301
+        },
+        "iou_0.5": {
+          "precision": 0.3566487317448117,
+          "recall": 0.46727089627391744,
+          "map": 0.2589109658136706,
+          "f1": 0.40453356582388844,
+          "total_tp": 464,
+          "total_fp": 837,
+          "total_fn": 529,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1301
+        }
+      },
+      "map_coco": 0.11105792158299958,
+      "counting": {
+        "r2": 0.7225227812163405,
+        "rmse": 3.835213261279439,
+        "mae": 2.8354430379746836,
+        "mape": 82.16614670604288,
+        "slope": 0.9333774014970717,
+        "intercept": 2.368077470338025,
+        "bias": 1.9493670886075949,
+        "n_images": 158
+      },
+      "config_name": "C_color_taxonomy",
+      "description": "Color + Taxonomy"
+    },
+    "C_color_anatomy": {
+      "prompt": "a yellow flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 219,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5296803652968036,
+          "recall": 0.11681772406847936,
+          "map": 0.09984856992156263,
+          "f1": 0.19141914191419143,
+          "total_tp": 116,
+          "total_fp": 103,
+          "total_fn": 877,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 219
+        },
+        "iou_0.5": {
+          "precision": 0.3424657534246575,
+          "recall": 0.0755287009063444,
+          "map": 0.031207598371777476,
+          "f1": 0.12376237623762376,
+          "total_tp": 75,
+          "total_fp": 144,
+          "total_fn": 918,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 219
+        }
+      },
+      "map_coco": 0.018497065209261334,
+      "counting": {
+        "r2": 0.5198873173858359,
+        "rmse": 6.81026775064263,
+        "mae": 4.949367088607595,
+        "mape": 78.23102578664073,
+        "slope": 0.18520703945345496,
+        "intercept": 0.2220848722956914,
+        "bias": -4.89873417721519,
+        "n_images": 158
+      },
+      "config_name": "C_color_anatomy",
+      "description": "Color + Anatomy"
+    },
+    "C_color_grammar": {
+      "prompt": "a single yellow flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 193,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.49222797927461137,
+          "recall": 0.09566968781470292,
+          "map": 0.09090909090909091,
+          "f1": 0.1602023608768971,
+          "total_tp": 95,
+          "total_fp": 98,
+          "total_fn": 898,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 193
+        },
+        "iou_0.5": {
+          "precision": 0.3005181347150259,
+          "recall": 0.05840886203423968,
+          "map": 0.09090909090909091,
+          "f1": 0.09780775716694773,
+          "total_tp": 58,
+          "total_fp": 135,
+          "total_fn": 935,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 193
+        }
+      },
+      "map_coco": 0.04996878121878122,
+      "counting": {
+        "r2": 0.4053562917723085,
+        "rmse": 7.098760811810124,
+        "mae": 5.113924050632911,
+        "mape": 80.25772112760838,
+        "slope": 0.13926162173332282,
+        "intercept": 0.3462861368279143,
+        "bias": -5.063291139240507,
+        "n_images": 158
+      },
+      "config_name": "C_color_grammar",
+      "description": "Color + Grammar"
+    },
+    "C_taxonomy_anatomy": {
+      "prompt": "a cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 945,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5206349206349207,
+          "recall": 0.4954682779456193,
+          "map": 0.3076940946131513,
+          "f1": 0.5077399380804953,
+          "total_tp": 492,
+          "total_fp": 453,
+          "total_fn": 501,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 945
+        },
+        "iou_0.5": {
+          "precision": 0.3873015873015873,
+          "recall": 0.3685800604229607,
+          "map": 0.20986783862901,
+          "f1": 0.3777089783281734,
+          "total_tp": 366,
+          "total_fp": 579,
+          "total_fn": 627,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 945
+        }
+      },
+      "map_coco": 0.09819976523370878,
+      "counting": {
+        "r2": 0.676188564828225,
+        "rmse": 3.2724395730851428,
+        "mae": 2.518987341772152,
+        "mape": 58.97702828966356,
+        "slope": 0.740503248470996,
+        "intercept": 1.3270903434702594,
+        "bias": -0.3037974683544304,
+        "n_images": 158
+      },
+      "config_name": "C_taxonomy_anatomy",
+      "description": "Taxonomy + Anatomy"
+    },
+    "C_taxonomy_grammar": {
+      "prompt": "a single cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 766,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5078328981723238,
+          "recall": 0.391742195367573,
+          "map": 0.2517067138844746,
+          "f1": 0.44229675952245595,
+          "total_tp": 389,
+          "total_fp": 377,
+          "total_fn": 604,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 766
+        },
+        "iou_0.5": {
+          "precision": 0.391644908616188,
+          "recall": 0.3021148036253776,
+          "map": 0.20775117594745343,
+          "f1": 0.34110289937464466,
+          "total_tp": 300,
+          "total_fp": 466,
+          "total_fn": 693,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 766
+        }
+      },
+      "map_coco": 0.09674620720666581,
+      "counting": {
+        "r2": 0.5722500809338041,
+        "rmse": 3.9849400039954226,
+        "mae": 2.8417721518987342,
+        "mape": 56.786135279874806,
+        "slope": 0.5420409037210209,
+        "intercept": 1.4414771050951032,
+        "bias": -1.4367088607594938,
+        "n_images": 158
+      },
+      "config_name": "C_taxonomy_grammar",
+      "description": "Taxonomy + Grammar"
+    },
+    "C_anatomy_grammar": {
+      "prompt": "a single flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 159,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4528301886792453,
+          "recall": 0.07250755287009064,
+          "map": 0.09090909090909091,
+          "f1": 0.12500000000000003,
+          "total_tp": 72,
+          "total_fp": 87,
+          "total_fn": 921,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 159
+        },
+        "iou_0.5": {
+          "precision": 0.3081761006289308,
+          "recall": 0.04934541792547835,
+          "map": 0.09090909090909091,
+          "f1": 0.08506944444444445,
+          "total_tp": 49,
+          "total_fp": 110,
+          "total_fn": 944,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 159
+        }
+      },
+      "map_coco": 0.05621027346637103,
+      "counting": {
+        "r2": 0.22400923468510373,
+        "rmse": 7.390551614362555,
+        "mae": 5.341772151898734,
+        "mape": 83.61699456208765,
+        "slope": 0.11244975420172507,
+        "intercept": 0.29960375998536093,
+        "bias": -5.2784810126582276,
+        "n_images": 158
+      },
+      "config_name": "C_anatomy_grammar",
+      "description": "Anatomy + Grammar"
+    },
+    "C_color_taxonomy_anatomy": {
+      "prompt": "a yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1384,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.49060693641618497,
+          "recall": 0.6837865055387714,
+          "map": 0.44973253881276637,
+          "f1": 0.5713083718973496,
+          "total_tp": 679,
+          "total_fp": 705,
+          "total_fn": 314,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1384
+        },
+        "iou_0.5": {
+          "precision": 0.3800578034682081,
+          "recall": 0.5297079556898288,
+          "map": 0.31075156510269814,
+          "f1": 0.4425746739587716,
+          "total_tp": 526,
+          "total_fp": 858,
+          "total_fn": 467,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1384
+        }
+      },
+      "map_coco": 0.12680992949131067,
+      "counting": {
+        "r2": 0.7612642847125449,
+        "rmse": 4.318784404688108,
+        "mae": 3.0443037974683542,
+        "mape": 83.15517808384226,
+        "slope": 1.0998467573176183,
+        "intercept": 1.847165632807628,
+        "bias": 2.4746835443037973,
+        "n_images": 158
+      },
+      "config_name": "C_color_taxonomy_anatomy",
+      "description": "Color + Taxonomy + Anatomy"
+    },
+    "C_color_taxonomy_grammar": {
+      "prompt": "a single yellow cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1356,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4837758112094395,
+          "recall": 0.6606243705941591,
+          "map": 0.43711240351807307,
+          "f1": 0.558535547041294,
+          "total_tp": 656,
+          "total_fp": 700,
+          "total_fn": 337,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1356
+        },
+        "iou_0.5": {
+          "precision": 0.3753687315634218,
+          "recall": 0.5125881168177241,
+          "map": 0.31219980968808525,
+          "f1": 0.4333759046402724,
+          "total_tp": 509,
+          "total_fp": 847,
+          "total_fn": 484,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1356
+        }
+      },
+      "map_coco": 0.13475300826794398,
+      "counting": {
+        "r2": 0.738703370225025,
+        "rmse": 4.01972982277432,
+        "mae": 3.0063291139240507,
+        "mape": 85.92216825374197,
+        "slope": 0.9769115188453636,
+        "intercept": 2.442575074598442,
+        "bias": 2.2974683544303796,
+        "n_images": 158
+      },
+      "config_name": "C_color_taxonomy_grammar",
+      "description": "Color + Taxonomy + Grammar"
+    },
+    "C_color_anatomy_grammar": {
+      "prompt": "a single yellow flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 352,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5738636363636364,
+          "recall": 0.20342396777442096,
+          "map": 0.16116067840205772,
+          "f1": 0.3003717472118959,
+          "total_tp": 202,
+          "total_fp": 150,
+          "total_fn": 791,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 352
+        },
+        "iou_0.5": {
+          "precision": 0.38920454545454547,
+          "recall": 0.1379657603222558,
+          "map": 0.07226107226107226,
+          "f1": 0.20371747211895913,
+          "total_tp": 137,
+          "total_fp": 215,
+          "total_fn": 856,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 352
+        }
+      },
+      "map_coco": 0.03266708402941047,
+      "counting": {
+        "r2": 0.6531720826462529,
+        "rmse": 5.7824483448414385,
+        "mae": 4.158227848101266,
+        "mape": 67.90787803013845,
+        "slope": 0.30953776977745584,
+        "intercept": 0.28246199120877424,
+        "bias": -4.056962025316456,
+        "n_images": 158
+      },
+      "config_name": "C_color_anatomy_grammar",
+      "description": "Color + Anatomy + Grammar"
+    },
+    "C_taxonomy_anatomy_grammar": {
+      "prompt": "a single cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1041,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5437079731027857,
+          "recall": 0.5699899295065458,
+          "map": 0.379842342151772,
+          "f1": 0.5565388397246804,
+          "total_tp": 566,
+          "total_fp": 475,
+          "total_fn": 427,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1041
+        },
+        "iou_0.5": {
+          "precision": 0.4217098943323727,
+          "recall": 0.4420946626384693,
+          "map": 0.2681600135432296,
+          "f1": 0.4316617502458211,
+          "total_tp": 439,
+          "total_fp": 602,
+          "total_fn": 554,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1041
+        }
+      },
+      "map_coco": 0.12449711358381368,
+      "counting": {
+        "r2": 0.6942555821521967,
+        "rmse": 3.2724395730851428,
+        "mae": 2.518987341772152,
+        "mape": 62.096041309877656,
+        "slope": 0.8238319135666454,
+        "intercept": 1.4109804419513994,
+        "bias": 0.3037974683544304,
+        "n_images": 158
+      },
+      "config_name": "C_taxonomy_anatomy_grammar",
+      "description": "Taxonomy + Anatomy + Grammar"
+    },
+    "C2": {
+      "prompt": "a single yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1468,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.48705722070844687,
+          "recall": 0.7200402819738168,
+          "map": 0.5121310262844717,
+          "f1": 0.5810646078829744,
+          "total_tp": 715,
+          "total_fp": 753,
+          "total_fn": 278,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1468
+        },
+        "iou_0.5": {
+          "precision": 0.38419618528610355,
+          "recall": 0.56797583081571,
+          "map": 0.3327262232444996,
+          "f1": 0.4583502641202763,
+          "total_tp": 564,
+          "total_fp": 904,
+          "total_fn": 429,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1468
+        }
+      },
+      "map_coco": 0.1376940894708279,
+      "counting": {
+        "r2": 0.7525919622361549,
+        "rmse": 4.787245713245492,
+        "mae": 3.5,
+        "mape": 94.9565687090144,
+        "slope": 1.124644435896382,
+        "intercept": 2.2229625009803327,
+        "bias": 3.0063291139240507,
+        "n_images": 158
+      },
+      "config_name": "C2",
+      "description": "Four components - best without negation"
+    },
+    "C1": {
+      "prompt": "a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2689,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.31126812941613985,
+          "recall": 0.8429003021148036,
+          "map": 0.560678078530131,
+          "f1": 0.4546442151004888,
+          "total_tp": 837,
+          "total_fp": 1852,
+          "total_fn": 156,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2689
+        },
+        "iou_0.5": {
+          "precision": 0.25325399776868723,
+          "recall": 0.6858006042296072,
+          "map": 0.38303410770417234,
+          "f1": 0.36990765888104293,
+          "total_tp": 681,
+          "total_fp": 2008,
+          "total_fn": 312,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2689
+        }
+      },
+      "map_coco": 0.16073912720008318,
+      "counting": {
+        "r2": 0.7387761427641897,
+        "rmse": 12.55267382883681,
+        "mae": 10.734177215189874,
+        "mape": 273.4562895624916,
+        "slope": 1.6215279204183735,
+        "intercept": 6.827992246990856,
+        "bias": 10.734177215189874,
+        "n_images": 158
+      },
+      "config_name": "C1",
+      "description": "Kitchen sink - all components with text negation"
+    },
+    "C2_tiny": {
+      "prompt": "a single tiny yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1301,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5126825518831668,
+          "recall": 0.6717019133937563,
+          "map": 0.4365398627617033,
+          "f1": 0.5815170008718396,
+          "total_tp": 667,
+          "total_fp": 634,
+          "total_fn": 326,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1301
+        },
+        "iou_0.5": {
+          "precision": 0.39661798616448884,
+          "recall": 0.5196374622356495,
+          "map": 0.30529448983019986,
+          "f1": 0.4498692240627724,
+          "total_tp": 516,
+          "total_fp": 785,
+          "total_fn": 477,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1301
+        }
+      },
+      "map_coco": 0.12612816790251513,
+      "counting": {
+        "r2": 0.7474062581449743,
+        "rmse": 3.9570478703322842,
+        "mae": 2.8607594936708862,
+        "mape": 74.93945893588607,
+        "slope": 1.041752717847979,
+        "intercept": 1.6869591846642837,
+        "bias": 1.9493670886075949,
+        "n_images": 158
+      },
+      "config_name": "C2_tiny",
+      "description": "C2 + size component (tiny)"
+    },
+    "C1_tiny": {
+      "prompt": "a single tiny yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2295,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.3485838779956427,
+          "recall": 0.8056394763343404,
+          "map": 0.5226056160350377,
+          "f1": 0.4866180048661801,
+          "total_tp": 800,
+          "total_fp": 1495,
+          "total_fn": 193,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2295
+        },
+        "iou_0.5": {
+          "precision": 0.2766884531590414,
+          "recall": 0.6394763343403826,
+          "map": 0.34814670329567315,
+          "f1": 0.38625304136253036,
+          "total_tp": 635,
+          "total_fp": 1660,
+          "total_fn": 358,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2295
+        }
+      },
+      "map_coco": 0.1427248026264541,
+      "counting": {
+        "r2": 0.7715176429398812,
+        "rmse": 10.01707403146741,
+        "mae": 8.240506329113924,
+        "mape": 203.86080587834434,
+        "slope": 1.547025336704422,
+        "intercept": 4.802555953496892,
+        "bias": 8.240506329113924,
+        "n_images": 158
+      },
+      "config_name": "C1_tiny",
+      "description": "C1 + size component (tiny)"
+    },
+    "C_color_taxonomy_grammar_tiny": {
+      "prompt": "a single tiny yellow cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1149,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4934725848563969,
+          "recall": 0.5709969788519638,
+          "map": 0.3607297920234402,
+          "f1": 0.5294117647058822,
+          "total_tp": 567,
+          "total_fp": 582,
+          "total_fn": 426,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1149
+        },
+        "iou_0.5": {
+          "precision": 0.37684943429068757,
+          "recall": 0.43605236656596175,
+          "map": 0.2552734803502993,
+          "f1": 0.4042950513538749,
+          "total_tp": 433,
+          "total_fp": 716,
+          "total_fn": 560,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1149
+        }
+      },
+      "map_coco": 0.11004344213404686,
+      "counting": {
+        "r2": 0.6877639884433534,
+        "rmse": 3.4641016151377544,
+        "mae": 2.4430379746835444,
+        "mape": 66.43060840378345,
+        "slope": 0.8323368201956671,
+        "intercept": 2.0410730224411555,
+        "bias": 0.9873417721518988,
+        "n_images": 158
+      },
+      "config_name": "C_color_taxonomy_grammar_tiny",
+      "description": "C_color_taxonomy_grammar + size component (tiny)"
+    },
+    "C2_not_bud": {
+      "prompt": "a single yellow cowpea flower with open petals, not a bud",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1695,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4430678466076696,
+          "recall": 0.756294058408862,
+          "map": 0.512203029506665,
+          "f1": 0.5587797619047619,
+          "total_tp": 751,
+          "total_fp": 944,
+          "total_fn": 242,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1695
+        },
+        "iou_0.5": {
+          "precision": 0.3528023598820059,
+          "recall": 0.6022155085599195,
+          "map": 0.3665349987212476,
+          "f1": 0.44494047619047616,
+          "total_tp": 598,
+          "total_fp": 1097,
+          "total_fn": 395,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1695
+        }
+      },
+      "map_coco": 0.14852325288023568,
+      "counting": {
+        "r2": 0.7547444754408387,
+        "rmse": 6.0962740228786725,
+        "mae": 4.582278481012659,
+        "mape": 123.50790726784298,
+        "slope": 1.227580944129286,
+        "intercept": 3.012734952402652,
+        "bias": 4.443037974683544,
+        "n_images": 158
+      },
+      "config_name": "C2_not_bud",
+      "description": "C2 + single negation clause (not a bud)"
+    },
+    "C2_not_calyx": {
+      "prompt": "a single yellow cowpea flower with open petals, not the green calyx",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2298,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.3546562228024369,
+          "recall": 0.8207452165156093,
+          "map": 0.554120240927243,
+          "f1": 0.4952901853539957,
+          "total_tp": 815,
+          "total_fp": 1483,
+          "total_fn": 178,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2298
+        },
+        "iou_0.5": {
+          "precision": 0.2885117493472585,
+          "recall": 0.6676737160120846,
+          "map": 0.3807336184030514,
+          "f1": 0.4029170464904284,
+          "total_tp": 663,
+          "total_fp": 1635,
+          "total_fn": 330,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2298
+        }
+      },
+      "map_coco": 0.15678476619513446,
+      "counting": {
+        "r2": 0.7627004179793164,
+        "rmse": 10.019285201518473,
+        "mae": 8.259493670886076,
+        "mape": 209.09057431281278,
+        "slope": 1.5252215545604937,
+        "intercept": 4.958575926084999,
+        "bias": 8.259493670886076,
+        "n_images": 158
+      },
+      "config_name": "C2_not_calyx",
+      "description": "C2 + single negation clause (not the green calyx)"
+    },
+    "C2_not_leaf": {
+      "prompt": "a single yellow cowpea flower with open petals, not a leaf",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1605,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4635514018691589,
+          "recall": 0.7492447129909365,
+          "map": 0.5230771590564357,
+          "f1": 0.5727482678983834,
+          "total_tp": 744,
+          "total_fp": 861,
+          "total_fn": 249,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1605
+        },
+        "iou_0.5": {
+          "precision": 0.36697819314641744,
+          "recall": 0.5931520644511581,
+          "map": 0.3378116796273019,
+          "f1": 0.4534257120862202,
+          "total_tp": 589,
+          "total_fp": 1016,
+          "total_fn": 404,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1605
+        }
+      },
+      "map_coco": 0.14587128075777644,
+      "counting": {
+        "r2": 0.7628038171798278,
+        "rmse": 5.534700659692904,
+        "mae": 4.1265822784810124,
+        "mape": 110.98119102550356,
+        "slope": 1.1982021683030393,
+        "intercept": 2.6277547270574813,
+        "bias": 3.8734177215189876,
+        "n_images": 158
+      },
+      "config_name": "C2_not_leaf",
+      "description": "C2 + single negation clause (not a leaf)"
+    },
+    "C2_not_bud_calyx": {
+      "prompt": "a single yellow cowpea flower with open petals, not a bud, not the green calyx",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2837,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2989072964399013,
+          "recall": 0.8539778449144008,
+          "map": 0.5593692448657683,
+          "f1": 0.4428198433420366,
+          "total_tp": 848,
+          "total_fp": 1989,
+          "total_fn": 145,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2837
+        },
+        "iou_0.5": {
+          "precision": 0.2460345435318999,
+          "recall": 0.702920443101712,
+          "map": 0.41227263564274635,
+          "f1": 0.364490861618799,
+          "total_tp": 698,
+          "total_fp": 2139,
+          "total_fn": 295,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2837
+        }
+      },
+      "map_coco": 0.16103313959210436,
+      "counting": {
+        "r2": 0.7324195155095071,
+        "rmse": 13.560460019828497,
+        "mae": 11.670886075949367,
+        "mape": 295.98198277303476,
+        "slope": 1.6753906692510017,
+        "intercept": 7.42618395844149,
+        "bias": 11.670886075949367,
+        "n_images": 158
+      },
+      "config_name": "C2_not_bud_calyx",
+      "description": "C2 + two negation clauses (not a bud, not the green calyx)"
+    },
+    "C_color_taxonomy_anatomy_tiny": {
+      "prompt": "a tiny yellow cowpea flower with open petals",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1389,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4773218142548596,
+          "recall": 0.6676737160120846,
+          "map": 0.4208716199183028,
+          "f1": 0.5566750629722922,
+          "total_tp": 663,
+          "total_fp": 726,
+          "total_fn": 330,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1389
+        },
+        "iou_0.5": {
+          "precision": 0.36285097192224625,
+          "recall": 0.5075528700906344,
+          "map": 0.2888343461158316,
+          "f1": 0.42317380352644834,
+          "total_tp": 504,
+          "total_fp": 885,
+          "total_fn": 489,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1389
+        }
+      },
+      "map_coco": 0.1122921351987427,
+      "counting": {
+        "r2": 0.7329410798410011,
+        "rmse": 4.357446703305951,
+        "mae": 3.0759493670886076,
+        "mape": 83.51907355603939,
+        "slope": 1.0389866314121352,
+        "intercept": 2.2613055380237324,
+        "bias": 2.5063291139240507,
+        "n_images": 158
+      },
+      "config_name": "C_color_taxonomy_anatomy_tiny",
+      "description": "C_color_taxonomy_anatomy + tiny (SAM3 optimization)"
+    }
+  }
+}

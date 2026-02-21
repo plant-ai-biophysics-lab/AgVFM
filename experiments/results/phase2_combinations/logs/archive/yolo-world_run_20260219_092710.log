@@ -1,0 +1,13 @@
+2026-02-19 09:27:10,451 - agvfm.utils.logging - INFO - Logging to /data2/jmearles/AgVFM2/experiments/results/phase2_combinations/logs/yolo-world_run_20260219_092710.log
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO - Starting experiment: Phase 2: yolo_world
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO - Configuration:
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO -   model: yolo_world
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO -   test_set_size: 158
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO -   full_test_set: True
+2026-02-19 09:27:10,455 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:27:10,783 - agvfm.utils.logging - INFO - ======================================================================
+2026-02-19 09:27:10,784 - agvfm.utils.logging - INFO - Experiment complete: Phase 2: yolo_world
+2026-02-19 09:27:10,784 - agvfm.utils.logging - INFO - Results saved to: /data2/jmearles/AgVFM2/experiments/results/phase2_combinations/yolo_world_combinations.json
+2026-02-19 09:27:10,784 - agvfm.utils.logging - INFO - ======================================================================

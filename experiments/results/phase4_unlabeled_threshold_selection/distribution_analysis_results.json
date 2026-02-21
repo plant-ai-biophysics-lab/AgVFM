@@ -1,0 +1,62 @@
+{
+  "sam3_C2_not_bud": {
+    "config_name": "C2_not_bud",
+    "bimodality_coefficient": 0.8093817285028697,
+    "is_bimodal": true,
+    "truly_bimodal": false,
+    "kde_peaks": [
+      0.023203618410767884
+    ],
+    "n_peaks_detected": 1,
+    "elbow_point": 0.888671875,
+    "largest_gap": null,
+    "suggested_thresholds": [
+      [
+        "elbow",
+        0.888671875
+      ]
+    ],
+    "statistics": {
+      "mean": 0.08935320653890164,
+      "std": 0.1421376175433154,
+      "median": 0.035430908203125,
+      "min": 0.010009765625,
+      "max": 0.88916015625,
+      "q25": 0.017486572265625,
+      "q75": 0.08697509765625,
+      "n": 25692
+    },
+    "model": "sam3",
+    "plot_path": "experiments/results/phase4_unlabeled_threshold_selection/plots/sam3_C2_not_bud_distribution.png"
+  },
+  "yolo_world_C2_not_bud_calyx": {
+    "config_name": "C2_not_bud_calyx",
+    "bimodality_coefficient": 0.8530003346488606,
+    "is_bimodal": true,
+    "truly_bimodal": false,
+    "kde_peaks": [
+      0.028220463715579406
+    ],
+    "n_peaks_detected": 1,
+    "elbow_point": 0.9940703511238098,
+    "largest_gap": null,
+    "suggested_thresholds": [
+      [
+        "elbow",
+        0.9940703511238098
+      ]
+    ],
+    "statistics": {
+      "mean": 0.1559241647625574,
+      "std": 0.24324339332062747,
+      "median": 0.039059145376086235,
+      "min": 0.010003125295042992,
+      "max": 0.9942317605018616,
+      "q25": 0.01772211166098714,
+      "q75": 0.15341289341449738,
+      "n": 8956
+    },
+    "model": "yolo_world",
+    "plot_path": "experiments/results/phase4_unlabeled_threshold_selection/plots/yolo_world_C2_not_bud_calyx_distribution.png"
+  }
+}

@@ -1,0 +1,1915 @@
+{
+  "experiment_type": "factor_analysis",
+  "model": "SAM3",
+  "n_combinations": 34,
+  "iou_thresholds": [
+    0.3,
+    0.5
+  ],
+  "results": {
+    "baseline": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 5400,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.17407407407407408,
+          "recall": 0.94662638469285,
+          "map": 0.5188932622963599,
+          "f1": 0.29407164085718757,
+          "total_tp": 940,
+          "total_fp": 4460,
+          "total_fn": 53,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 5400
+        },
+        "iou_0.5": {
+          "precision": 0.15648148148148147,
+          "recall": 0.850956696878147,
+          "map": 0.37096520352441825,
+          "f1": 0.26435163460034417,
+          "total_tp": 845,
+          "total_fp": 4555,
+          "total_fn": 148,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 5400
+        }
+      },
+      "map_coco": 0.13326264299572615,
+      "counting": {
+        "r2": 0.6362242047158981,
+        "rmse": 35.773991684080464,
+        "mae": 28.120253164556964,
+        "mape": 519.8834519312419,
+        "slope": 3.7490828469029656,
+        "intercept": 10.614941348261741,
+        "bias": 27.89240506329114,
+        "n_images": 158
+      }
+    },
+    "taxonomy:cowpea flower_grammar:a": {
+      "components": {
+        "taxonomy": "cowpea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a cowpea flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2507,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2967690466693259,
+          "recall": 0.7492447129909365,
+          "map": 0.4074781940774022,
+          "f1": 0.42514285714285716,
+          "total_tp": 744,
+          "total_fp": 1763,
+          "total_fn": 249,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2507
+        },
+        "iou_0.5": {
+          "precision": 0.2588751495811727,
+          "recall": 0.6535750251762337,
+          "map": 0.31189391902072244,
+          "f1": 0.37085714285714283,
+          "total_tp": 649,
+          "total_fp": 1858,
+          "total_fn": 344,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2507
+        }
+      },
+      "map_coco": 0.13554329757323533,
+      "counting": {
+        "r2": 0.5570246556924872,
+        "rmse": 18.426727973177123,
+        "mae": 12.0,
+        "mape": 204.88469947462144,
+        "slope": 2.5673701389640966,
+        "intercept": -0.2683452404515698,
+        "bias": 9.582278481012658,
+        "n_images": 158
+      }
+    },
+    "taxonomy:bean flower_grammar:a": {
+      "components": {
+        "taxonomy": "bean flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a bean flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 383,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.556135770234987,
+          "recall": 0.21450151057401812,
+          "map": 0.19673188107091144,
+          "f1": 0.30959302325581395,
+          "total_tp": 213,
+          "total_fp": 170,
+          "total_fn": 780,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 383
+        },
+        "iou_0.5": {
+          "precision": 0.402088772845953,
+          "recall": 0.15508559919436052,
+          "map": 0.1284355179704017,
+          "f1": 0.2238372093023256,
+          "total_tp": 154,
+          "total_fp": 229,
+          "total_fn": 839,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 383
+        }
+      },
+      "map_coco": 0.08525823839396086,
+      "counting": {
+        "r2": 0.28359764104807095,
+        "rmse": 6.447450678614343,
+        "mae": 4.594936708860759,
+        "mape": 79.11600215511635,
+        "slope": 0.46200490227199975,
+        "intercept": -0.47956245541832754,
+        "bias": -3.8607594936708862,
+        "n_images": 158
+      }
+    },
+    "taxonomy:pea flower_grammar:a": {
+      "components": {
+        "taxonomy": "pea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a pea flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4808,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.18490016638935108,
+          "recall": 0.8952668680765358,
+          "map": 0.4580514251948502,
+          "f1": 0.3064988795035339,
+          "total_tp": 889,
+          "total_fp": 3919,
+          "total_fn": 104,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4808
+        },
+        "iou_0.5": {
+          "precision": 0.16306156405990016,
+          "recall": 0.7895266868076536,
+          "map": 0.2796506549552621,
+          "f1": 0.2702982244440613,
+          "total_tp": 784,
+          "total_fp": 4024,
+          "total_fn": 209,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4808
+        }
+      },
+      "map_coco": 0.10458040190707985,
+      "counting": {
+        "r2": 0.6549127639578457,
+        "rmse": 32.59174004233805,
+        "mae": 24.70253164556962,
+        "mape": 448.0140372136238,
+        "slope": 3.741531505624913,
+        "intercept": 6.91556465135735,
+        "bias": 24.145569620253166,
+        "n_images": 158
+      }
+    },
+    "taxonomy:legume flower_grammar:a": {
+      "components": {
+        "taxonomy": "legume flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a legume flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 154,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.5844155844155844,
+          "recall": 0.09063444108761329,
+          "map": 0.09090909090909091,
+          "f1": 0.15693112467306014,
+          "total_tp": 90,
+          "total_fp": 64,
+          "total_fn": 903,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 154
+        },
+        "iou_0.5": {
+          "precision": 0.4675324675324675,
+          "recall": 0.07250755287009064,
+          "map": 0.06363636363636363,
+          "f1": 0.12554489973844812,
+          "total_tp": 72,
+          "total_fp": 82,
+          "total_fn": 921,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 154
+        }
+      },
+      "map_coco": 0.04459595959595959,
+      "counting": {
+        "r2": 0.005124563458635412,
+        "rmse": 8.095552771957225,
+        "mae": 5.7784810126582276,
+        "mape": 92.844106049339,
+        "slope": 0.03425117110522704,
+        "intercept": 0.7594214372943642,
+        "bias": -5.310126582278481,
+        "n_images": 158
+      }
+    },
+    "taxonomy:black-eyed pea flower_grammar:a": {
+      "components": {
+        "taxonomy": "black-eyed pea flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a black-eyed pea flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 7428,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.12520193861066237,
+          "recall": 0.9365558912386707,
+          "map": 0.5111894909124893,
+          "f1": 0.220876380477378,
+          "total_tp": 930,
+          "total_fp": 6498,
+          "total_fn": 63,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 7428
+        },
+        "iou_0.5": {
+          "precision": 0.11402800215401185,
+          "recall": 0.8529707955689829,
+          "map": 0.3152931253426287,
+          "f1": 0.20116375727348296,
+          "total_tp": 847,
+          "total_fp": 6581,
+          "total_fn": 146,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 7428
+        }
+      },
+      "map_coco": 0.10675532120613837,
+      "counting": {
+        "r2": 0.6014129946078549,
+        "rmse": 50.64089256717342,
+        "mae": 40.90506329113924,
+        "mape": 766.663365255428,
+        "slope": 4.686579501332626,
+        "intercept": 17.55839591883989,
+        "bias": 40.72784810126582,
+        "n_images": 158
+      }
+    },
+    "taxonomy:vigna unguiculata flower_grammar:a": {
+      "components": {
+        "taxonomy": "vigna unguiculata flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a vigna unguiculata flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 0,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        },
+        "iou_0.5": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        }
+      },
+      "map_coco": 0.0,
+      "counting": {
+        "r2": NaN,
+        "rmse": 8.46623973141993,
+        "mae": 6.284810126582278,
+        "mape": 99.99996907532089,
+        "slope": 0.0,
+        "intercept": 0.0,
+        "bias": -6.284810126582278,
+        "n_images": 158
+      }
+    },
+    "taxonomy:crop flower_grammar:a": {
+      "components": {
+        "taxonomy": "crop flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a crop flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3990,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.21528822055137845,
+          "recall": 0.865055387713998,
+          "map": 0.44273093507388045,
+          "f1": 0.34477222556692755,
+          "total_tp": 859,
+          "total_fp": 3131,
+          "total_fn": 134,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3990
+        },
+        "iou_0.5": {
+          "precision": 0.18696741854636592,
+          "recall": 0.7512588116817724,
+          "map": 0.2664455749407406,
+          "f1": 0.2994180212723259,
+          "total_tp": 746,
+          "total_fp": 3244,
+          "total_fn": 247,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3990
+        }
+      },
+      "map_coco": 0.09496983450947317,
+      "counting": {
+        "r2": 0.6732731244044106,
+        "rmse": 28.701541439662403,
+        "mae": 19.61392405063291,
+        "mape": 320.2408724943232,
+        "slope": 3.7535245194516107,
+        "intercept": 1.6629756467376637,
+        "bias": 18.968354430379748,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:yellow_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "yellow",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a yellow flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4887,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.19562103540004092,
+          "recall": 0.9627391742195368,
+          "map": 0.6519191546475984,
+          "f1": 0.3251700680272108,
+          "total_tp": 956,
+          "total_fp": 3931,
+          "total_fn": 37,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4887
+        },
+        "iou_0.5": {
+          "precision": 0.17536320851237977,
+          "recall": 0.8630412890231621,
+          "map": 0.45927287362181696,
+          "f1": 0.29149659863945576,
+          "total_tp": 857,
+          "total_fp": 4030,
+          "total_fn": 136,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4887
+        }
+      },
+      "map_coco": 0.15184539901953278,
+      "counting": {
+        "r2": 0.6997216762464793,
+        "rmse": 30.407985293673324,
+        "mae": 24.734177215189874,
+        "mape": 469.00445307218115,
+        "slope": 3.285902793597914,
+        "intercept": 10.279104594666272,
+        "bias": 24.645569620253166,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:white_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "white",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a white flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3846,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2080083203328133,
+          "recall": 0.8056394763343404,
+          "map": 0.3497467946819807,
+          "f1": 0.3306468278569952,
+          "total_tp": 800,
+          "total_fp": 3046,
+          "total_fn": 193,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3846
+        },
+        "iou_0.5": {
+          "precision": 0.18616744669786792,
+          "recall": 0.7210473313192346,
+          "map": 0.2724450951893922,
+          "f1": 0.2959289109320108,
+          "total_tp": 716,
+          "total_fp": 3130,
+          "total_fn": 277,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3846
+        }
+      },
+      "map_coco": 0.11509683669429731,
+      "counting": {
+        "r2": 0.4429101502927956,
+        "rmse": 27.166970824835595,
+        "mae": 19.563291139240505,
+        "mape": 390.302050646631,
+        "slope": 2.771855132758453,
+        "intercept": 6.9211889441193435,
+        "bias": 18.056962025316455,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:cream_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "cream",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a cream flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2926,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.27204374572795625,
+          "recall": 0.8016112789526687,
+          "map": 0.42577744307600457,
+          "f1": 0.4062260780811432,
+          "total_tp": 796,
+          "total_fp": 2130,
+          "total_fn": 197,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2926
+        },
+        "iou_0.5": {
+          "precision": 0.24265208475734792,
+          "recall": 0.7150050352467271,
+          "map": 0.3029394844195748,
+          "f1": 0.3623373309517734,
+          "total_tp": 710,
+          "total_fp": 2216,
+          "total_fn": 283,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2926
+        }
+      },
+      "map_coco": 0.10615404912337696,
+      "counting": {
+        "r2": 0.546367638451338,
+        "rmse": 20.25986242096564,
+        "mae": 14.031645569620252,
+        "mape": 243.2093688600697,
+        "slope": 2.5909067709364213,
+        "intercept": 2.235630230760343,
+        "bias": 12.234177215189874,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_color:purple_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "purple",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a purple flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 61,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.19672131147540983,
+          "recall": 0.012084592145015106,
+          "map": 0.03636363636363637,
+          "f1": 0.022770398481973434,
+          "total_tp": 12,
+          "total_fp": 49,
+          "total_fn": 981,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 61
+        },
+        "iou_0.5": {
+          "precision": 0.13114754098360656,
+          "recall": 0.008056394763343404,
+          "map": 0.014141414141414142,
+          "f1": 0.015180265654648955,
+          "total_tp": 8,
+          "total_fp": 53,
+          "total_fn": 985,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 61
+        }
+      },
+      "map_coco": 0.004397824397824398,
+      "counting": {
+        "r2": 0.002240425923659493,
+        "rmse": 8.724329432720484,
+        "mae": 6.455696202531645,
+        "mape": 103.98730994803557,
+        "slope": -0.023085991427870736,
+        "intercept": 0.5311670220751623,
+        "bias": -5.89873417721519,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:large_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "large",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a large flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 1282,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4282371294851794,
+          "recall": 0.552870090634441,
+          "map": 0.3429652254911446,
+          "f1": 0.48263736263736257,
+          "total_tp": 549,
+          "total_fp": 733,
+          "total_fn": 444,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1282
+        },
+        "iou_0.5": {
+          "precision": 0.35569422776911075,
+          "recall": 0.459214501510574,
+          "map": 0.20066860161275119,
+          "f1": 0.40087912087912086,
+          "total_tp": 456,
+          "total_fp": 826,
+          "total_fn": 537,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 1282
+        }
+      },
+      "map_coco": 0.07836905474113309,
+      "counting": {
+        "r2": 0.6694380227651239,
+        "rmse": 9.170329149428648,
+        "mae": 5.955696202531645,
+        "mape": 96.05030702675525,
+        "slope": 1.877169330051871,
+        "intercept": -3.6837287641867587,
+        "bias": 1.8291139240506329,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:small_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "small",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a small flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 8360,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.11650717703349282,
+          "recall": 0.9808660624370594,
+          "map": 0.5517510261073394,
+          "f1": 0.20827541965144875,
+          "total_tp": 974,
+          "total_fp": 7386,
+          "total_fn": 19,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 8360
+        },
+        "iou_0.5": {
+          "precision": 0.10669856459330143,
+          "recall": 0.8982880161127895,
+          "map": 0.3964662780794996,
+          "f1": 0.19074093873623438,
+          "total_tp": 892,
+          "total_fp": 7468,
+          "total_fn": 101,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 8360
+        }
+      },
+      "map_coco": 0.14078791910125446,
+      "counting": {
+        "r2": 0.5233494937543622,
+        "rmse": 51.98338342103882,
+        "mae": 46.639240506329116,
+        "mape": 1101.3569405496148,
+        "slope": 3.4115580585608614,
+        "intercept": 31.47039777119661,
+        "bias": 46.62658227848101,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_size:tiny_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "tiny",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a tiny flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 8664,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.11241920590951061,
+          "recall": 0.9808660624370594,
+          "map": 0.561004967401212,
+          "f1": 0.20171896033964998,
+          "total_tp": 974,
+          "total_fp": 7690,
+          "total_fn": 19,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 8664
+        },
+        "iou_0.5": {
+          "precision": 0.10226223453370267,
+          "recall": 0.892245720040282,
+          "map": 0.4197956687492476,
+          "f1": 0.18349383866625246,
+          "total_tp": 886,
+          "total_fp": 7778,
+          "total_fn": 107,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 8664
+        }
+      },
+      "map_coco": 0.1514464135523899,
+      "counting": {
+        "r2": 0.5317643835064394,
+        "rmse": 54.615746326819,
+        "mae": 48.58860759493671,
+        "mape": 1096.3335471854007,
+        "slope": 3.7084430369189114,
+        "intercept": 31.528582685693173,
+        "bias": 48.550632911392405,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "bud",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower bud",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 6100,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.15836065573770491,
+          "recall": 0.972809667673716,
+          "map": 0.6056812263391387,
+          "f1": 0.2723812209220358,
+          "total_tp": 966,
+          "total_fp": 5134,
+          "total_fn": 27,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 6100
+        },
+        "iou_0.5": {
+          "precision": 0.14,
+          "recall": 0.8600201409869084,
+          "map": 0.4764707452371409,
+          "f1": 0.2408007895107853,
+          "total_tp": 854,
+          "total_fp": 5246,
+          "total_fn": 139,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 6100
+        }
+      },
+      "map_coco": 0.17988307402371617,
+      "counting": {
+        "r2": 0.5259309121643228,
+        "rmse": 39.481048169431396,
+        "mae": 32.360759493670884,
+        "mape": 678.0604002009092,
+        "slope": 3.381006621428329,
+        "intercept": 17.358610284314366,
+        "bias": 32.322784810126585,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:open_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "open",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "an open flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4786,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.19389887170915168,
+          "recall": 0.9345417925478349,
+          "map": 0.5133599160250314,
+          "f1": 0.3211628309396089,
+          "total_tp": 928,
+          "total_fp": 3858,
+          "total_fn": 65,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4786
+        },
+        "iou_0.5": {
+          "precision": 0.1744671959882992,
+          "recall": 0.8408862034239678,
+          "map": 0.3227180326128872,
+          "f1": 0.2889773317182904,
+          "total_tp": 835,
+          "total_fp": 3951,
+          "total_fn": 158,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4786
+        }
+      },
+      "map_coco": 0.11896600140063954,
+      "counting": {
+        "r2": 0.6817851930156856,
+        "rmse": 31.309298170012276,
+        "mae": 24.234177215189874,
+        "mape": 447.00370423620643,
+        "slope": 3.570071492504055,
+        "intercept": 7.853917771794137,
+        "bias": 24.00632911392405,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:closed bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "closed bud",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a closed bud",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 7719,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.12734810208576242,
+          "recall": 0.9899295065458208,
+          "map": 0.6616484981777456,
+          "f1": 0.22566574839302111,
+          "total_tp": 983,
+          "total_fp": 6736,
+          "total_fn": 10,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 7719
+        },
+        "iou_0.5": {
+          "precision": 0.11206114781707475,
+          "recall": 0.8710976837865055,
+          "map": 0.5190409321113103,
+          "f1": 0.19857667584940314,
+          "total_tp": 865,
+          "total_fp": 6854,
+          "total_fn": 128,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 7719
+        }
+      },
+      "map_coco": 0.19021738204798494,
+      "counting": {
+        "r2": 0.4732868834282898,
+        "rmse": 47.69072303175052,
+        "mae": 42.56962025316456,
+        "mape": 1029.3635963115833,
+        "slope": 3.032453588380941,
+        "intercept": 29.79603535909953,
+        "bias": 42.56962025316456,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:blooming_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "blooming",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a blooming flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4180,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.2021531100478469,
+          "recall": 0.850956696878147,
+          "map": 0.44436983565439375,
+          "f1": 0.32669630775178815,
+          "total_tp": 845,
+          "total_fp": 3335,
+          "total_fn": 148,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4180
+        },
+        "iou_0.5": {
+          "precision": 0.1784688995215311,
+          "recall": 0.7512588116817724,
+          "map": 0.31401714436231387,
+          "f1": 0.2884206456601585,
+          "total_tp": 746,
+          "total_fp": 3434,
+          "total_fn": 247,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4180
+        }
+      },
+      "map_coco": 0.11307704991846657,
+      "counting": {
+        "r2": 0.6009748697231737,
+        "rmse": 30.06711901013498,
+        "mae": 21.563291139240505,
+        "mape": 366.53175934801504,
+        "slope": 3.608542750475847,
+        "intercept": 3.7766901821359724,
+        "bias": 20.170886075949365,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_phenology:in bloom_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "in bloom",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower in bloom",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3713,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23107998922704012,
+          "recall": 0.8640483383685801,
+          "map": 0.4839568691258276,
+          "f1": 0.3646408839779005,
+          "total_tp": 858,
+          "total_fp": 2855,
+          "total_fn": 135,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3713
+        },
+        "iou_0.5": {
+          "precision": 0.20333961755992458,
+          "recall": 0.7603222557905337,
+          "map": 0.3600572269703554,
+          "f1": 0.32086697832554184,
+          "total_tp": 755,
+          "total_fp": 2958,
+          "total_fn": 238,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3713
+        }
+      },
+      "map_coco": 0.16670705495854138,
+      "counting": {
+        "r2": 0.66744823390395,
+        "rmse": 26.063214292187876,
+        "mae": 18.40506329113924,
+        "mape": 303.95305599450325,
+        "slope": 3.4460793650200836,
+        "intercept": 1.8420455097155504,
+        "bias": 17.21518987341772,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud, not the green calyx, not a leaf_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud, not the green calyx, not a leaf",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud, not the green calyx, not a leaf",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 2809,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.24172303310786758,
+          "recall": 0.6837865055387714,
+          "map": 0.30202909383774024,
+          "f1": 0.35718043135192007,
+          "total_tp": 679,
+          "total_fp": 2130,
+          "total_fn": 314,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2809
+        },
+        "iou_0.5": {
+          "precision": 0.20683517265930937,
+          "recall": 0.5850956696878147,
+          "map": 0.19740668735362432,
+          "f1": 0.3056286165176223,
+          "total_tp": 581,
+          "total_fp": 2228,
+          "total_fn": 412,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 2809
+        }
+      },
+      "map_coco": 0.08214182413798889,
+      "counting": {
+        "r2": 0.32648602423310674,
+        "rmse": 20.81108516687164,
+        "mae": 14.075949367088608,
+        "mape": 293.46032217810244,
+        "slope": 2.0099526827428305,
+        "intercept": 5.146310038204872,
+        "bias": 11.49367088607595,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud, not the green calyx_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud, not the green calyx",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud, not the green calyx",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3166,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23057485786481363,
+          "recall": 0.7351460221550856,
+          "map": 0.3309179053279696,
+          "f1": 0.35104592450108196,
+          "total_tp": 730,
+          "total_fp": 2436,
+          "total_fn": 263,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3166
+        },
+        "iou_0.5": {
+          "precision": 0.1993051168667088,
+          "recall": 0.6354481369587109,
+          "map": 0.23194691195318706,
+          "f1": 0.3034383265207983,
+          "total_tp": 631,
+          "total_fp": 2535,
+          "total_fn": 362,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3166
+        }
+      },
+      "map_coco": 0.08291102261873065,
+      "counting": {
+        "r2": 0.3700687149312157,
+        "rmse": 23.898652046093584,
+        "mae": 15.575949367088608,
+        "mape": 315.0830119281275,
+        "slope": 2.4096870288970145,
+        "intercept": 4.893549242438382,
+        "bias": 13.753164556962025,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a leaf_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a leaf",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a leaf",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 729,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.48010973936899864,
+          "recall": 0.35246727089627394,
+          "map": 0.2450441659883795,
+          "f1": 0.40650406504065045,
+          "total_tp": 350,
+          "total_fp": 379,
+          "total_fn": 643,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 729
+        },
+        "iou_0.5": {
+          "precision": 0.4074074074074074,
+          "recall": 0.2990936555891239,
+          "map": 0.1371426404895282,
+          "f1": 0.34494773519163763,
+          "total_tp": 297,
+          "total_fp": 432,
+          "total_fn": 696,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 729
+        }
+      },
+      "map_coco": 0.060439775592787716,
+      "counting": {
+        "r2": 0.14720595209568998,
+        "rmse": 7.731245171299005,
+        "mae": 5.506329113924051,
+        "mape": 96.41500592734926,
+        "slope": 0.5148070275027661,
+        "intercept": 1.3784596309478054,
+        "bias": -1.6708860759493671,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not a bud_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not a bud",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not a bud",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 6583,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.1473492328725505,
+          "recall": 0.9768378650553877,
+          "map": 0.5290859697965227,
+          "f1": 0.2560718057022175,
+          "total_tp": 970,
+          "total_fp": 5613,
+          "total_fn": 23,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 6583
+        },
+        "iou_0.5": {
+          "precision": 0.13246240315965366,
+          "recall": 0.878147029204431,
+          "map": 0.41739362477703046,
+          "f1": 0.23020063357972545,
+          "total_tp": 872,
+          "total_fp": 5711,
+          "total_fn": 121,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 6583
+        }
+      },
+      "map_coco": 0.14428083621777021,
+      "counting": {
+        "r2": 0.5134330786745364,
+        "rmse": 42.828329675400724,
+        "mae": 35.41772151898734,
+        "mape": 759.0900655303133,
+        "slope": 3.5209379796614217,
+        "intercept": 19.536130292381063,
+        "bias": 35.379746835443036,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_negation:not the green calyx_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "not the green calyx",
+        "anatomy": "",
+        "grammar": "a"
+      },
+      "prompt": "a flower not the green calyx",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 203,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.4433497536945813,
+          "recall": 0.09063444108761329,
+          "map": 0.09090909090909091,
+          "f1": 0.15050167224080266,
+          "total_tp": 90,
+          "total_fp": 113,
+          "total_fn": 903,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 203
+        },
+        "iou_0.5": {
+          "precision": 0.2955665024630542,
+          "recall": 0.06042296072507553,
+          "map": 0.09090909090909091,
+          "f1": 0.10033444816053512,
+          "total_tp": 60,
+          "total_fp": 143,
+          "total_fn": 933,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 203
+        }
+      },
+      "map_coco": 0.03011522790934556,
+      "counting": {
+        "r2": 4.9814468408879244e-05,
+        "rmse": 8.38549078445636,
+        "mae": 6.012658227848101,
+        "mape": 96.91359501331956,
+        "slope": 0.004559934569980649,
+        "intercept": 1.2561518036203114,
+        "bias": -5.0,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with open petals_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with open petals",
+        "grammar": "a"
+      },
+      "prompt": "a flower with open petals",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3550,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23859154929577464,
+          "recall": 0.8529707955689829,
+          "map": 0.4649565581981497,
+          "f1": 0.3728813559322034,
+          "total_tp": 847,
+          "total_fp": 2703,
+          "total_fn": 146,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3550
+        },
+        "iou_0.5": {
+          "precision": 0.21267605633802816,
+          "recall": 0.7603222557905337,
+          "map": 0.31608451055490816,
+          "f1": 0.33237948492185776,
+          "total_tp": 755,
+          "total_fp": 2795,
+          "total_fn": 238,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3550
+        }
+      },
+      "map_coco": 0.11428432733480069,
+      "counting": {
+        "r2": 0.655333713401119,
+        "rmse": 24.2746677355404,
+        "mae": 17.563291139240505,
+        "mape": 304.4696631513115,
+        "slope": 3.1932214699097843,
+        "intercept": 2.399563799870787,
+        "bias": 16.18354430379747,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with visible petals_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with visible petals",
+        "grammar": "a"
+      },
+      "prompt": "a flower with visible petals",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4729,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.19433283992387396,
+          "recall": 0.9254783484390735,
+          "map": 0.4792631575524554,
+          "f1": 0.3212163579168123,
+          "total_tp": 919,
+          "total_fp": 3810,
+          "total_fn": 74,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4729
+        },
+        "iou_0.5": {
+          "precision": 0.17466694861492915,
+          "recall": 0.8318227593152064,
+          "map": 0.3282645134335653,
+          "f1": 0.2887102411744146,
+          "total_tp": 826,
+          "total_fp": 3903,
+          "total_fn": 167,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4729
+        }
+      },
+      "map_coco": 0.11640453445414492,
+      "counting": {
+        "r2": 0.6563206282194745,
+        "rmse": 31.52234489767697,
+        "mae": 24.0126582278481,
+        "mape": 444.781523127865,
+        "slope": 3.5952936694962374,
+        "intercept": 7.3346416847483304,
+        "bias": 23.645569620253166,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:with petals and stamens_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "with petals and stamens",
+        "grammar": "a"
+      },
+      "prompt": "a flower with petals and stamens",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 3284,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.23020706455542023,
+          "recall": 0.7613293051359517,
+          "map": 0.3504947907437572,
+          "f1": 0.35351882160392795,
+          "total_tp": 756,
+          "total_fp": 2528,
+          "total_fn": 237,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3284
+        },
+        "iou_0.5": {
+          "precision": 0.19457978075517662,
+          "recall": 0.6435045317220544,
+          "map": 0.18148670707842263,
+          "f1": 0.2988075754033201,
+          "total_tp": 639,
+          "total_fp": 2645,
+          "total_fn": 354,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 3284
+        }
+      },
+      "map_coco": 0.06251165553534505,
+      "counting": {
+        "r2": 0.6508644769706106,
+        "rmse": 24.26788783035795,
+        "mae": 16.056962025316455,
+        "mape": 258.55830712027574,
+        "slope": 3.3770778325932596,
+        "intercept": -0.4394828339563688,
+        "bias": 14.5,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_anatomy:corolla_grammar:a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "corolla",
+        "grammar": "a"
+      },
+      "prompt": "a corolla",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 0,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        },
+        "iou_0.5": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        }
+      },
+      "map_coco": 0.0,
+      "counting": {
+        "r2": NaN,
+        "rmse": 8.46623973141993,
+        "mae": 6.284810126582278,
+        "mape": 99.99996907532089,
+        "slope": 0.0,
+        "intercept": 0.0,
+        "bias": -6.284810126582278,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:a single": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a single"
+      },
+      "prompt": "a single flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4942,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.18696883852691218,
+          "recall": 0.9305135951661632,
+          "map": 0.5221667153472486,
+          "f1": 0.3113732097725358,
+          "total_tp": 924,
+          "total_fp": 4018,
+          "total_fn": 69,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4942
+        },
+        "iou_0.5": {
+          "precision": 0.16895993524888708,
+          "recall": 0.8408862034239678,
+          "map": 0.3896221569544976,
+          "f1": 0.28138163437236724,
+          "total_tp": 835,
+          "total_fp": 4107,
+          "total_fn": 158,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4942
+        }
+      },
+      "map_coco": 0.1367308899661874,
+      "counting": {
+        "r2": 0.5995764802027327,
+        "rmse": 32.870189641810825,
+        "mae": 25.474683544303797,
+        "mape": 469.0721057786909,
+        "slope": 3.4722326998223534,
+        "intercept": 9.456157778964577,
+        "bias": 24.99367088607595,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": ""
+      },
+      "prompt": "flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 5933,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.16096409910669138,
+          "recall": 0.9617321248741189,
+          "map": 0.5436715648233182,
+          "f1": 0.2757724516315333,
+          "total_tp": 955,
+          "total_fp": 4978,
+          "total_fn": 38,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 5933
+        },
+        "iou_0.5": {
+          "precision": 0.14613180515759314,
+          "recall": 0.8731117824773413,
+          "map": 0.3907146111895502,
+          "f1": 0.250360958706324,
+          "total_tp": 867,
+          "total_fp": 5066,
+          "total_fn": 126,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 5933
+        }
+      },
+      "map_coco": 0.1372129660886315,
+      "counting": {
+        "r2": 0.6413855719559508,
+        "rmse": 38.326544986900544,
+        "mae": 31.367088607594937,
+        "mape": 607.112703070108,
+        "slope": 3.7339764297567144,
+        "intercept": 14.083300033237865,
+        "bias": 31.265822784810126,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:a photo of a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "a photo of a"
+      },
+      "prompt": "a photo of a flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 0,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        },
+        "iou_0.5": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "map": 0.0,
+          "f1": 0.0,
+          "total_tp": 0,
+          "total_fp": 0,
+          "total_fn": 993,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 0
+        }
+      },
+      "map_coco": 0.0,
+      "counting": {
+        "r2": NaN,
+        "rmse": 8.46623973141993,
+        "mae": 6.284810126582278,
+        "mape": 99.99996907532089,
+        "slope": 0.0,
+        "intercept": 0.0,
+        "bias": -6.284810126582278,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:one": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "one"
+      },
+      "prompt": "one flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 4948,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.18936944219886823,
+          "recall": 0.9436052366565961,
+          "map": 0.519844250496702,
+          "f1": 0.3154351119340178,
+          "total_tp": 937,
+          "total_fp": 4011,
+          "total_fn": 56,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4948
+        },
+        "iou_0.5": {
+          "precision": 0.1709781729991916,
+          "recall": 0.851963746223565,
+          "map": 0.3638578042589106,
+          "f1": 0.2848005386298604,
+          "total_tp": 846,
+          "total_fp": 4102,
+          "total_fn": 147,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 4948
+        }
+      },
+      "map_coco": 0.13047569827077216,
+      "counting": {
+        "r2": 0.6581330596615071,
+        "rmse": 31.688855206583238,
+        "mae": 25.20886075949367,
+        "mape": 478.92610686914264,
+        "slope": 3.3963682355679867,
+        "intercept": 9.970926215702463,
+        "bias": 25.031645569620252,
+        "n_images": 158
+      }
+    },
+    "taxonomy:flower_grammar:close-up of a": {
+      "components": {
+        "taxonomy": "flower",
+        "color": "",
+        "size": "",
+        "phenology": "",
+        "negation": "",
+        "anatomy": "",
+        "grammar": "close-up of a"
+      },
+      "prompt": "close-up of a flower",
+      "model": "SAM3",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 35,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.08571428571428572,
+          "recall": 0.0030211480362537764,
+          "map": 0.009090909090909092,
+          "f1": 0.005836575875486381,
+          "total_tp": 3,
+          "total_fp": 32,
+          "total_fn": 990,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 35
+        },
+        "iou_0.5": {
+          "precision": 0.05714285714285714,
+          "recall": 0.002014098690835851,
+          "map": 0.006060606060606061,
+          "f1": 0.0038910505836575876,
+          "total_tp": 2,
+          "total_fp": 33,
+          "total_fn": 991,
+          "n_images": 158,
+          "n_gt_total": 993,
+          "n_pred_total": 35
+        }
+      },
+      "map_coco": 0.004576802507836991,
+      "counting": {
+        "r2": 0.05178898391243801,
+        "rmse": 8.241604857848463,
+        "mae": 6.063291139240507,
+        "mape": 96.01519507587568,
+        "slope": 0.01947837734547821,
+        "intercept": 0.09910108415151984,
+        "bias": -6.063291139240507,
+        "n_images": 158
+      }
+    }
+  }
+}

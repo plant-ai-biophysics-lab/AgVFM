@@ -45,17 +45,17 @@ _data/
 model_weights/
 
 # Results
-notebooks/results/
-*.json
-*.csv
+# notebooks/results/
+# *.json
+# *.csv
 
 # OS
 .DS_Store
 Thumbs.db
 
 # Logs
-*.log
-*.out
+# *.log
+# *.out
 
 # Data
 _data/
