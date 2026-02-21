@@ -12,23 +12,32 @@ Create a clean, reproducible framework for:
 
 ## Experimental Framework
 
-### Phase 1: Structured Factor Analysis
+### Phase 1: Structured Factor Analysis ✅
 - One-factor-at-a-time (OFAT) across 7 axes:
   - Color, Taxonomy, Anatomy, Negation, Grammar, Phenology, Size
-- Run on full test set (138 images, 839 GT)
+- Run on full test set (158 images)
 - Evaluate at multiple IoUs: 0.3, 0.5, 0.5:0.95
+- **Status:** Complete for both YOLO World and SAM3
 
-### Phase 2: Combination Tests
+### Phase 2: Combination Tests ✅
 - Systematic prompt combinations
 - Negation tests (text vs absorber architecture)
 - Multi-class assembly
 - Absorber classes (detect confusers, filter to target)
+- **Status:** Complete (YOLO World: combinations + absorbers; SAM3: combinations)
 
-### Phase 3: Confidence Threshold Analysis
+### Phase 3: Confidence Threshold Analysis ✅
 - Sweep confidence thresholds to understand model sensitivity
 - Critical for zero-shot generalizability assessment
+- **Status:** Complete for both YOLO World and SAM3
 
-### Phase 4: Grounding Gap Analysis (Future)
+### Phase 4: Unlabeled Threshold Selection (In Progress)
+- Develop methods for selecting confidence thresholds without labeled data
+- Addresses limitation that Phase 1/2 used arbitrary threshold (0.1)
+- Methods: Top-K, percentiles, detection volume matching, distribution analysis
+- **Status:** Planning
+
+### Phase 5: Grounding Gap Analysis (Future)
 - Embedding space analysis
 - Understand why models succeed/fail
 - Motivate future model improvements
@@ -36,7 +45,7 @@ Create a clean, reproducible framework for:
 ## Key Principles
 
 1. **Zero-shot only** - No model weight changes
-2. **Full test set** - No sampling, evaluate on all 138 images
+2. **Full test set** - No sampling, evaluate on all 158 images
 3. **Multiple metrics** - mAP, F1, P, R, counting (R², RMSE, MAE, slope)
 4. **Model-agnostic** - Same evaluation pipeline for all models
 5. **Reproducible** - Configuration-driven, results saved in structured format

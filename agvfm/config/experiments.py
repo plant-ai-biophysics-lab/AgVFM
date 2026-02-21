@@ -123,22 +123,126 @@ BASELINE_CONFIGS = [
 ]
 
 
-# Combination test configs (from Experiment 8)
+# Combination test configs (Phase 2: Systematic combinations)
 COMBINATION_CONFIGS = [
+    # Baseline
     PromptConfig(
-        name="C1",
-        prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
-        description="Kitchen sink - all components combined",
+        name="C3",
+        prompt="a cowpea flower",
+        description="Species baseline - taxonomy only",
     ),
+    # Two-component combinations
+    PromptConfig(
+        name="C_color_taxonomy",
+        prompt="a yellow cowpea flower",
+        description="Color + Taxonomy",
+    ),
+    PromptConfig(
+        name="C_color_anatomy",
+        prompt="a yellow flower with open petals",
+        description="Color + Anatomy",
+    ),
+    PromptConfig(
+        name="C_color_grammar",
+        prompt="a single yellow flower",
+        description="Color + Grammar",
+    ),
+    PromptConfig(
+        name="C_taxonomy_anatomy",
+        prompt="a cowpea flower with open petals",
+        description="Taxonomy + Anatomy",
+    ),
+    PromptConfig(
+        name="C_taxonomy_grammar",
+        prompt="a single cowpea flower",
+        description="Taxonomy + Grammar",
+    ),
+    PromptConfig(
+        name="C_anatomy_grammar",
+        prompt="a single flower with open petals",
+        description="Anatomy + Grammar",
+    ),
+    # Three-component combinations
+    PromptConfig(
+        name="C_color_taxonomy_anatomy",
+        prompt="a yellow cowpea flower with open petals",
+        description="Color + Taxonomy + Anatomy",
+    ),
+    PromptConfig(
+        name="C_color_taxonomy_grammar",
+        prompt="a single yellow cowpea flower",
+        description="Color + Taxonomy + Grammar",
+    ),
+    PromptConfig(
+        name="C_color_anatomy_grammar",
+        prompt="a single yellow flower with open petals",
+        description="Color + Anatomy + Grammar",
+    ),
+    PromptConfig(
+        name="C_taxonomy_anatomy_grammar",
+        prompt="a single cowpea flower with open petals",
+        description="Taxonomy + Anatomy + Grammar",
+    ),
+    # Four-component combination
     PromptConfig(
         name="C2",
         prompt="a single yellow cowpea flower with open petals",
-        description="No negation - best components without text negation",
+        description="Four components - best without negation",
+    ),
+    # Kitchen sink (with text negation)
+    PromptConfig(
+        name="C1",
+        prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
+        description="Kitchen sink - all components with text negation",
+    ),
+    # Strategic experiments: Size component integration
+    PromptConfig(
+        name="C2_tiny",
+        prompt="a single tiny yellow cowpea flower with open petals",
+        description="C2 + size component (tiny)",
+    ),
+    PromptConfig(
+        name="C1_tiny",
+        prompt="a single tiny yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
+        description="C1 + size component (tiny)",
+    ),
+    PromptConfig(
+        name="C_color_taxonomy_grammar_tiny",
+        prompt="a single tiny yellow cowpea flower",
+        description="C_color_taxonomy_grammar + size component (tiny)",
+    ),
+    # Strategic experiments: Partial negation variants
+    PromptConfig(
+        name="C2_not_bud",
+        prompt="a single yellow cowpea flower with open petals, not a bud",
+        description="C2 + single negation clause (not a bud)",
+    ),
+    PromptConfig(
+        name="C2_not_calyx",
+        prompt="a single yellow cowpea flower with open petals, not the green calyx",
+        description="C2 + single negation clause (not the green calyx)",
+    ),
+    PromptConfig(
+        name="C2_not_leaf",
+        prompt="a single yellow cowpea flower with open petals, not a leaf",
+        description="C2 + single negation clause (not a leaf)",
+    ),
+    PromptConfig(
+        name="C2_not_bud_calyx",
+        prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx",
+        description="C2 + two negation clauses (not a bud, not the green calyx)",
+    ),
+    # Strategic experiments: SAM3 size variants (negation-free optimization)
+    # Note: C2_tiny is tested for both models (YOLO World and SAM3)
+    PromptConfig(
+        name="C_color_taxonomy_anatomy_tiny",
+        prompt="a tiny yellow cowpea flower with open petals",
+        description="C_color_taxonomy_anatomy + tiny (SAM3 optimization)",
     ),
 ]
 
 
-# Absorber configurations (from Experiment 10)
+# Absorber configurations (Phase 2: Absorber architecture tests)
 ABSORBER_CONFIGS = [
     PromptConfig(
         name="H3b",
@@ -161,6 +265,145 @@ ABSORBER_CONFIGS = [
             "a stem",
         ],
         target_indices=[0],
+    ),
+    PromptConfig(
+        name="H3c",
+        prompt="a single yellow cowpea flower with open petals",
+        description="Bud + calyx + leaf absorbers",
+        absorber_classes=[
+            "a single yellow cowpea flower with open petals",
+            "a cowpea flower bud",
+            "a green calyx",
+            "a leaf",
+        ],
+        target_indices=[0],
+    ),
+    PromptConfig(
+        name="H5",
+        prompt="a single yellow cowpea flower with open petals",
+        description="All absorbers (bud, calyx, leaf, stem, soil)",
+        absorber_classes=[
+            "a single yellow cowpea flower with open petals",
+            "a cowpea flower bud",
+            "a green calyx",
+            "a leaf",
+            "a stem",
+            "soil",
+        ],
+        target_indices=[0],
+    ),
+    # Strategic experiments: Absorber optimization with simpler base prompts
+    PromptConfig(
+        name="H3b_simple",
+        prompt="a yellow cowpea flower",
+        description="H3b absorbers with simpler base (no grammar, no anatomy)",
+        absorber_classes=[
+            "a yellow cowpea flower",
+            "a cowpea flower bud",
+            "a green calyx",
+        ],
+        target_indices=[0],
+    ),
+    PromptConfig(
+        name="H3b_no_anatomy",
+        prompt="a single yellow cowpea flower",
+        description="H3b absorbers without anatomy component",
+        absorber_classes=[
+            "a single yellow cowpea flower",
+            "a cowpea flower bud",
+            "a green calyx",
+        ],
+        target_indices=[0],
+    ),
+    PromptConfig(
+        name="H3b_no_grammar",
+        prompt="a yellow cowpea flower with open petals",
+        description="H3b absorbers without grammar component",
+        absorber_classes=[
+            "a yellow cowpea flower with open petals",
+            "a cowpea flower bud",
+            "a green calyx",
+        ],
+        target_indices=[0],
+    ),
+]
+
+# Multi-class test configurations (Phase 2: Multi-class assembly tests)
+# Note: These use absorber_classes format but evaluate all non-background classes
+# For now, we'll handle multi-class separately in the runner script
+# TODO: Add proper multi-class support to Evaluator
+MULTICLASS_CONFIGS = [
+    PromptConfig(
+        name="multiclass_single",
+        prompt="a single yellow cowpea flower with open petals",
+        description="Single-class baseline",
+    ),
+    PromptConfig(
+        name="multiclass_flower_bud",
+        prompt="a single yellow cowpea flower with open petals",
+        description="Two-class: Flower + Bud",
+        absorber_classes=[
+            "a single yellow cowpea flower with open petals",
+            "a cowpea flower bud",
+        ],
+        target_indices=None,  # Keep all non-background classes
+    ),
+    PromptConfig(
+        name="multiclass_yellow_white",
+        prompt="a yellow cowpea flower",
+        description="Two-class: Yellow + White",
+        absorber_classes=[
+            "a yellow cowpea flower",
+            "a white cowpea flower",
+        ],
+        target_indices=None,  # Keep all non-background classes
+    ),
+    PromptConfig(
+        name="multiclass_flower_bud_calyx",
+        prompt="a single yellow cowpea flower with open petals",
+        description="Three-class: Flower + Bud + Calyx",
+        absorber_classes=[
+            "a single yellow cowpea flower with open petals",
+            "a cowpea flower bud",
+            "a green calyx",
+        ],
+        target_indices=None,  # Keep all non-background classes
+    ),
+]
+
+# Phase 3: Confidence threshold analysis configs (top 3 by mAP@0.5 from Phase 2)
+PHASE3_CONFIGS = [
+    # YOLO World top 3
+    PromptConfig(
+        name="C2_not_bud_calyx",
+        prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx",
+        description="YOLO World #1: Partial negation (bud+calyx) - mAP@0.5: 0.4123",
+    ),
+    PromptConfig(
+        name="C1",
+        prompt="a single yellow cowpea flower with open petals, not a bud, not the green calyx, not a leaf",
+        description="YOLO World #2: Full negation - mAP@0.5: 0.3830",
+    ),
+    PromptConfig(
+        name="C2_not_calyx",
+        prompt="a single yellow cowpea flower with open petals, not the green calyx",
+        description="YOLO World #3: Single negation (calyx) - mAP@0.5: 0.3807",
+    ),
+    # SAM3 top 3
+    PromptConfig(
+        name="C2_not_bud",
+        prompt="a single yellow cowpea flower with open petals, not a bud",
+        description="SAM3 #1: Single negation (bud) - mAP@0.5: 0.5407",
+    ),
+    PromptConfig(
+        name="C_color_taxonomy_anatomy_tiny",
+        prompt="a tiny yellow cowpea flower with open petals",
+        description="SAM3 #2: Size variant - mAP@0.5: 0.5364",
+    ),
+    PromptConfig(
+        name="C2",
+        prompt="a single yellow cowpea flower with open petals",
+        description="SAM3 #3: Four-component baseline - mAP@0.5: 0.4925",
     ),
 ]
 

@@ -16,7 +16,8 @@ from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from agvfm.visualization import (
+# Import from local module (experiment-specific visualization code)
+from phase1_factor_analysis import (
     plot_factor_comparison,
     plot_factor_contributions,
     plot_all_metrics_factor_contributions,

@@ -1,0 +1,85 @@
+================================================================================
+PHASE 5 SEMANTIC FILTERING - FULL DATASET RESULTS SUMMARY
+================================================================================
+
+Date: 2026-02-20
+Dataset: 158 test images
+Total Candidates: 3,005 (YOLO World, conf_floor=0.01)
+
+================================================================================
+DETECTION METRICS (IoU=0.5)
+================================================================================
+
+Method          F1      Precision  Recall    TP     FP     FN
+------------------------------------------------------------------------
+Fixed p=0.1     0.333   0.255      0.477     474    1,383  519
+BH-FDR q=0.5    0.283   0.204      0.459     456    1,776  537
+BH-FDR q=0.3    0.280   0.215      0.401     398    1,454  595
+Top-5           0.232   0.262      0.208     207    582    786
+
+================================================================================
+RETENTION STATISTICS
+================================================================================
+
+Method          Total Kept  Retention  Avg/Image  Empty %
+------------------------------------------------------------------------
+BH-FDR q=0.5    2,232       74.3%     14.13      10.8%
+Fixed p=0.1     1,857       61.8%     11.75      8.9%
+BH-FDR q=0.3    1,852       61.6%     11.72      ~10%
+Top-5           789         26.3%     4.99       0.0%
+
+================================================================================
+KEY FINDINGS
+================================================================================
+
+1. Fixed p=0.1 is the BEST overall method:
+   - Highest F1 (0.333) and Recall (0.477)
+   - Good balance of precision and recall
+   - Lowest empty image rate (8.9%)
+
+2. BH-FDR q=0.5 provides high recall with more candidates:
+   - Highest retention rate (74.3%)
+   - Good recall (0.459) but more false positives
+
+3. Top-5 is too restrictive:
+   - Highest precision (0.262) but lowest recall (0.208)
+   - Misses 79% of true flowers
+   - Not recommended
+
+4. Comparison to baseline (before filtering):
+   - Precision: 0.172 → 0.204 (+18.6%)
+   - F1: 0.259 → 0.283 (+9.3%)
+   - Recall: 0.521 → 0.459 (-11.9%)
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+PRIMARY: Use Fixed p=0.1 for best overall performance
+
+ALTERNATIVE: Use BH-FDR q=0.5 if maximum recall is critical
+
+NOT RECOMMENDED: Top-5 (too restrictive)
+
+================================================================================
+FILES GENERATED
+================================================================================
+
+Plots:
+- plots/yolo_world_method_comparison.png (comparison across all methods)
+- plots/yolo_world_candidates_vs_kept.png
+- plots/yolo_world_margin_distributions.png
+- plots/yolo_world_pvalue_distributions.png
+- plots/yolo_world_summary_statistics.png
+- plots/yolo_world_metrics_before_after.png
+
+Results:
+- results/semantic_filtering_results_q0.3_full.json
+- results/semantic_filtering_results_q0.5_full.json
+- results/semantic_filtering_results_p0.1_full.json
+- results/semantic_filtering_results_top5_full.json
+
+Documentation:
+- FULL_DATASET_ANALYSIS.md (detailed analysis)
+- P_VALUE_CALCULATION.md (p-value explanation)
+- BH_FDR_EXPLANATION.md (BH-FDR explanation)

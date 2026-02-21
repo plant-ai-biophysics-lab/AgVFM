@@ -135,8 +135,11 @@ class YOLOWorldModel(BaseModel):
         Returns:
             Tuple of (boxes, confidences) for target classes only
         """
-        # Set classes
-        self.set_classes(class_names)
+        # Reinitialize model when changing classes to avoid device errors
+        # Calling set_classes repeatedly on the same model instance causes device mismatches
+        if self._class_names != class_names:
+            self.model = YOLOWorld(str(self.weights_path))
+            self.set_classes(class_names)
 
         # Run inference
         # Use imgsz=1280 and iou=0.3 to match previous experiments

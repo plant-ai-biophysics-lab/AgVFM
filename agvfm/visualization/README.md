@@ -1,47 +1,17 @@
 # Visualization Module
 
-Reusable visualization utilities for experiment results analysis.
+General-purpose visualization utilities for experiment results analysis.
 
 ## Overview
 
-The `agvfm.visualization` module provides plotting functions for:
-- Factor analysis results (Phase 1)
-- Precision-Recall curves (Phase 2)
-- Confidence threshold sweeps (Phase 3)
+The `agvfm.visualization` module provides **general-purpose** plotting functions that can be reused across different experiments:
+- Precision-Recall curves
+- Confidence threshold sweeps
 - Counting metrics comparison
 
+**Note:** Experiment-specific visualization code (like Phase 1 factor analysis plots or Phase 2 combination plots) lives in `experiments/scripts/visualization/` alongside the experiment scripts. This keeps the `agvfm` library general-purpose and reusable.
+
 ## Usage
-
-### Factor Analysis Visualizations
-
-```python
-from agvfm.visualization import plot_factor_contributions, plot_factor_comparison
-import json
-
-# Load results
-with open('results/phase1_factor_analysis/yolo_world_factor_analysis.json') as f:
-    yolo_results = json.load(f)
-
-# Plot single model factor contributions
-plot_factor_contributions(
-    yolo_results,
-    metric="map",  # or "f1", "precision", "recall"
-    iou_threshold=0.5,
-    save_path="plots/yolo_factor_contributions.png"
-)
-
-# Compare two models side-by-side
-with open('results/phase1_factor_analysis/sam3_factor_analysis.json') as f:
-    sam3_results = json.load(f)
-
-plot_factor_comparison(
-    yolo_results,
-    sam3_results,
-    metric="map",
-    iou_threshold=0.5,
-    save_path="plots/factor_comparison.png"
-)
-```
 
 ### Precision-Recall Curves
 
@@ -91,19 +61,19 @@ plot_counting_metrics(
 )
 ```
 
-## Quick Script
+## Experiment-Specific Visualizations
 
-Use the provided script to generate all Phase 1 visualizations:
+For experiment-specific visualizations (Phase 1 factor analysis, Phase 2 combinations), use the scripts in `experiments/scripts/visualization/`:
 
 ```bash
-python notebooks/scripts/visualize_phase1_results.py
+# Phase 1 visualizations
+python experiments/scripts/visualization/visualize_phase1_results.py
+
+# Phase 2 visualizations
+python experiments/scripts/visualization/visualize_phase2_results.py
 ```
 
-This will:
-- Load YOLO World and SAM3 results
-- Generate factor contribution plots for each model
-- Generate side-by-side comparison plots
-- Save all plots to `notebooks/results/phase1_factor_analysis/plots/`
+These scripts use experiment-specific plotting modules located in the same directory.
 
 ## Design Principles
 
@@ -111,3 +81,4 @@ This will:
 - **Configurable:** Customizable metrics, thresholds, labels, save paths
 - **Publication-ready:** High DPI (300), proper styling, tight layout
 - **Modular:** Each plot type in separate function, easy to extend
+- **Separation of concerns:** General-purpose code in `agvfm/`, experiment-specific code in `experiments/`

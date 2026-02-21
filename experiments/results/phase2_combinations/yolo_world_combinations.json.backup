@@ -1,0 +1,20 @@
+{
+  "results": {
+    "C3": {
+      "prompt": "a cowpea flower",
+      "model": "YOLO World",
+      "absorber_classes": null,
+      "target_indices": null,
+      "conf_threshold": 0.1,
+      "n_images": 158,
+      "total_predictions": 810,
+      "total_ground_truth": 993,
+      "metrics_by_iou": {
+        "iou_0.3": {
+          "precision": 0.454320987654321,
+          "recall": 0.37059415911379656,
+          "map": 0.2334637598844977,
+          "f1": 0.4082085413200222,
+          "total_tp": 368,
+          "total_fp": 442,
+          "total_fn": 
