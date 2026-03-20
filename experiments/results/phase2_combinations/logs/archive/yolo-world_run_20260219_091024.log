@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/data2/jmearles/AgVFM2/experiments/scripts/experiments/phase2/run_combinations.py", line 33, in <module>
-    from agvfm.data import get_full_test_paths
-  File "/data2/jmearles/AgVFM2/agvfm/data/__init__.py", line 3, in <module>
-    from agvfm.data.labels import get_image_paths, load_ground_truth, parse_yolo_label
-  File "/data2/jmearles/AgVFM2/agvfm/data/labels.py", line 6, in <module>
-    import numpy as np
-ModuleNotFoundError: No module named 'numpy'
