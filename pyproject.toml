@@ -33,11 +33,7 @@ dependencies = [
     "transformers>=4.44.0",
     "matplotlib>=3.5.0",
     "seaborn>=0.11.0",
-    "torchmetrics",
     "pycocotools",
-    "clip",
-    "nltk",
-    "agml"
 ]
 
 [project.optional-dependencies]
@@ -46,10 +42,6 @@ dev = [
     "black>=22.0.0",
     "ruff>=0.1.0",
 ]
-
-[project.urls]
-Homepage = "https://github.com/yourusername/agvfm"
-Repository = "https://github.com/yourusername/agvfm"
 
 [tool.setuptools.packages.find]
 where = ["."]
