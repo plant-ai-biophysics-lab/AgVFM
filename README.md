@@ -10,6 +10,33 @@ Primary entry points:
 - `experiments/scripts/experiments/load_and_run.py` for end-to-end batch runs.
 - `notebooks/run_pipeline.ipynb` for interactive run/inspect/visualize workflow.
 
+## Example data
+
+The pipeline is developed and validated on cowpea flower detection, using both real field imagery and synthetic renders as complementary evaluation sets.
+
+| Real field image | Synthetic render |
+|:---:|:---:|
+| ![Real cowpea field image showing small yellow and white flowers among dense green foliage](figures/real.jpg) | ![Synthetic render of cowpea plant with more prominent white and yellow flowers](figures/synthetic.jpg) |
+
+Synthetic images provide dense, cleanly annotated training signal; real images test zero-shot transfer under natural variation in lighting and occlusion.
+
+## Results
+
+### Per-axis factor analysis (Phase 1)
+
+The spider grid below shows mAP@0.5 for each prompt axis value across all models. Each subplot corresponds to one axis (Taxonomy, Color, Size, Phenology, Negation, Anatomy, Grammar, Emoji); the dashed circle marks the baseline value for that axis.
+
+![Spider grid of per-axis mAP responses across models for cowpea flower detection](figures/spider.png)
+
+### Prompt optimization on real images (YOLO World)
+
+The figure below shows YOLO World detections on the median-performing real image — baseline prompt (left) vs. the best prompt found by Phase 1 + 2 optimization on the synthetic set (right).
+
+![Side-by-side YOLO World detections: baseline prompt left, optimized prompt right. Green boxes are ground truth bounding boxes; red boxes are model predictions.](figures/median-yolo.png)
+
+- **Baseline** — prompt: `"a flower"`
+- **Optimized** — prompt: `"a single yellow bean flower with open petals, not a bud, not the green calyx, not a leaf"`
+
 ## Install
 
 From the repo root:
