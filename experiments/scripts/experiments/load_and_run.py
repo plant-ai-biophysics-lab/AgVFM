@@ -1226,6 +1226,40 @@ def _resolve_model_keys(args: argparse.Namespace) -> List[str]:
 
 
 # ---------------------------------------------------------------------------
+# OpenAI-compatible LLM axis generation (agvfm.llm.client.LLMClient)
+# ---------------------------------------------------------------------------
+
+def _query_openai_llm_for_axes(
+    crop: str,
+    classes: List[str],
+    llm_url: str,
+    llm_model: str,
+) -> List[FactorAxis]:
+    """Generate axes via agvfm.llm.client.LLMClient (OpenAI-compatible API).
+
+    Returns FactorAxis objects in the same format as _query_llm_for_axes so
+    both functions are interchangeable in main().  The taxonomy axis is fixed
+    to the first class name (or crop if no classes given).
+    """
+    from agvfm.llm.client import LLMClient
+
+    taxonomy = classes[0] if classes else crop
+    print(f"\n🤖 Querying OpenAI-compatible LLM ({llm_model} @ {llm_url}) for '{taxonomy}' ...")
+    llm = LLMClient(base_url=llm_url, model=llm_model)
+    axis_values = llm.generate_axis_values(crop=crop, taxonomy=taxonomy)
+
+    axes: List[FactorAxis] = [
+        FactorAxis(name="taxonomy", values=[taxonomy], baseline=taxonomy),
+    ]
+    for axis_name, values in axis_values.items():
+        baseline = "" if "" in values else (values[0] if values else "")
+        axes.append(FactorAxis(name=axis_name, values=values, baseline=baseline))
+
+    print(f"✅ Generated {len(axes)} axes for '{crop}'")
+    return axes
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -1287,6 +1321,21 @@ def parse_args() -> argparse.Namespace:
                        "Also compute mAP@0.5:0.95 (COCO-style) for every prompt. "
                        "Optional and disabled by default. "
                        "Primary prompt ranking/reporting still uses 101-point AP at IoU=0.5."
+                   ))
+
+    # OpenAI-compatible LLM (agvfm.llm.client.LLMClient); alternative to Qwen HF
+    p.add_argument("--llm-url", default=None, metavar="URL",
+                   help=(
+                       "Base URL of an OpenAI-compatible LLM server (vLLM/Ollama). "
+                       "When set together with --llm-model, uses agvfm.llm.client.LLMClient "
+                       "instead of the Qwen HF pipeline for axis generation."
+                   ))
+    p.add_argument("--llm-model", default=None, metavar="NAME",
+                   help="Model name understood by the OpenAI-compatible LLM server.")
+    p.add_argument("--classes", nargs="+", default=None, metavar="CLASS",
+                   help=(
+                       "Detection class names for axis generation with --llm-url. "
+                       "If omitted the crop name is used as the sole class."
                    ))
 
     return p.parse_args()
@@ -1396,9 +1445,15 @@ def main() -> None:
         axes = _load_axes(axes_file)
         print(f"   Loaded {len(axes)} axes")
     elif crop:
-        # A crop name was given (ph1 or ph2) — translate axes via LLM
-        llm_device = args.llm_device or args.device
-        axes = _query_llm_for_axes(crop, _DEFAULT_FACTOR_AXES, llm_device=llm_device)
+        # A crop name was given — translate axes via LLM.
+        # Prefer the OpenAI-compatible LLMClient when --llm-url is supplied;
+        # otherwise fall back to the local Qwen HF pipeline.
+        if getattr(args, "llm_url", None) and getattr(args, "llm_model", None):
+            classes = getattr(args, "classes", None) or [crop]
+            axes = _query_openai_llm_for_axes(crop, classes, args.llm_url, args.llm_model)
+        else:
+            llm_device = args.llm_device or args.device
+            axes = _query_llm_for_axes(crop, _DEFAULT_FACTOR_AXES, llm_device=llm_device)
         _save_axes(axes, axes_file)
     else:
         # --run-ph1 and/or --run-ph2 used without a CROP: use default axes, no LLM needed

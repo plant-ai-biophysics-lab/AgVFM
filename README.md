@@ -195,7 +195,16 @@ Notebook visualization exports are saved under:
 
 ## Package layout
 
-- `agvfm/`: core package (data, config, models, experiments, evaluation, visualization, utils).
-- `experiments/scripts/experiments/`: experiment runners (including `load_and_run.py`).
-- `experiments/scripts/visualization/`: plotting utilities used by notebook workflows.
+- `agvfm/`: core package.
+  - `models/`: YOLOWorldModel, GroundingDINOModel, OWLv2Model, SAM3Model.
+  - `experiments/`: `Evaluator` (full mAP), `run_factor_analysis`.
+  - `config/experiments.py`: `FACTOR_AXES`, prompt builders, `FactorAxis`.
+  - `llm/`: `LLMClient` (OpenAI-compatible axis generation), `VLMClient` (meta-prompt suggestions).
+  - `optimizer/`: `AgVFMAdapter` + `VFMBase` bridge, `PromptAxes`, PEZ gradient optimizer (**experimental**), meta-prompt optimizer (**experimental**).
+  - `data/`: `agml_loader.py` (AgML streaming — no full download required), `disk_loader.py` (YOLO on-disk datasets).
+- `experiments/scripts/experiments/`: experiment runners.
+  - `load_and_run.py` — Phase 1 + 2 OFAT / combinatorial search (primary entry point).
+  - `grad_run.py` — PEZ gradient prompt optimization (**experimental**).
+  - `meta_run.py` — LLM-iterative meta-prompt optimization (**experimental**).
 - `notebooks/`: interactive analysis and reporting notebooks.
+- `figures/`: result visualizations referenced in this README.
