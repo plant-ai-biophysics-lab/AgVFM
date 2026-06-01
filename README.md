@@ -1,6 +1,8 @@
 # AgVFM
 
-AgVFM is an agronomic open-vocabulary / open-set detection experimentation pipeline centered on two stages:
+**Goal**: Optimize zero-shot capabilities of vision foundation models for application to agricultural tasks. This repository contains the code related to our submission to CVPR V4A 2026, [Does Your VFM Speak Plant? The Botanical Grammar of Vision Foundation Models for Object Detection](https://arxiv.org/abs/2604.09920), and continues to be developed to compare prompting strategies and transfer of prompts across crops, with a future interest in generalizing to other CV tasks. 
+
+AgVFM, as implemented in [Does Your VFM Speak Plant? The Botanical Grammar of Vision Foundation Models for Object Detection](https://arxiv.org/abs/2604.09920), is an agronomic open-vocabulary / open-set detection experimentation pipeline centered on two stages:
 
 - **Phase 1 (OFAT factor analysis):** isolate and score prompt factors (taxonomy, color, size, phenology, negation, anatomy, grammar, emoji).
 - **Phase 2 (combinatorial search):** build and evaluate prompt combinations using the strongest Phase 1 signals, then expand with negation and emoji variants.
