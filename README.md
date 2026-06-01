@@ -28,9 +28,9 @@ The spider grid below shows mAP@0.5 for each prompt axis value across all models
 
 ![Spider grid of per-axis mAP responses across models for cowpea flower detection](figures/spider.png)
 
-### Prompt optimization on real images (YOLO World)
+### Syn-to-real prompt optimization on real images (YOLO World)
 
-The figure below shows YOLO World detections on the median-performing real image — baseline prompt (left) vs. the best prompt found by Phase 1 + 2 optimization on the synthetic set (right).
+The figure below shows YOLO World detections on the median-performing real image — baseline prompt (left) vs. the best prompt found by Phase 1 + 2 optimization on the synthetic set (right). The confidence threshold for both cases is selected from the optimal found on the synthetic dataset.
 
 ![Side-by-side YOLO World detections: baseline prompt left, optimized prompt right. Green boxes are ground truth bounding boxes; red boxes are model predictions.](figures/median-yolo.png)
 
