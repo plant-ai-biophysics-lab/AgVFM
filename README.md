@@ -1,4 +1,4 @@
-# AgVFM
+# AgVFM: Optimizing Vision Foundation Models for Agricultural Computer Vision Tasks
 
 **Goal**: Optimize zero-shot capabilities of vision foundation models for application to agricultural tasks. This repository contains the code related to our submission to CVPR V4A 2026, [Does Your VFM Speak Plant? The Botanical Grammar of Vision Foundation Models for Object Detection](https://arxiv.org/abs/2604.09920), and continues to be developed to compare prompting strategies and transfer of prompts across crops, with a future interest in generalizing to other CV tasks. 
 
@@ -7,6 +7,8 @@ AgVFM, as implemented in [Does Your VFM Speak Plant? The Botanical Grammar of Vi
 - **Phase 1 (OFAT factor analysis):** isolate and score prompt factors (taxonomy, color, size, phenology, negation, anatomy, grammar, emoji).
 - **Phase 2 (combinatorial search):** build and evaluate prompt combinations using the strongest Phase 1 signals, then expand with negation and emoji variants.
 
+This pipeline, when applied to auto-labeled synthetic data from [Helios](https://github.com/PlantSimulationLab/Helios/) showed the potential to discover effective prompts for zero-shot object detection on real data.
+
 Primary entry points:
 
 - `experiments/scripts/experiments/load_and_run.py` for end-to-end batch runs.
@@ -14,7 +16,7 @@ Primary entry points:
 
 ## Example data
 
-The pipeline is developed and validated on cowpea flower detection, using both real field imagery and synthetic renders as complementary evaluation sets.
+The pipeline is developed and validated on cowpea flower and pod detection, using both real field imagery and synthetic renders as complementary evaluation sets.
 
 | Real field image | Synthetic render |
 |:---:|:---:|
