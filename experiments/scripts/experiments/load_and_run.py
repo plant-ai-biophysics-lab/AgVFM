@@ -74,8 +74,8 @@ from typing import Dict, List, Optional
 # ---------------------------------------------------------------------------
 # Force unbuffered output for cluster logging
 # ---------------------------------------------------------------------------
-sys.stdout.reconfigure(line_buffering=True) if hasattr(sys.stdout, "reconfigure") else None
-sys.stderr.reconfigure(line_buffering=True) if hasattr(sys.stderr, "reconfigure") else None
+sys.stdout.reconfigure(line_buffering=True, encoding="utf-8", errors="replace") if hasattr(sys.stdout, "reconfigure") else None
+sys.stderr.reconfigure(line_buffering=True, encoding="utf-8", errors="replace") if hasattr(sys.stderr, "reconfigure") else None
 
 # ---------------------------------------------------------------------------
 # Path setup — __file__ is

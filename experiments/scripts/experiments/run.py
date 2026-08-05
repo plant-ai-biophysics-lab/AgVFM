@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
-"""Meta-prompt optimisation entry point.
+"""Axis-based OFAT + combinatorial prompt optimisation entry point (single dataset).
 
-⚠️  Under development — LLM-guided iterative prompt search is experimental.
-
-Uses an OpenAI-compatible LLM server to iteratively propose and evaluate
-detection prompts, keeping the best across iterations (patience-based stopping).
-
-Supports two data sources:
+Runs :func:`agvfm.optimizer.loop.run_optimization` — the same OFAT (Phase 1)
++ combinatorial-sweep + negation + emoji (Phase 2) algorithm as
+``load_and_run.py``, generalised beyond the hardcoded cowpea-flower
+``FACTOR_AXES`` via :class:`~agvfm.optimizer.axes.PromptAxes` so it can run
+against any AgML or on-disk dataset. Supports two data sources:
 
   • YOLO disk data  (--img-dir / --lbl-dir / --classes)
   • AgML datasets   (--agml-dataset / --agml-classes)
 
+For pooling this same search across *many* training datasets at once and
+transferring the result zero-shot to held-out crops, see ``run_template.py``
+(PAPER.md's shift from dataset-by-dataset comparison to cross-dataset
+template discovery + transfer).
+
 Usage
 -----
     # YOLO disk data
-    python meta_run.py \\
+    python run.py \\
         --img-dir /data/cowpea/images \\
         --lbl-dir /data/cowpea/labels \\
         --classes flower \\
@@ -23,15 +27,23 @@ Usage
         --llm-url http://localhost:8000/v1 \\
         --llm-model meta-llama/Llama-3.2-1B-Instruct
 
-    # AgML dataset, stricter patience
-    python meta_run.py \\
+    # AgML dataset
+    python run.py \\
         --agml-dataset grape_detection_californiaday \\
         --agml-classes grape \\
         --crop grape \\
         --model owlv2 \\
         --llm-url http://localhost:8000/v1 \\
-        --llm-model meta-llama/Llama-3.2-1B-Instruct \\
-        --patience 5 --candidates 3
+        --llm-model meta-llama/Llama-3.2-1B-Instruct
+
+    # No LLM server: pull a model from HuggingFace and run it locally instead
+    # (omit --llm-url)
+    python run.py \\
+        --agml-dataset grape_detection_californiaday \\
+        --agml-classes grape \\
+        --crop grape \\
+        --model owlv2 \\
+        --llm-model Qwen/Qwen3-4B
 """
 
 from __future__ import annotations
@@ -47,8 +59,8 @@ sys.stderr.reconfigure(line_buffering=True, encoding="utf-8", errors="replace") 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from agvfm.llm.meta_client import VLMClient
-from agvfm.optimizer.meta_prompt import MetaPromptConfig, run_meta_prompt_optimization
+from agvfm.llm.client import LLMClient
+from agvfm.optimizer.loop import OptimizationConfig, run_optimization
 from agvfm.optimizer.types import AgVFMAdapter
 
 logging.basicConfig(
@@ -67,7 +79,7 @@ _ALL_MODELS = ["yolo_world", "grounding_dino", "owlv2"]
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
-        description="Meta-prompt optimisation (experimental)",
+        description="Axis-based OFAT + combinatorial prompt optimisation (single dataset)",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -92,7 +104,7 @@ def parse_args() -> argparse.Namespace:
     # ── Crop ─────────────────────────────────────────────────────────────
     p.add_argument("--crop", required=True, metavar="NAME")
 
-    # ── LLM ──────────────────────────────────────────────────────────────
+    # ── LLM (axis value generation) ─────────────────────────────────────
     p.add_argument("--llm-url", default=None, metavar="URL",
                    help="Base URL of an OpenAI-compatible LLM server. Omit to pull "
                         "--llm-model from HuggingFace and run it locally instead.")
@@ -101,21 +113,19 @@ def parse_args() -> argparse.Namespace:
                         "a HuggingFace Hub model id to load locally (local backend).")
     p.add_argument("--llm-device", default="cuda",
                    help="Device for the local HF LLM backend (ignored when --llm-url is set)")
-    p.add_argument("--llm-temperature", type=float, default=0.8)
+    p.add_argument("--llm-temperature", type=float, default=0.7)
     p.add_argument("--llm-max-tokens", type=int, default=512)
 
-    # ── Meta-prompt hyperparameters ──────────────────────────────────────
-    p.add_argument("--proxy-images", type=int, default=30)
-    p.add_argument("--patience", type=int, default=10,
-                   help="Iterations without improvement before stopping")
-    p.add_argument("--candidates", type=int, default=5,
-                   help="New prompt candidates requested from LLM per iteration")
-    p.add_argument("--max-iterations", type=int, default=100)
+    # ── Optimisation hyperparameters ─────────────────────────────────────
+    p.add_argument("--proxy-images", type=int, nargs="+", default=[30],
+                   help="Proxy images per evaluation; pass multiple values to sweep e.g. 1 5 10 30")
+    p.add_argument("--top-n-negation", type=int, default=5,
+                   help="Top base prompts to append negation variants to")
     p.add_argument("--train-split", type=float, default=0.8)
     p.add_argument("--seed", type=int, default=42)
 
     # ── Output ───────────────────────────────────────────────────────────
-    p.add_argument("--output-dir", default="experiments/results/meta", metavar="PATH")
+    p.add_argument("--output-dir", default="experiments/results/axis", metavar="PATH")
 
     return p.parse_args()
 
@@ -167,9 +177,9 @@ def _build_model(model_key: str, args: argparse.Namespace) -> AgVFMAdapter:
                 project_root / "model_weights" / "yolov8x-worldv2.pt",
                 Path("/group/jmearlesgrp/GEMINI/lars/grounding/model_weights/yolov8x-worldv2.pt"),
             ]
-            for p in candidates:
-                if p.exists():
-                    weights = str(p)
+            for cand in candidates:
+                if cand.exists():
+                    weights = str(cand)
                     break
             if weights is None:
                 raise FileNotFoundError("YOLO World weights not found. Pass --yolo-weights PATH.")
@@ -204,7 +214,7 @@ def main() -> None:
         f"Dataset '{dataset.name}': {len(dataset.train)} train, {len(dataset.test)} test images"
     )
 
-    vlm = VLMClient(
+    llm = LLMClient(
         base_url=args.llm_url,
         model=args.llm_model,
         temperature=args.llm_temperature,
@@ -212,15 +222,22 @@ def main() -> None:
         device=args.llm_device,
     )
 
-    meta_config = MetaPromptConfig(
-        proxy_images=args.proxy_images,
-        patience=args.patience,
-        candidates_per_iter=args.candidates,
-        max_iterations=args.max_iterations,
+    logger.info("Generating axis values...")
+    axis_values_per_class = {
+        class_name: llm.generate_axis_values(crop=args.crop, taxonomy=class_name)
+        for class_name in dataset.classes
+    }
+    for class_name, av in axis_values_per_class.items():
+        logger.info(f"  [{class_name}] axis_values: {av}")
+
+    opt_config = OptimizationConfig(
+        proxy_images=args.proxy_images if len(args.proxy_images) > 1 else args.proxy_images[0],
+        top_n_negation=args.top_n_negation,
         seed=args.seed,
     )
 
     model_keys = _ALL_MODELS if args.model == "all" else [args.model]
+    all_dataset_results: dict[str, list] = {}
 
     for model_key in model_keys:
         logger.info(f"\n{'='*60}\nModel: {model_key}\n{'='*60}")
@@ -230,26 +247,25 @@ def main() -> None:
             logger.error(f"Failed to load {model_key}: {exc}", exc_info=True)
             continue
 
-        model_output_dir = output_dir / model_key
         try:
-            results = run_meta_prompt_optimization(
+            results = run_optimization(
                 dataset=dataset,
                 model=model,
-                vlm=vlm,
+                axis_values_per_class=axis_values_per_class,
                 crop=args.crop,
-                config=meta_config,
-                output_dir=model_output_dir,
+                config=opt_config,
+                output_dir=output_dir / dataset.name / model_key,
             )
         except Exception as exc:
-            logger.error(f"Meta-prompt optimization failed for {model_key}: {exc}", exc_info=True)
+            logger.error(f"Axis-based optimization failed for {model_key}: {exc}", exc_info=True)
         else:
+            all_dataset_results[model_key] = results
             logger.info(f"\n{'─'*60}\nSummary — {model_key}")
             for r in results:
                 gain = r.best_map - r.baseline_map
                 logger.info(
                     f"  [{r.class_name}]  baseline={r.baseline_map:.4f}  "
-                    f"best={r.best_map:.4f}  gain={gain:+.4f}  "
-                    f"iters={r.total_iterations}  prompt={r.best_prompt!r}"
+                    f"best={r.best_map:.4f}  gain={gain:+.4f}  prompt={r.best_prompt!r}"
                 )
 
         try:
@@ -260,7 +276,82 @@ def main() -> None:
         except Exception:
             pass
 
+    _save_dataset_summary(dataset.name, all_dataset_results, output_dir / dataset.name)
     logger.info(f"\nDone. Results written to {output_dir}/")
+
+
+def _save_dataset_summary(dataset_name: str, all_results: dict[str, list], output_dir: Path) -> None:
+    if not all_results:
+        return
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = output_dir / "summary.txt"
+    lines: list[str] = []
+
+    def w(s: str = "") -> None:
+        lines.append(s)
+
+    sep = "=" * 80
+    w(sep)
+    w(f"  DATASET SUMMARY: {dataset_name}")
+    w(sep)
+
+    classes: list[str] = []
+    for results in all_results.values():
+        for r in results:
+            if r.class_name not in classes:
+                classes.append(r.class_name)
+
+    models = list(all_results.keys())
+
+    for class_name in classes:
+        w()
+        w(f"  Class: {class_name!r}")
+        w()
+
+        w(f"  {'Model':<20} {'Baseline':>10} {'Best':>10} {'Gain':>10}  Best Prompt")
+        w(f"  {'-'*20} {'-'*10} {'-'*10} {'-'*10}  {'-'*40}")
+        for model_name in models:
+            r = next((x for x in all_results[model_name] if x.class_name == class_name), None)
+            if r is None:
+                continue
+            gain = r.best_map - r.baseline_map
+            w(f"  {model_name:<20} {r.baseline_map:>10.4f} {r.best_map:>10.4f} {gain:>+10.4f}  {r.best_prompt!r}")
+            axes_str = ", ".join(
+                f"{k}={v!r}" for k, v in r.best_axes.items() if v and k != "taxonomy"
+            )
+            if axes_str:
+                w(f"  {'':<20} {'':<10} {'':<10} {'':<10}  [{axes_str}]")
+
+        for model_name in models:
+            r = next((x for x in all_results[model_name] if x.class_name == class_name), None)
+            if r is None or not r.ofat_summary:
+                continue
+            w()
+            w(f"  OFAT [{model_name}] — axis informativeness (delta vs ofat-baseline):")
+            w(f"  {'Axis':<12} {'Best Value':<24} {'mAP':>8} {'Delta':>8}")
+            w(f"  {'-'*12} {'-'*24} {'-'*8} {'-'*8}")
+            for o in sorted(r.ofat_summary, key=lambda x: x.delta, reverse=True):
+                bar = "█" * max(0, round(o.delta * 100))
+                w(f"  {o.axis:<12} {o.best_value!r:<24} {o.best_map:>8.4f} {o.delta:>+8.4f}  {bar}")
+
+        for model_name in models:
+            r = next((x for x in all_results[model_name] if x.class_name == class_name), None)
+            if r is None:
+                continue
+            w()
+            w(f"  Combinatorial [{model_name}] — best per phase (delta vs baseline):")
+            w(f"  {'Phase':<12} {'mAP':>8} {'Delta':>8}  Prompt")
+            w(f"  {'-'*12} {'-'*8} {'-'*8}  {'-'*40}")
+            for pb in r.phase_best:
+                marker = " ←" if pb.prompt == r.best_prompt else ""
+                w(f"  {pb.phase:<12} {pb.map_score:>8.4f} {pb.delta:>+8.4f}  {pb.prompt!r}{marker}")
+
+    w()
+    w(sep)
+
+    summary_path.write_text("\n".join(lines))
+    logger.info(f"Summary saved to {summary_path}")
 
 
 if __name__ == "__main__":

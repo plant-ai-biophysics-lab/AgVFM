@@ -33,7 +33,7 @@ from pathlib import Path
 from typing import Optional
 
 from agvfm.optimizer.types import DatasetSplit, Sample, sample_proxy_images
-from AgVFM.agvfm.llm.meta_client import VLMClient
+from agvfm.llm.meta_client import VLMClient
 from agvfm.optimizer.types import VFMBase
 
 logger = logging.getLogger(__name__)
@@ -93,6 +93,45 @@ class MetaPromptResult:
     patience_exhausted: bool      # True if stopped by patience, False if hit max_iter
     total_evaluations: int
     history: list[MetaEvalResult] = field(default_factory=list)
+
+
+@dataclass
+class CrossRunSummary:
+    """Distilled digest of prior meta-template runs, carried forward across models.
+
+    This is the persistence layer behind the "summary-informed zero-shot"
+    metaprompting mode (PAPER.md section 3.3): each subsequent model's template
+    search is seeded with a text summary of what won for previously-run models
+    against the same training pool, without adding a feedback loop against the
+    held-out test datasets themselves. Distinct from ``MetaPromptResult``/
+    ``history``, which record one model's own search — this tracks results
+    *across* models/runs so later runs can be informed by earlier ones.
+    """
+    runs: list[dict] = field(default_factory=list)
+
+    @property
+    def text(self) -> str:
+        if not self.runs:
+            return ""
+        lines = ["Prior cross-run results (other models, same training pool):"]
+        for r in self.runs:
+            lines.append(
+                f"  [{r.get('model', '?')}] best_template={r.get('best_template')!r}  "
+                f"baseline={r.get('baseline_aggregate_map', float('nan')):.4f}  "
+                f"best={r.get('best_aggregate_map', float('nan')):.4f}"
+            )
+        return "\n".join(lines)
+
+    def save(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w") as f:
+            json.dump({"runs": self.runs}, f, indent=2)
+
+    @classmethod
+    def load(cls, path: Path) -> "CrossRunSummary":
+        with open(path) as f:
+            data = json.load(f)
+        return cls(runs=data.get("runs", []))
 
 
 # ---------------------------------------------------------------------------

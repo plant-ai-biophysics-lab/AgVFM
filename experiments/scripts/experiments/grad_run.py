@@ -42,8 +42,8 @@ import logging
 import sys
 from pathlib import Path
 
-sys.stdout.reconfigure(line_buffering=True) if hasattr(sys.stdout, "reconfigure") else None
-sys.stderr.reconfigure(line_buffering=True) if hasattr(sys.stderr, "reconfigure") else None
+sys.stdout.reconfigure(line_buffering=True, encoding="utf-8", errors="replace") if hasattr(sys.stdout, "reconfigure") else None
+sys.stderr.reconfigure(line_buffering=True, encoding="utf-8", errors="replace") if hasattr(sys.stderr, "reconfigure") else None
 
 project_root = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
@@ -85,7 +85,7 @@ def parse_args() -> argparse.Namespace:
     data_grp.add_argument("--agml-classes", nargs="+", default=None, metavar="CLASS",
                           help="Class names for AgML dataset")
     data_grp.add_argument("--agml-data-root", default=None, metavar="PATH",
-                          help="Override AgML download directory")
+                          help="Override HuggingFace dataset cache directory (default: ~/.cache/huggingface/)")
 
     # ── Model ────────────────────────────────────────────────────────────
     p.add_argument("--model", choices=["yolo_world", "grounding_dino", "owlv2", "all"],

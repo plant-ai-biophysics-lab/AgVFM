@@ -43,11 +43,122 @@ The figure below shows YOLO World detections on the median-performing real image
 
 ## Install
 
-From the repo root:
+From the repo root, with `pip`:
 
 ```bash
 pip install -e .
 ```
+
+Or with [`uv`](https://docs.astral.sh/uv/):
+
+```bash
+# Install uv if not already installed
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install project dependencies (reads pyproject.toml)
+uv sync
+
+# Optional: vLLM as a standalone tool, kept separate to avoid dependency
+# conflicts — needed to serve the axis/template-generation LLM locally
+# (see "Serving an LLM/VLM locally" below).
+uv tool install vllm --with ninja --with "bitsandbytes>=0.48.1"
+```
+
+`agml` (for `agvfm/data/agml_loader.py`'s dataset loader, used by `run.py`,
+`run_template.py`, `meta_run_template.py`, `meta_run.py`, and `grad_run.py`)
+is installed automatically as a project dependency. Datasets are loaded from
+the HuggingFace Hub via `agml.data.hf_loader.HuggingFaceDataLoader` (the
+project has moved off the older `agml.data.AgMLDataLoader` streaming API) and
+cache to `~/.cache/huggingface/` by default; pass `--agml-data-root` to
+redirect a single run's cache elsewhere, or set `HF_HOME` for a global
+redirect (see below). Dataset names can be given bare (e.g.
+`grape_detection_californiaday`, resolved under the `Project-AgML` HF org) or
+as a fully-qualified `org/name` HF repo id.
+
+### Redirecting large downloads (datasets, model weights) to another drive
+
+HF datasets, any model pulled through the local-HF-pipeline LLM/VLM backend
+(below), and torch hub downloads can add up to tens of GB fast. To route all
+of it somewhere other than the system drive, set these before installing/
+running (PowerShell, persists across sessions):
+
+```powershell
+[Environment]::SetEnvironmentVariable("HF_HOME", "F:\agvfm-cache\huggingface", "User")
+[Environment]::SetEnvironmentVariable("TORCH_HOME", "F:\agvfm-cache\torch", "User")
+[Environment]::SetEnvironmentVariable("PIP_CACHE_DIR", "F:\agvfm-cache\pip", "User")
+```
+
+(For git-bash sessions, `export` the same three in `~/.bashrc` too — `User`-scope
+Windows env vars only apply to newly spawned processes, not an already-running shell.)
+Open a new terminal after setting these so the variables take effect. If
+migrating an *existing* `~/.cache/huggingface` by hand, use `robocopy /E
+/COPY:DAT` (PowerShell) rather than `mv` — HF's cache uses NTFS
+symlinks/reparse points internally that plain `mv` across drives can mangle.
+
+### LLM/VLM backends: served endpoint vs. local HuggingFace pipeline
+
+`agvfm/llm/client.py` (`LLMClient`), `agvfm/llm/meta_client.py` (`VLMClient`),
+and `agvfm/llm/vlm_insight_client.py` (`VLMInsightClient`) each support two
+interchangeable backends, chosen per instance by whether `base_url` is given:
+
+- **Served** (pass `--llm-url`/`--vlm-insight-url`) — any OpenAI-compatible
+  chat completions endpoint, e.g. a local vLLM server. Lower per-call latency
+  once running, and the only option for a shared/remote inference server.
+- **Local HF pipeline** (omit `--llm-url`/`--vlm-insight-url`) — `--llm-model`
+  / `--vlm-insight-model` is pulled from the HuggingFace Hub and run
+  in-process via `transformers.pipeline` (`text-generation`, or
+  `image-text-to-text` for `VLMInsightClient`). No server to stand up first;
+  this is the same approach `load_and_run.py` uses for its Qwen/Qwen3-4B axis
+  translation. Trades startup/load time and holding the model in memory for
+  one fewer moving part.
+
+Both options are available on every entry point that talks to an LLM/VLM
+(`load_and_run.py`, `run.py`, `run_template.py`, `meta_run.py`,
+`meta_run_template.py`) via the same `--llm-url`/`--llm-model`(/`--llm-device`)
+and, where applicable, `--vlm-insight-url`/`--vlm-insight-model`
+(/`--vlm-insight-device`) flags — omit the `*-url` flag to use the local
+backend, or set it to use a served one.
+
+#### Option A — serve locally with vLLM
+
+```bash
+# Text-only axis/template generation (small model)
+vllm serve meta-llama/Llama-3.2-1B-Instruct \
+    --quantization bitsandbytes \
+    --load-format bitsandbytes \
+    --max-model-len 32768 \
+    --gpu-memory-utilization 0.4 \
+    --port 8000
+
+# Vision-capable, for meta_run_template.py's VLM template search and/or
+# --vlm-insight-* zero-shot template fill (needs a vision-capable model)
+vllm serve meta-llama/Llama-3.2-11B-Vision-Instruct \
+    --quantization bitsandbytes \
+    --load-format bitsandbytes \
+    --max-model-len 32768 \
+    --gpu-memory-utilization 0.7 \
+    --port 8001
+```
+
+Then pass `--llm-url http://localhost:8000/v1 --llm-model meta-llama/Llama-3.2-1B-Instruct`
+(and `--vlm-insight-url http://localhost:8001/v1 --vlm-insight-model ...` where relevant).
+
+#### Option B — pull a model from HuggingFace and run it locally
+
+No server needed — just point `--llm-model` (and/or `--vlm-insight-model`) at
+a HF Hub id and omit the corresponding `*-url` flag:
+
+```bash
+python experiments/scripts/experiments/run.py \
+    --agml-dataset grape_detection_californiaday --agml-classes grape --crop grape \
+    --model owlv2 \
+    --llm-model Qwen/Qwen3-4B --llm-device cuda
+```
+
+Any `transformers`-compatible causal LM works for `--llm-model`
+(`text-generation` pipeline); any `transformers`-compatible VLM works for
+`--vlm-insight-model` (`image-text-to-text` pipeline, e.g.
+`Qwen/Qwen2-VL-7B-Instruct` or `google/gemma-3-4b-it`).
 
 ## Data and model weights
 
@@ -158,6 +269,114 @@ python experiments/scripts/experiments/load_and_run.py \
 	--lbl-dir data/all_flower_test
 ```
 
+## Cross-dataset template workflow (`run.py`, `run_template.py`, `meta_run_template.py`)
+
+Scripts: `experiments/scripts/experiments/{run,run_template,meta_run_template}.py`
+
+`load_and_run.py` above optimizes and reports a prompt per single dataset. These
+three scripts extend the same axis/prompt-optimization machinery across
+*many* datasets at once, in line with the shift described in `PAPER.md`: from
+dataset-by-dataset runs with a final cross-dataset comparison, to discovering
+one prompt (or template) against a pooled training set and transferring it
+zero-shot to crops the search never saw.
+
+- **`run.py`** — the single-dataset axis-based optimizer (OFAT + Table 2
+  combinatorial sweeps + negation + emoji), generalized beyond the
+  cowpea-flower-specific `FACTOR_AXES` via `agvfm.optimizer.axes.PromptAxes`
+  so it runs against any AgML dataset or on-disk directory
+  (`--agml-dataset`/`--agml-classes` or `--img-dir`/`--lbl-dir`/`--classes`).
+  Same algorithm shape as `load_and_run.py`'s Phase 1 + 2; kept as a separate
+  entry point since it targets one dataset per invocation rather than a pool.
+- **`run_template.py`** — pools ~N images per class across every *train*
+  dataset in a `--datasets-file` YAML (see
+  `experiments/scripts/experiments/datasets_pool.example.yaml`), runs the same
+  OFAT sweep against the pooled mix so the winning axis values generalize
+  across crops rather than overfitting one, then evaluates the resulting
+  template **zero-shot** (no further tuning) on every dataset flagged
+  `held_out: true` in that file — filled from bare class/crop metadata and,
+  optionally, from a VLM's visual read of a held-out sample image
+  (`--vlm-insight-url`/`--vlm-insight-model`).
+- **`meta_run_template.py`** — the unconstrained counterpart to
+  `run_template.py`: instead of sweeping axis values, an LLM proposes
+  free-text *templates* (strings containing a literal `"{class}"`
+  placeholder) scored against the same pooled training mix, with a
+  `CrossRunSummary` carried across models so later runs can be informed by
+  what won for earlier ones without touching the held-out data.
+
+Both template scripts require `--llm-url`/`--llm-model` (template/axis-value
+generation) and support the same model/device flags as `run.py`. Only AgML
+datasets are supported for the training pool (pooling many on-disk
+directories at once wasn't a near-term need); see each script's module
+docstring for full usage and the `--datasets-file` schema.
+
+## Full comparison pipeline (`run_full_pipeline.py`)
+
+Script: `experiments/scripts/experiments/run_full_pipeline.py`
+
+This is the paper's central-comparison entry point: for every requested
+model, it runs discovery (`run_template.py`'s job) + constrained transfer +
+metaprompting (summary-informed, zero-shot; `meta_run_template.py`'s job)
+against the *same* pooled training mix and held-out split from one
+`--datasets-file`, logs every condition through
+`agvfm.instrumentation.tracking.RunTracker`, and ends by writing the
+aggregated cost/performance comparison table (`agvfm.reporting.aggregate`) —
+`<output-dir>/comparison_table.csv`, plus a printed summary.
+
+```bash
+python experiments/scripts/experiments/run_full_pipeline.py \
+    --datasets-file experiments/scripts/experiments/datasets_pool.example.yaml \
+    --llm-url http://localhost:8000/v1 --llm-model meta-llama/Llama-3.2-1B-Instruct \
+    --model yolo_world owlv2
+```
+
+Pass `gemma4` in `--model` (see below) to add the VLM-as-unified-pipeline
+condition alongside the open-vocab detectors. Deliberately out of scope for
+this script (see `AGENT.md`): metaprompt cold-start, single-dataset axis
+search (`run.py`), and the PEZ/LoRA gradient baselines — those target one
+dataset at a time rather than the cross-dataset benchmarking this pipeline
+is for.
+
+### Instrumentation and reporting
+
+- `agvfm/instrumentation/tracking.py` — `CallRecord` (the structured per-run
+  schema: dataset/model/method/prompt_space/pipeline_role,
+  wall-clock/tokens/$/GPU-hours/labeled-examples, performance) and
+  `RunTracker`, which appends records to a JSONL log. `agvfm/llm/{client,
+  meta_client,vlm_insight_client}.py` all track cumulative call/token/time
+  usage internally (`.usage_snapshot()`); `agvfm/optimizer/{prompt_template,
+  meta_prompt_template}.py` record per-axis / per-iteration timing and
+  (for the metaprompt search loop) per-iteration token/call cost, not just a
+  final summary.
+- `agvfm/reporting/aggregate.py` — reads a whole results-directory tree of
+  `*.jsonl` logs, groups by (dataset, method, model, prompt_space, rarity),
+  and writes the paper's comparison table. Also usable standalone:
+  `python -m agvfm.reporting.aggregate --logs-dir experiments/results/full_pipeline`.
+
+### Gemma 4 unified pipeline (`agvfm/models/vlm_pipeline.py`)
+
+`Gemma4VLMPipeline` implements PAPER.md section 3.6: one Gemma 4 instance
+performs prompt generation (`"constrained"` — fills a discovered axis
+template itself; `"unconstrained"` — freely proposes a prompt) **and** the
+grounding/detection step, rather than handing a prompt to a separate
+detector. A `"raw"` mode also exists for benchmarking Gemma 4 as a
+detection-only backend against an externally-supplied prompt.
+
+Its grounding output format (a JSON array of `{"box_2d": [...], "label":
+...}` per detection, coordinates normalized to a 1000x1000 space) was
+confirmed against Gemma 4's public launch material before writing this
+module, not assumed — but the exact `box_2d` axis order (`[ymin, xmin, ymax,
+xmax]`, inherited from Gemini's established convention) has **not** been
+verified against a live model call in this environment. Confirm it before
+trusting box coordinates from a real run — see `AGENT.md`. Gemma 4 also
+doesn't natively emit a per-box confidence score; this module asks for one
+via the prompt schema and falls back to a fixed `1.0` when omitted, which
+degenerates a precision-recall sweep to a single point — a documented
+approximation, not a model capability.
+
+Supports the same served-vLLM-vs-local-HuggingFace-pipeline backend choice
+as the `llm/` clients (`--gemma4-url`/`--gemma4-model`/`--gemma4-device` on
+`run_full_pipeline.py`).
+
 ## Notebook workflow (`run_pipeline.ipynb`)
 
 Notebook: `notebooks/run_pipeline.ipynb`
@@ -200,15 +419,27 @@ Notebook visualization exports are saved under:
 ## Package layout
 
 - `agvfm/`: core package.
-  - `models/`: YOLOWorldModel, GroundingDINOModel, OWLv2Model, SAM3Model.
+  - `models/`: YOLOWorldModel, GroundingDINOModel, OWLv2Model, SAM3Model (file-path/numpy `BaseModel` interface, used directly by `load_and_run.py`); `vlm_pipeline.Gemma4VLMPipeline` (VLM-as-unified-pipeline, PAPER.md 3.6 — same `BaseModel` interface).
   - `experiments/`: `Evaluator` (full mAP), `run_factor_analysis`.
-  - `config/experiments.py`: `FACTOR_AXES`, prompt builders, `FactorAxis`.
-  - `llm/`: `LLMClient` (OpenAI-compatible axis generation), `VLMClient` (meta-prompt suggestions).
-  - `optimizer/`: `AgVFMAdapter` + `VFMBase` bridge, `PromptAxes`, PEZ gradient optimizer (**experimental**), meta-prompt optimizer (**experimental**).
-  - `data/`: `agml_loader.py` (AgML streaming — no full download required), `disk_loader.py` (YOLO on-disk datasets).
+  - `config/experiments.py`: `FACTOR_AXES`, prompt builders, `FactorAxis` (cowpea-flower-specific; the single-dataset baseline).
+  - `llm/`: `LLMClient` (OpenAI-compatible axis-value generation), `meta_client.VLMClient` (free-text prompt/template suggestions), `vlm_insight_client.VLMInsightClient` (visual attribute reads for zero-shot template fill) — all three support a served-or-local-HF-pipeline backend choice and track cumulative call/token/time usage.
+  - `instrumentation/tracking.py`: `CallRecord` + `RunTracker` — structured cost/performance logging (PAPER.md section 5).
+  - `reporting/aggregate.py`: aggregates `RunTracker` logs into the cost/performance comparison table (PAPER.md section 5.3).
+  - `optimizer/`: `AgVFMAdapter` + `VFMBase` bridge and `PromptAxes` (generalized, cross-dataset axis representation, in `types.py`/`axes.py`); `loop.py` (single-dataset axis-based OFAT + combinatorial search, generalized version of `load_and_run.py`'s Phase 1/2); `prompt_template.py` / `meta_prompt_template.py` (cross-dataset template discovery + zero-shot transfer — axis-based and LLM-based respectively); `meta_prompt.py` (single-dataset meta-prompt search + `CrossRunSummary`); `grad_prompt.py` + `grad_adapters.py` (PEZ gradient optimizer, **experimental**).
+  - `data/`: `agml_loader.py` (Project-AgML datasets via the HuggingFace Hub, `agml.data.hf_loader.HuggingFaceDataLoader`), `disk_loader.py` (YOLO on-disk datasets).
 - `experiments/scripts/experiments/`: experiment runners.
-  - `load_and_run.py` — Phase 1 + 2 OFAT / combinatorial search (primary entry point).
+  - `load_and_run.py` — Phase 1 + 2 OFAT / combinatorial search on a single on-disk dataset (primary entry point).
+  - `run.py` — single-dataset axis-based optimizer generalized to AgML/disk datasets via `PromptAxes`.
+  - `run_template.py` — cross-dataset axis/template discovery + zero-shot transfer (pools training datasets, see `datasets_pool.example.yaml`).
+  - `meta_run_template.py` — cross-dataset LLM template search + zero-shot transfer (unconstrained counterpart to `run_template.py`).
+  - `run_full_pipeline.py` — orchestrates discovery + constrained transfer + summary-informed metaprompting (+ optional Gemma 4) in one run, with full instrumentation and a final comparison table.
   - `grad_run.py` — PEZ gradient prompt optimization (**experimental**).
-  - `meta_run.py` — LLM-iterative meta-prompt optimization (**experimental**).
+  - `meta_run.py` — single-dataset LLM-iterative meta-prompt optimization (**experimental**).
 - `notebooks/`: interactive analysis and reporting notebooks.
 - `figures/`: result visualizations referenced in this README.
+
+## Related documents
+
+- `PAPER.md` — refactor spec for the cross-dataset prompt-transfer paper (axis-based constrained transfer vs. open-ended metaprompting, cost/instrumentation requirements).
+- `agml_prompt_readme.md` — documentation for the original `agml_prompt` sibling repo that `run.py`/`run_template.py`/`meta_run_template.py`/the `agvfm/optimizer` and `agvfm/llm` modules above were ported and reconciled from.
+- `AGENT.md` — current state of the reconciliation between the two repos and next steps.

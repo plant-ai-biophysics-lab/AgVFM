@@ -36,6 +36,8 @@ dependencies = [
     "pycocotools",
     "openai>=1.0.0",
     "pyyaml>=6.0",
+    "agml",
+    "accelerate>=0.30.0",
 ]
 
 [project.optional-dependencies]

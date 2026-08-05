@@ -1,0 +1,62 @@
+# Example --datasets-file for run_template.py / meta_run_template.py /
+# run_full_pipeline.py.
+#
+# `datasets:` lists HuggingFace-Hub (Project-AgML) dataset entries used to
+# build the pooled cross-dataset training mix (discovery + template search)
+# and the held-out zero-shot test set. Entries without `held_out` (or with
+# `held_out: false`) go into the training pool; entries with
+# `held_out: true` are evaluated zero-shot only — never touched during
+# template search.
+#
+# `rarity` (held-out entries only, default "common" if omitted): flags
+# whether a held-out dataset is a common-crop hold-out or a genuinely
+# rare/out-of-distribution one. PAPER.md section 4 specifically calls for
+# reporting these separately (a likely reviewer question) — this is a
+# lightweight stand-in for the fuller dataset_registry.py the paper describes
+# (see AGENT.md); it's just a per-entry tag for now, not a k-fold rotation.
+#
+# `name` may be a bare dataset name (resolved under the Project-AgML HF org
+# by agvfm/data/agml_loader.py) or a fully-qualified "org/name" HF repo id.
+#
+# `classes` must match the dataset's ACTUAL category label strings (its HF
+# `objects.categories` ClassLabel names), not a guessed/prettified version —
+# agml_loader.py resolves category_name from the dataset's own ClassLabel
+# feature when available (falling back to positional indexing into `classes`
+# only when it isn't), so a mismatched `classes` list produces wrong
+# `category_id`s silently even though `category_name` stays correct. Verified
+# against live data for every entry below on 2026-07-30 — e.g.
+# strawberry_detection_2023 uses "lw"/"sw", not "large_white"/"small_white",
+# and ghai_romaine_detection's only category is "Crop", not "romaine". Check
+# a new dataset's real schema before adding it:
+#   from agml.data.hf_loader import HuggingFaceDataLoader
+#   ds = HuggingFaceDataLoader("Project-AgML/<name>").dataset["train"]
+#   ds.features["objects"]["categories"]  # -> List(ClassLabel(names=[...]))
+
+datasets:
+  - name: apple_detection_usa
+    crop: apple
+    classes: [apple]
+  - name: mango_detection_australia
+    crop: mango
+    classes: [mango]
+  - name: grape_detection_californiaday
+    crop: grape
+    classes: [grape]
+  - name: ghai_romaine_detection
+    crop: romaine lettuce
+    classes: [Crop]   # verified against the live HF dataset schema — not "romaine"
+  - name: strawberry_detection_2023
+    crop: strawberry
+    classes: [strawberry, flower, green, lw, pink, red, sw]   # "lw"/"sw", not "large_white"/"small_white" — verified against live schema
+
+  # Held out — never used to build the template, only to measure zero-shot transfer.
+  - name: grape_detection_californianight
+    crop: grape
+    classes: [grape]
+    held_out: true
+    rarity: common   # same crop as grape_detection_californiaday above, different conditions
+  - name: almond_bloom_2023
+    crop: almond
+    classes: [Visible Fruit/Flower]
+    held_out: true
+    rarity: rare      # no almond dataset in the training pool above

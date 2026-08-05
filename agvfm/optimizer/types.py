@@ -22,6 +22,8 @@ from typing import Any
 import numpy as np
 from PIL import Image
 
+from agvfm.evaluation.metrics import compute_metrics_at_iou
+
 logger = logging.getLogger(__name__)
 
 
@@ -59,8 +61,8 @@ class VFMBase(ABC):
     """Abstract base for detection models used by the optimizer.
 
     Subclasses implement :meth:`predict` which takes a PIL image and a list of
-    text prompts and returns detected objects.  :meth:`compute_map` (F1 proxy)
-    is implemented here using :meth:`predict`.
+    text prompts and returns detected objects.  :meth:`compute_map` is
+    implemented here using :meth:`predict`.
     """
 
     name: str = ""
@@ -75,24 +77,40 @@ class VFMBase(ABC):
         prompts: list[str],
         iou_threshold: float = 0.5,
     ) -> float:
-        """F1 score computed at *iou_threshold* across all *samples*.
+        """mAP@*iou_threshold* (101-point interpolated AP) across all *samples*.
 
-        Used as a fast proxy for mAP inside the optimizer loops.
+        Same metric ``load_and_run.py``'s ``Evaluator`` reports
+        (:func:`agvfm.evaluation.metrics.compute_metrics_at_iou`) — collects
+        every sample's ground-truth boxes and every detection's
+        box+confidence, then computes one precision-recall curve over the
+        whole set rather than a single-threshold precision/recall/F1 at
+        whatever confidence :meth:`predict` happens to return. Replaces the
+        F1-at-implicit-threshold proxy this used to compute.
         """
-        all_tp = all_fp = all_fn = 0
+        list_gt_xyxy: list[np.ndarray] = []
+        list_pred_xyxy: list[np.ndarray] = []
+        list_pred_conf: list[np.ndarray] = []
 
         for sample in samples:
             preds = self.predict(sample.image, prompts)
-            tp, fp, fn = _match_detections(preds, sample.annotations, iou_threshold)
-            all_tp += tp
-            all_fp += fp
-            all_fn += fn
+            gt_xyxy = (
+                np.array([_xywh_to_xyxy(a["bbox"]) for a in sample.annotations], dtype=np.float64)
+                if sample.annotations else np.zeros((0, 4), dtype=np.float64)
+            )
+            pred_xyxy = (
+                np.array([d.bbox for d in preds], dtype=np.float64)
+                if preds else np.zeros((0, 4), dtype=np.float64)
+            )
+            pred_conf = (
+                np.array([d.score for d in preds], dtype=np.float64)
+                if preds else np.zeros(0, dtype=np.float64)
+            )
+            list_gt_xyxy.append(gt_xyxy)
+            list_pred_xyxy.append(pred_xyxy)
+            list_pred_conf.append(pred_conf)
 
-        precision = all_tp / (all_tp + all_fp) if (all_tp + all_fp) > 0 else 0.0
-        recall    = all_tp / (all_tp + all_fn) if (all_tp + all_fn) > 0 else 0.0
-        if precision + recall == 0:
-            return 0.0
-        return 2 * precision * recall / (precision + recall)
+        metrics = compute_metrics_at_iou(list_gt_xyxy, list_pred_xyxy, list_pred_conf, iou_threshold=iou_threshold)
+        return metrics["map"]
 
 
 # ---------------------------------------------------------------------------

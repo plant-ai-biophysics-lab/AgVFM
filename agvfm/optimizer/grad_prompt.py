@@ -41,6 +41,7 @@ from __future__ import annotations
 import json
 import logging
 import random
+import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -135,6 +136,8 @@ class GradOptResult:
     patience_exhausted: bool
     total_evaluations: int
     step_history: list[GradStepRecord] = field(default_factory=list)
+    wall_clock_seconds: float = 0.0
+    gpu_seconds: float = 0.0  # == wall_clock_seconds when a CUDA device is used, else 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -211,6 +214,7 @@ def pez_optimize(
     if loss_type == "cosine" and image_cosine_feat is None:
         raise ValueError("image_cosine_feat must be provided for loss_type='cosine'")
 
+    _start_time = time.time()
     rng = random.Random(config.seed)
     torch.manual_seed(config.seed)
 
@@ -344,6 +348,7 @@ def pez_optimize(
 
         step_history.append(rec)
 
+    elapsed = time.time() - _start_time
     return GradOptResult(
         dataset_name="",        # filled by caller
         model_name="",          # filled by caller
@@ -360,6 +365,11 @@ def pez_optimize(
         patience_exhausted=patience_exhausted,
         total_evaluations=eval_count,
         step_history=step_history,
+        wall_clock_seconds=elapsed,
+        # Wall-clock while resident on a CUDA device, as a training-time proxy —
+        # not per-kernel CUDA-event timing (would need extra synchronization
+        # overhead in the hot loop for marginal precision gain here).
+        gpu_seconds=elapsed if str(device).startswith("cuda") else 0.0,
     )
 
 
@@ -500,6 +510,8 @@ def _save_result(result: GradOptResult, output_dir: Path) -> None:
         "total_steps": result.total_steps,
         "patience_exhausted": result.patience_exhausted,
         "total_evaluations": result.total_evaluations,
+        "wall_clock_seconds": round(result.wall_clock_seconds, 3),
+        "gpu_seconds": round(result.gpu_seconds, 3),
         "step_history": [
             {
                 "step": r.step,
